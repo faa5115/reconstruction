@@ -46,6 +46,10 @@ This whitening operator can then be applied to each k-space entry across all cha
 
 This can also be applied to the image domain as well because the Fourier transform is linear.  An an Nc length vector $$\textbf{Im}(\textbf{r})   $$, which holds the image voxels at location $$\textbf{r}$$ for each channel, can be whitened by post multiplying its transpose by $$W$$:  $$\textbf{Im}_w(\textbf{r}) = \textbf{Im}(\textbf{r})^T W$$.
 
+
+
+
+The content of the following two sections are demonstrated in coilCombine/main_demonstrateCoilCombine.m
 ## Square Root Sum of Squares (Sq. SOS). 
 If you treat each voxel across all channels as an Nc-length vector, $$\textbf{Im}(\textbf{r}) $$, the square-root sum of squares of that voxel is simply the magnitude of that vector:  
 
@@ -59,8 +63,20 @@ My func_sqSOS function has two inputs:  multi-channel images (size Nx x Ny x Nz 
 Below are individual (correlated) channel images and they are followed by a Sq. SOS. recon of whitened channel images.
 
 ![](/figures/HipChannelImages.jpg)\
-\
-![](/figures/HipSqSOSRecon.jpg)\
-\
 
+![](/figures/HipSqSOSRecon.jpg)\
+
+
+## Adaptive Coil Combine (Walsh's Method). 
+The spatial matched filter provides SNR optimal combination while removing the greatest
+extent of local channel shading by using the distribution of the magnetic field generated
+by each channel (the sensitivity profile of each channel). Using the sensitivity profiles to
+estimate for a combined channel image preserves the relative phase the voxels. The weights
+for the spatial matched filter ($$\textbf{m}(\textbf{r}) \in N_c x 1 $$) can be described as:
+$$
+\begin{align}
+\textbf{m}(\textbf{r}) = Rn^{-1}\textbf{c}{\textbf{r}}
+\end{align}
+$$
+where $$\textbf{c}{\textbf{r}} \in Nc x 1$$ is an Nc long vector of the channel sensitivities of the signal at voxel/position $$ \textbf{r} $$. 
 
