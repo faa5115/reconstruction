@@ -16,6 +16,6 @@ Mutual inductance is inevitable for channels in the phased array. This has subtl
 the noise power amplitude of the combined image from the $$N_c$$ Channels, leaving each channel its own noise variance. Whitening the data will decorrelate the data
 from the channels and result in the same noise variance for each channel.  I will explain and demonstrate this:
 
-The cross-correlation of the channels (of size Nc x Nc) is given by $$Rn = N^HN$$, where $$N$$ is the Nt x Nc noise data and and $$^H$$ indicates the Hermitian conjugate. 
-![](/ChannelCrossCorrelation.jpg)
+The cross-correlation of the channels (of size Nc x Nc) is given by $$Rn = N^HN$$, where $$N$$ is the Nt x Nc noise data and and $$^H$$ indicates the Hermitian conjugate. \
+![](/figures/ChannelCrossCorrelation.jpg)
 
