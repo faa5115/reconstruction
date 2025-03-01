@@ -39,4 +39,5 @@ $$
 The function func_whitenMatrix(noise) inputs the noise data and has the following outputs:  W (the whiten matrix) and V and D (the eigenvector and diagonal eigenvalue matrix in case you want them). After applying $$NW$$ the correlation matrix of the newly whitened noise data is: \
 ![](/figures/WhitenedChannelsCrossCorrelation.jpg)\
 
-
+\
+This whitening operator can then be applied to each k-space entry across all channels, $$\vect{d}(\textbf{k}) $$ to result in whitened k-space data. 
