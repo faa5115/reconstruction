@@ -73,10 +73,12 @@ extent of local channel shading by using the distribution of the magnetic field 
 by each channel (the sensitivity profile of each channel). Using the sensitivity profiles to
 estimate for a combined channel image preserves the relative phase the voxels. The weights
 for the spatial matched filter ($$\textbf{m}(\textbf{r}) \in N_c x 1 $$) can be described as:
+
 $$
 \begin{align}
 \textbf{m}(\textbf{r}) = Rn^{-1}\textbf{c}{\textbf{r}}
 \end{align}
 $$
+
 where $$\textbf{c}{\textbf{r}} \in Nc x 1$$ is an Nc long vector of the channel sensitivities of the signal at voxel/position $$ \textbf{r} $$. 
 
