@@ -49,6 +49,6 @@ If you treat each voxel across all channels as a vector, $$\textbf{Im}(\textbf{r
 
 $$
 \begin{align}
-\textbf{Im}_{sos}(\textbf{r})  = \sqrt{\textbf{Im}_{sos}(\textbf{r})^H \textbf{Im}_{sos}(\textbf{r})}
+\textbf{Im}_{sos}(\textbf{r})  = \sqrt{ \textbf{Im}^T(\textbf{r}) \textbf{Im}(\textbf{r}) }
 \end{align}
 $$
