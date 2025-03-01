@@ -57,6 +57,7 @@ $$
 \end{align}
 $$
 
+My func_sqSOS function has two inputs:  multi-channel images (size Nx x Ny x Nz x Nc) and noise (size Nt x Nc).  If the images are already whitened, or you do not want to whiten the data, just place [] in place of noise.  The output is sq. sos. image. 
 Below are individual (correlated) channel images and they are followed by a Sq. SOS. recon of whitened channel images.
 
 ![](/figures/HipChannelImages.jpg)\
