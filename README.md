@@ -41,7 +41,14 @@ The function func_whitenMatrix(noise) inputs the noise data and has the followin
 
 \
 This whitening operator can then be applied to each k-space entry across all channels, $$\textbf{d}(\textbf{k})   \$$,  to result in whitened k-space data by $$\textbf{d}_w(\textbf{k}) = \textbf{d}(\textbf{k})^T W $$ where $$\textbf{k}$$ indicates k-space coordinate, $$ \textbf{d}(\textbf{k})$$ is a Nc long vector giving the k-space entry of that coordinate for each channel, and $$^T$$ indicates transpose.
-This can also be applied in the image domain as well.  
 
+This can also be applied to the image domain as well because the Fourier transform is linear.  An an Nc length vector $$\textbf{Im}(\textbf{r})   $$, which holds the image voxels at location $$\textbf{r}$$ for each channel, can be whitened by post multiplying its transpose by $$W$$:  $$\textbf{Im}_w(\textbf{r}) = \textbf{Im}(\textbf{r})^T W$$.
 
 ## Square Root Sum of Squares (Sq. SOS). 
+If you treat each voxel across all channels as a vector, $$\textbf{Im}(\textbf{r}) $$, the square-root sum of squares of that voxel is simply the magnitude of that vector:  
+
+$$
+\begin{align}
+\textbf{Im}_{sos}(\textbf{r})  = \sqrt{\textbf{Im}_{sos}(\textbf{r})^H \textbf{Im}_{sos}(\textbf{r})}
+\end{align}
+$$
