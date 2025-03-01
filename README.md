@@ -20,6 +20,9 @@ The cross-correlation of the channels (of size Nc x Nc) is given by $$Rn = N^HN$
 ![](/figures/ChannelCrossCorrelation.jpg)\
 
 This has noticeable off-diagonal entries, indicating significant cross-channel correlation.  A whitening transform, $$W$$$, should be applied to this noise or raw data to remove the cross-channel correlation.  Whitened noise data, $$N_w$$, would satisfy $$N^H_wN_w = I$$, where $$I$$ is the identity matrix. If $$N_w = NW$$, then the whitening transform can be determined from the following: 
+
+
+
 $$ 
 \begin{align} 
 a^\dagger_1 &= \frac{X - iY}{2} \otimes I \otimes I \otimes ... \otimes I \\ 
