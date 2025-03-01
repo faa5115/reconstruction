@@ -17,5 +17,5 @@ the noise power amplitude of the combined image from the $$N_c$$ Channels, leavi
 from the channels and result in the same noise variance for each channel.  I will explain and demonstrate this:
 
 The cross-correlation of the channels (of size Nc x Nc) is given by $$Rn = N^HN$$, where $$N$$ is the Nt x Nc noise data and and $$^H$$ indicates the Hermitian conjugate. 
-
+![](/ChannelCrossCorrelation.jpt)
 
