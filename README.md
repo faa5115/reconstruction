@@ -25,9 +25,9 @@ This has noticeable off-diagonal entries, indicating significant cross-channel c
 
 $$ 
 \begin{align} 
-a^\dagger_1 &= \frac{X - iY}{2} \otimes I \otimes I \otimes ... \otimes I \\ 
-a^\dagger_2 &= Z \otimes \frac{X - iY}{2} \otimes I \otimes ... \otimes I \\
-&\vdots \\
-a^\dagger_{2n} &= Z \otimes Z \otimes Z \otimes ... \otimes \frac{X -iY}{2} 
+N^H_wN_w = I \\ 
+(NW)^H(NW) = I \\ 
+W^HN^HNW = I \\
+W^HV_N\Lambda ^N V^H_NW = I
 \end{align}
 $$
