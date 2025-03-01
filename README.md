@@ -47,8 +47,6 @@ This whitening operator can then be applied to each k-space entry across all cha
 This can also be applied to the image domain as well because the Fourier transform is linear.  An an Nc length vector $$\textbf{Im}(\textbf{r})   $$, which holds the image voxels at location $$\textbf{r}$$ for each channel, can be whitened by post multiplying its transpose by $$W$$:  $$\textbf{Im}_w(\textbf{r}) = \textbf{Im}(\textbf{r})^T W$$.
 
 ## Square Root Sum of Squares (Sq. SOS). 
-I demonstrate this is the file coilCombine/main_demonstrateCoilCombine.m
-
 If you treat each voxel across all channels as an Nc-length vector, $$\textbf{Im}(\textbf{r}) $$, the square-root sum of squares of that voxel is simply the magnitude of that vector:  
 
 $$
@@ -57,7 +55,7 @@ $$
 \end{align}
 $$
 
-My func_sqSOS function has two inputs:  multi-channel images (size Nx x Ny x Nz x Nc) and noise (size Nt x Nc).  If the images are already whitened, or you do not want to whiten the data, just place [] in place of noise.  The output is sq. sos. image. 
+My func_sqSOS function has two inputs:  multi-channel images (size Nx x Ny x Nz x Nc) and noise (size Nt x Nc).  If the images are already whitened, or you do not want to whiten the data, just place [] in place of noise.  The output is sq. sos. image. I demonstrate this is the file coilCombine/main_demonstrateCoilCombine.m
 Below are individual (correlated) channel images and they are followed by a Sq. SOS. recon of whitened channel images.
 
 ![](/figures/HipChannelImages.jpg)\
