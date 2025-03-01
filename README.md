@@ -12,6 +12,8 @@ The size of noise: Nt is the number of time points received during the noise sca
 
 ### Data Whitening 
 I demonstrate this is the file coilCombine/main_demonstrateWhitening.m
+
+
 Mutual inductance is inevitable for channels in the phased array. This has subtle effects in
 the noise power amplitude of the combined image from the $$N_c$$ Channels, leaving each channel its own noise variance. Whitening the data will decorrelate the data
 from the channels and result in the same noise variance for each channel.  I will explain and demonstrate this:
@@ -45,6 +47,8 @@ This whitening operator can then be applied to each k-space entry across all cha
 This can also be applied to the image domain as well because the Fourier transform is linear.  An an Nc length vector $$\textbf{Im}(\textbf{r})   $$, which holds the image voxels at location $$\textbf{r}$$ for each channel, can be whitened by post multiplying its transpose by $$W$$:  $$\textbf{Im}_w(\textbf{r}) = \textbf{Im}(\textbf{r})^T W$$.
 
 ## Square Root Sum of Squares (Sq. SOS). 
+I demonstrate this is the file coilCombine/main_demonstrateCoilCombine.m
+
 If you treat each voxel across all channels as an Nc-length vector, $$\textbf{Im}(\textbf{r}) $$, the square-root sum of squares of that voxel is simply the magnitude of that vector:  
 
 $$
@@ -52,3 +56,12 @@ $$
 \textbf{Im}_{sos}(\textbf{r})  = \sqrt{ \textbf{Im}^T(\textbf{r}) \textbf{Im}(\textbf{r}) }
 \end{align}
 $$
+
+Below are individual (correlated) channel images and they are followed by a Sq. SOS. recon of whitened channel images.
+
+![](/figures/HipChannelImages.jpg)\
+\
+![](/figures/HipSqSOSRecon.jpg)\
+\
+
+
