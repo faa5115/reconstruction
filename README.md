@@ -42,3 +42,6 @@ The function func_whitenMatrix(noise) inputs the noise data and has the followin
 \
 This whitening operator can then be applied to each k-space entry across all channels, $$\textbf{d}(\textbf{k})   \$$,  to result in whitened k-space data by $$\textbf{d}_w(\textbf{k}) = \textbf{d}(\textbf{k})^T W $$ where $$\textbf{k}$$ indicates k-space coordinate, $$ \textbf{d}(\textbf{k})$$ is a Nc long vector giving the k-space entry of that coordinate for each channel, and $$^T$$ indicates transpose.
 This can also be applied in the image domain as well.  
+
+
+## Square Root Sum of Squares (Sq. SOS). 
