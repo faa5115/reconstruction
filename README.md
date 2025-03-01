@@ -35,3 +35,8 @@ W^HV_N\Lambda_N^{1/2}\Lambda_N^{1/2} V^H_NW=I \\
 W = \Lambda_N^{-1/2}V_N \\
 \end{align}
 $$
+
+The function func_whitenMatrix(noise) inputs the noise data and has the following outputs:  W (the whiten matrix) and V and D (the eigenvector and diagonal eigenvalue matrix in case you want them). After applying $$NW$$ the correlation matrix of the newly whitened noise data is: \
+![](/figures/WhitenedChannelsCrossCorrelation.jpg)\
+
+
