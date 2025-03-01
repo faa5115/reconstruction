@@ -28,6 +28,7 @@ $$
 N^H_wN_w = I \\ 
 (NW)^H(NW) = I \\ 
 W^HN^HNW = I \\
-W^HV_N\Lambda ^N V^H_NW = I
+W^HV_N\Lambda_N V^H_NW = I
+W^HV_N\Lambda_N^{1/2}\Lambda_N^{1/2} V^H_NW=I
 \end{align}
 $$
