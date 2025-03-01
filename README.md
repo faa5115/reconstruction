@@ -76,9 +76,9 @@ for the spatial matched filter ($$\textbf{m}(\textbf{r}) \in N_c x 1 $$) can be 
 
 $$
 \begin{align}
-\textbf{m}(\textbf{r}) = Rn^{-1}\textbf{c}{\textbf{r}}
+\textbf{m}(\textbf{r}) = Rn^{-1}\textbf{c}({\textbf{r}})
 \end{align}
 $$
 
-where $$\textbf{c}{\textbf{r}} \in Nc x 1$$ is an Nc long vector of the channel sensitivities of the signal at voxel/position $$ \textbf{r} $$. 
+where $$\textbf{c}({\textbf{r}}) \in Nc x 1$$ is an Nc long vector of the channel sensitivities of the signal at voxel/position $$\textbf{r}$$. 
 
