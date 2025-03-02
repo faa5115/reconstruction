@@ -50,7 +50,7 @@ This can also be applied to the image domain as well because the Fourier transfo
 
 
 The content of the following two sections are demonstrated in coilCombine/main_demonstrateCoilCombine.m
-## Square Root Sum of Squares (Sq. SOS). 
+### Square Root Sum of Squares (Sq. SOS). 
  I demonstrate my implementation in the file coilCombine/main_demonstrateCoilCombine.m
 
 If you treat each voxel across all channels as an Nc-length vector, $$\textbf{Im}(\textbf{r}) $$, the square-root sum of squares of that voxel is simply the magnitude of that vector:  
@@ -71,7 +71,7 @@ Below are individual (correlated) channel images followed by, channel phases, an
 ![](/figures/HipSqSOSRecon.jpg)\
 
 
-## Adaptive Coil Combine (Walsh's Method). 
+### Adaptive Coil Combine (Walsh's Method). 
 I demonstrate my implementation in the file coilCombine/main_demonstrateCoilCombine.m
 
 The spatial matched filter provides SNR optimal combination while removing the greatest
