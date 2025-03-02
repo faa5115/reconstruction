@@ -90,5 +90,5 @@ Im_{cc}(\textbf{r}) = \textbf{m}^H(\textbf{r}) \textbf{Im}(\textbf{r})
 $$
 
 However properly estimating $$\textbf{c}(\textbf{r})$$ is difficult.  A common way of doing this is by dividing the individual channel
-images by the square root sum of squares image or by dividing by an image from the body coil.   An adaptive method to estimate for the optimal matched described by Walsh, borrowing from the stochastic matched filter formulation of temporal signal processes commonly seen in radar. For each location, $$\textbf{r}$$,  the weights needed to sum the channel
-entries are determined from a patch of voxels surrounding $$\textbf{r}$$ across all channels.
+images by the square root sum of squares image or by dividing by an image from the body coil.   An adaptive method to estimate for the optimal matched described by Walsh, borrowing from the stochastic matched filter formulation of temporal signal processes commonly seen in radar. Rather than time, Walsh applied the stochastic matched filter process of combining the channel images at location $$\textbf{r}$$, $$\textbf{c}(\textbf{r})$$ over a patch of voxels centered at $$\textbf{r}$$.  Given a noise covariance matrix, 
+
