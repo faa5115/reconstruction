@@ -1,5 +1,8 @@
 # reconstruction
-MRI reconstruction
+This is a repository of some MRI reconstruction methdos that I reconstructed, along with a brief explanation of them and individaul main files demonstrating how to use my code. I spent time on the details of these methods in the background chapter of my thesis "The Exploitation and Mitigation of Flow Effects in MRI." In this repository, I go over and demosntrate my implementations of the following:   whitening multichannel data, adaptive coil combine, sensitivity encoding, SMASH, GRAPPA,  SPIRiT, my own "simplified E-SPIRiT", SAKE/other low rank parallel imaging methods, non-Cartesian reconstruction, and spatial beamforming (right now i will just go over ROVir because I am trying to publish my own spatial beamforming work).  
+
+## A brief story of how I got into reconstruction.  (For an MRI audience).
+Starting off my PhD at UCLA, I thought I would just be a pulse sequence guy, but I eventually really got into reconstruction.  During my PhD, I was originally working on applying SEMAC to cine GRE imaging to see if it could improve imaging of subjects with pacemakers or ICDs.  I then came across Mike Markl's "Flow effects in balanced steady state free precession imaging", and I realized that outflow artifacts in balanced steady state free precession (bSSFP) is similar to metal artifacts.  When trying to acquire 2D images of an imaging slice close to metal or having through-plane flow, the signal profiles both actually span a 3D space.  For metal that is because the metallic device/implant distortes the magnetic field, so when applying RF transmission to excite a slice, the distorted magnetic field actually excites a 3D profile.  For 2D bSSFP imaging, if you have a vessel that goes through the imaged slice, the inflowing spins get excited onto the transverse plane.  As they flow out, they 
 
 I have divided this into different sections:  coil combine, .... 
 
@@ -106,3 +109,6 @@ Inputs:  Its inputs are imRaw, noise, and patchSize.  Here, imRaw is of size Nx 
 Output:  the coil-combined data of size Nx x Ny x Nz x 1 x Nm.  
 
 I will put a demonstration with multi-echo data later. 
+
+## Parallel Imaging
+Here I will go over parallel imaging methods that I implemented.  
