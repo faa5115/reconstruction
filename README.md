@@ -51,6 +51,8 @@ This can also be applied to the image domain as well because the Fourier transfo
 
 The content of the following two sections are demonstrated in coilCombine/main_demonstrateCoilCombine.m
 ## Square Root Sum of Squares (Sq. SOS). 
+ I demonstrate my implementation in the file coilCombine/main_demonstrateCoilCombine.m
+
 If you treat each voxel across all channels as an Nc-length vector, $$\textbf{Im}(\textbf{r}) $$, the square-root sum of squares of that voxel is simply the magnitude of that vector:  
 
 $$
@@ -59,7 +61,7 @@ $$
 \end{align}
 $$
 
-My func_sqSOS function has two inputs:  multi-channel images (size Nx x Ny x Nz x Nc) and noise (size Nt x Nc).  If the images are already whitened, or you do not want to whiten the data, just place [] in place of noise.  The output is sq. sos. image. I demonstrate this is the file coilCombine/main_demonstrateCoilCombine.m
+My func_sqSOS function has two inputs:  multi-channel images (size Nx x Ny x Nz x Nc) and noise (size Nt x Nc).  If the images are already whitened, or you do not want to whiten the data, just place [] in place of noise.  The output is sq. sos. image.
 Below are individual (correlated) channel images followed by, channel phases, and a Sq. SOS. recon of whitened channel images.
 
 ![](/figures/HipChannelImages.jpg)\
@@ -70,6 +72,8 @@ Below are individual (correlated) channel images followed by, channel phases, an
 
 
 ## Adaptive Coil Combine (Walsh's Method). 
+I demonstrate my implementation in the file coilCombine/main_demonstrateCoilCombine.m
+
 The spatial matched filter provides SNR optimal combination while removing the greatest
 extent of local channel shading by using the distribution of the magnetic field generated
 by each channel (the sensitivity profile of each channel). Using the sensitivity profiles to
@@ -95,3 +99,10 @@ However properly estimating $$\textbf{c}(\textbf{r})$$ is difficult.  A common w
 images by the square root sum of squares image or by dividing by an image from the body coil.   An adaptive method to estimate for the optimal matched described by Walsh, borrowing from the stochastic matched filter formulation of temporal signal processes commonly seen in radar. Rather than time, Walsh applied the stochastic matched filter process of combining the channel images at location $$\textbf{r}$$, $$\textbf{c}(\textbf{r})$$ over a patch of voxels centered at $$\textbf{r}$$.  Given a noise scan of size $$Nt x Nc$$ and a patch of voxels centered at $$\textbf{r}$$ for each channel of size $$Np x Nc$$ ($$Np$$ is patch-size), a noise covariance matrix, $$Rn$$, and a signal covariance matrix $$Rs(\textbf{r})$$ (including "$$(\textbf{r})$$ to make it clear that $$Rs$$ is going to be different for each voxel), can be formed.  In the manuscript, Walsh demonstrates that the weights, $$\textbf{m}$$, that optimizes signal to noise power is the eigenvector corresponding the highest eigenvalue of the eigenbasis that double-diagonalizes $$Rn$$ and $$Rs$$.  By that i mean the $$Ncx1$$ weights vector $$\textbf{m}$$ is the eigenvector of the largest eigenvalue of $$Rn^{-1}Rs(\textbf{r})$$.  Because this double-diagonalizes the noise and signal covariance matrices, the input noise and signal can be correlated, but the weights vector $$\textbf{m}$$ will whiten in the summation.   To preserve relative phase before the summation, $$\textbf{m}$$ is multiplied by $$e^{-i\theta_{max}}$$ where $$\theta_{max}$$ is the phase of the  element of $$\textbf{m}$$ corresponding to the channel with the highest signal power.  Below is the magnitude and phase of a Walsh method reconstruction of the multi-channel hip data illustrated above: \
 
 ![](/figures/WalshCombine_signal_and_phase.jpg)\
+
+My implementation of this reconstruction is func_WalshMethod. 
+Inputs:  Its inputs are imRaw, noise, and patchSize.  Here, imRaw is of size Nx x Ny x Nz x Nc x Nm, where Nm is the number of echoes.  If you have multiple slices or slabs (Ns > 1) do the recon separately for each slice/slab.  patchSize is of size Npatchx x Npatchy x Npatchz x Nm.  You can have patchSize be empty ([]) and the code will figure it out for you (based on Walsh's writing that you need ~250 voxels in your patch to have the most statistically robust coil combination).  The reason why i included the echo dimension in this implementation is because Mark Bydder has a paper showing how Walsh's adaptive recon method can be used for time-series MRI.  This makes sense because the original math behind Walsh's method was for time-varying data in radar, as I mentioned earlier.  Mark Bydder's paper was regarding spectroscopy but he later used it for multi-echo data for fat and R2* mapping.  
+
+Output:  the coil-combined data of size Nx x Ny x Nz x 1 x Nm.  
+
+I will put a demonstration with multi-echo data later. 
