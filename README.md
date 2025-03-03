@@ -128,4 +128,4 @@ In order to distinguish $$$N$ harmonic signals, $$N$$ observations must be made 
 
 ![](/figures/PhaseEncoding_Part2.jpg)\
 
-Given this very brief discussion on phase-encoding, it is clear that the number of phase-encoding steps scales with scan time.  To reduce scan time, you must reduce the number of phase-encoding steps.  
+Given this very brief discussion on phase-encoding, it is clear that the number of phase-encoding steps scales with scan time.  To reduce scan time, you must reduce the number of phase-encoding steps.  If you only spend time to acquire the k-space lines close to the center, you are only left with information that cannot distinguish many nearby spins from one another and are left with a low-resolution image.  What happens if you skip k-space lines?  
