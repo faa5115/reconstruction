@@ -115,9 +115,11 @@ I will put a demonstration with multi-echo data later.
 ## Parallel Imaging
 I will go over some of the parallel imaging methods I implemetned myself and some intuition behind them.  I had fun going down this rabbit hole. 
 
-First I should go over a brief background of the MR signal readout to emphasize how important phase-encoding is.  This will give the intuition of why scan time scales with parallel imaging, which will then be useful for understanding parallel imaging. First off, a single readout line  only provides a single projection of the image along the direction frequency encoding was applied. This readout signal is a sum of multiple spatial harmonic functions where all spins at the having the same coordinate along the frequency encoding direction same frequency,  $$\gamma \textbf{G}_{ro} \cdot \textbf{r}$$.   This does nothing to localize spins along either perpendicular phase-encoding direction.  
-
+First I should go over hte importance of phase-encoding.  This will give the intuition of why scan time scales with parallel imaging, which will then be useful for understanding parallel imaging. First off, a single readout line  only provides a single projection of the image along the direction frequency encoding was applied. This readout signal is a sum of multiple spatial harmonic functions where all spins at the having the same coordinate along the frequency encoding direction same frequency,  $$\gamma \textbf{G}_{ro} \cdot \textbf{r}$$.   This does nothing to localize spins along either perpendicular phase-encoding direction.  A single frequency encoded readout is shown below.  The image on the left is the object being imaged (ACR Phantom - American College of Radiology) and the white arrow indicates the direction of frequency encoding.  On the right, the top image shows the time-varying k-space readout and beneath it is the FFT of this readout.  This FFT is just a projection of the spins along the frequency encoding direction.  I go more into detail in the background section of my thesis, but Paul Lauterbur's ground breaking paper in Nature explains this really well.  
 ![](/figures/FrequencyEncoding.jpg)\
+
+In order to distinguish $$$N$ harmonic signals, $$N$$ observations must be made with each observation having a different phase offset between between the signals.  In the case for MR imaging, if $N_{pey}$ and $ N_{se}$ different localizations are needed to be made along   $$\textbf{u}_{pey}$$ and  $$\textbf{u}_{se}$$ respectively, frequency encoding must be repeated $$N_{pey} \times N_{se}$$ times with each having its own spatially-varying phase offsets along these two directions. 
+
 
 
 
