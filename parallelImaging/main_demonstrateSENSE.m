@@ -6,12 +6,16 @@
 load('brain_8ch.mat'); NcSets = 1; % number of channel sets. 
 % load('brain_alias_8ch.mat'); NcSets = 2; % number of channel sets. (for
 % e-spirit ... see my "simplified E-SPIRit" code.  
-raw = permute(DATA, [1, 2, 4, 3]); %x, y, z, ch
+
 [Nx, Ny, Nz, Nc] = size(raw);
 
 R = 2;
 rawUs = zeros(size(raw));
 rawUs(:, 1 : R : end, :, :) = raw(:, 1 : 2 : end, :, :);
+
+calib =  raw(:, round(Ny/2) - 14 : round(Ny/2) + 13, :, :);
+calibPad = zeros(size(raw));
+calibPad(:, round(Ny/2) - 14 : round(Ny/2) + 13, :, :) = raw(:, round(Ny/2) - 14 : round(Ny/2) + 13, :, :);
 %% Show the original (fully sampled) and undersampled (US) images. 
 % We must coil combine them first.  I use Walsh's method.  See my walsh
 % implementation in the "coilCombine" directory. 
@@ -19,42 +23,59 @@ Npatchx = 15; Npatchy = 15; Npatchz = 1; Npatchm = 1;
 
 imRaw         = zeros(size(raw        ));
 imRawUs       = zeros(size(raw        ));
+imCalibPad    = zeros(size(raw        ));
+imCalib       = zeros(size(calib      ));
 % imDiff        = zeros(size(raw        ));
 for channelIter = 1 : Nc
     imRaw        (:, :, :, channelIter) = ifftnc(raw        (:, :, :, channelIter));
     imRawUs      (:, :, :, channelIter) = ifftnc(rawUs      (:, :, :, channelIter));
+    imCalib      (:, :, :, channelIter) = ifftnc(calib      (:, :, :, channelIter));
+    imCalibPad   (:, :, :, channelIter) = ifftnc(calibPad   (:, :, :, channelIter));
 end
 
-[imRaw_cc  , ~, ~, ~, ~] = func_WalshMethod(imRaw  ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
-[imRawUs_cc, ~, ~, ~, ~] = func_WalshMethod(imRawUs,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
-
-imRaw_sos   = func_sqSOS(imRaw  , []);
-imRawUs_sos = func_sqSOS(imRawUs, []);
+[imRaw_cc     ] = func_WalshMethod(imRaw     ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+[imRawUs_cc   ] = func_WalshMethod(imRawUs   ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+[imCalib_cc   ] = func_WalshMethod(imCalib   ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+[imCalibPad_cc] = func_WalshMethod(imCalibPad,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+imRaw_sos      = func_sqSOS(imRaw  , []);
+imRawUs_sos    = func_sqSOS(imRawUs, []);
+imCalib_sos    = func_sqSOS(imCalib, []);
+imCalibPad_sos = func_sqSOS(imCalibPad, []);
 
 mask_im   = imRaw_cc   > 0.06 * max(imRaw_cc  (:));
 mask_imus = imRawUs_cc > 0.06 * max(imRawUs_cc(:));
 
-
+%%
 figure,
-subplot(2, 3, 1)
+subplot(3, 3, 1)
 imshow(abs(imRaw_cc), [])
 title('original fully sampled image')
-subplot(2, 3, 2)
+subplot(3, 3, 2)
 imshow(angle(imRaw_cc), [-pi, pi])
 title('original fully sampled phase')
-subplot(2, 3, 3)
+subplot(3, 3, 3)
 imshow(log(abs(raw(:, :, 1, 1))), [])
 title('original fully sampled k-space')
 
-subplot(2, 3, 4)
+subplot(3, 3, 4)
 imshow(abs(imRawUs_cc), [])
-title('original fully sampled image')
-subplot(2, 3, 5)
+title('Undersampled image')
+subplot(3, 3, 5)
 imshow(angle(imRawUs_cc), [-pi, pi])
-title('original fully sampled phase')
-subplot(2, 3, 6)
+title('Undersampled phase')
+subplot(3, 3, 6)
 imshow(log(abs(rawUs(:, :, 1, 1))), [])
-title('original fully sampled k-space')
+title('Undersampled k-space')
+
+subplot(3, 3, 7)
+imshow(abs(imCalibPad_cc), [])
+title('Low resolution image')
+subplot(3, 3, 8)
+imshow(angle(imCalibPad_cc), [-pi, pi])
+title('Low resolution phase')
+subplot(3, 3, 9)
+imshow(log(abs(calibPad(:, :, 1, 1))), [])
+title('Low resolution k-space')
 
 %% Generate Sensitivity maps.
 % To unalias the signal, we must generate sensitivity maps. A common
@@ -103,8 +124,23 @@ elseif NcSets == 2
     sensemap(:, :, :, Nc+1 : 2*Nc) = eigVectorsM(:, :, 1, :, 2);
 end
 
+%%  Show magnitude and phse of sensitivity maps: 
+figure,
+for chiter = 1 : Nc
+    subplot(2, 4, chiter)
+    imshow(abs(squeeze(sensemap(:, :, 1, chiter))), [])
+    title(strcat('Magnitude of sens. map for channel',32,num2str(chiter)))
+end
+
+figure, 
+for chiter = 1 : Nc
+    subplot(2, 4, chiter)
+    imshow(angle(squeeze(sensemap(:, :, 1, chiter))), [-pi, pi])
+    title(strcat('Phase of sens. map for channel',32,num2str(chiter)))
+end
+
 %%
-senseRecon = SENSE_fa1D(imRawUs, S_2, 2);
+senseRecon = SENSE_fa1D(imRawUs, sensemap, 2);
 
 figure,
 subplot(2, 2, 1)
