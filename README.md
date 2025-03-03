@@ -106,7 +106,7 @@ images by the square root sum of squares image or by dividing by an image from t
 ![](/figures/WalshCombine_signal_and_phase.jpg)\
 
 My implementation of this reconstruction is func_WalshMethod. 
-Inputs:  Its inputs are imRaw, noise, and patchSize.  Here, imRaw is of size Nx x Ny x Nz x Nc x Nm, where Nm is the number of echoes.  If you have multiple slices or slabs (Ns > 1) do the recon separately for each slice/slab.  patchSize is of size Npatchx x Npatchy x Npatchz x Nm.  You can have patchSize be empty ([]) and the code will figure it out for you (based on Walsh's writing that you need ~250 voxels in your patch to have the most statistically robust coil combination).  The reason why i included the echo dimension in this implementation is because Mark Bydder has a paper showing how Walsh's adaptive recon method can be used for time-series MRI.  This makes sense because the original math behind Walsh's method was for time-varying data in radar, as I mentioned earlier.  Mark Bydder's paper was regarding spectroscopy but he later used it for multi-echo data for fat and R2* mapping.  
+Inputs:  Its inputs are imRaw, noise, and patchSize.  Here, imRaw is of size Nx x Ny x Nz x Nc x Nm, where Nm is the number of echoes.  If you have multiple slices or slabs (Ns > 1) do the recon separately for each slice/slab.  patchSize is of size Npatchx x Npatchy x Npatchz x Nm.  You can have patchSize be empty (place "[]" instead) and the code will figure it out for you (based on Walsh's writing that you need ~250 voxels in your patch to have the most statistically robust coil combination).  The reason why i included the echo dimension in this implementation is because Mark Bydder has a paper showing how Walsh's adaptive recon method can be used for time-series MRI.  This makes sense because the original math behind Walsh's method was for time-varying data in radar, as I mentioned earlier.  Mark Bydder's paper was regarding spectroscopy but he later used it for multi-echo data for fat and R2* mapping.  
 
 Output:  the coil-combined data of size Nx x Ny x Nz x 1 x Nm.  
 
@@ -114,3 +114,12 @@ I will put a demonstration with multi-echo data later.
 
 ## Parallel Imaging
 I will go over some of the parallel imaging methods I implemetned myself and some intuition behind them.  I had fun going down this rabbit hole. 
+
+First I should go over a brief background of the MR signal readout to emphasize how important phase-encoding is.  This will give the intuition of why scan time scales with parallel imaging, which will then be useful for understanding parallel imaging. First off, a single readout line  only provides a single projection of the image along the direction frequency encoding was applied. This readout signal is a sum of multiple spatial harmonic functions where all spins at the having the same coordinate along the frequency encoding direction same frequency, $$\gamma \vec{G}_{ro}  \vec{r}$$.   This does nothing to localize different spins along $\hat{u}_{pey}$ that are located along the same $\hat{u}_{ro}$
+
+![](/figures/FrequencyEncoding.jpg)\
+
+
+
+
+The scan time in MRI scales with the number of phase-encoding steps acquired.  If you only take the time to image the center region of k-space, you leave out the high-frequency components, leaving you only with the information needed 
