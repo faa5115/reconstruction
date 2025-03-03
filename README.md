@@ -122,8 +122,10 @@ In order to distinguish $$$N$ harmonic signals, $$N$$ observations must be made 
 
 ![](/figures/PhaseEncoding.jpg)\
 
- The phase offsets needed is achieved by applying a \textit{phase encoding} gradient along $$\textbf{u}_{pey}$$ or ($$\textbf{u}_{pey}$$ and $$\textbf{u}_s$$ if 3D imaging is being done), with the phase-encoding gradient achieving a different phase dispersion across the  FOV for each readout.  Applying a brief phase-encoding gradient before the readout induces a spatial harmonic of a factor of the imaging FOV along the phase-encoding direction.  Each phase-encoding line induces a spatial harmonic of a its own factor of the FOV. This is illustrated below
+
+
+ The phase offsets needed is achieved by applying a \textit{phase encoding} gradient along $$\textbf{u}_{pey}$$ or ($$\textbf{u}_{pey}$$ and $$\textbf{u}_s$$ if 3D imaging is being done), with the phase-encoding gradient achieving a different phase dispersion across the  FOV for each readout.  Applying a brief phase-encoding gradient before the readout induces a spatial harmonic of a factor of the imaging FOV along the phase-encoding direction.  Each phase-encoding line induces a spatial harmonic of a its own factor of the FOV. A figure below explains this:   Top row:  magnitude and phase of the ACR phantom with the phase-encoding direction indicated by the white arrow.  Beneath the magnitude image is a map depicting the log of k-space with the $$ \textbf{k}_{pey} $$ pointing vertically.  The spatial harmonic phase-dispersion, induced by $$G_{pey}$$, across the phase-encoding direction is shown, with the color of the box corresponding to its indicated phase encoding step in the k-space map.
 
 ![](/figures/PhaseEncoding_Part2.jpg)\
 
-The scan time in MRI scales with the number of phase-encoding steps acquired.  If you only take the time to image the center region of k-space, you leave out the high-frequency components, leaving you only with the information needed 
+Given this very brief discussion on phase-encoding, it is clear that the number of phase-encoding steps scales with scan time.  To reduce scan time, you must reduce the number of phase-encoding steps.  
