@@ -115,7 +115,7 @@ I will put a demonstration with multi-echo data later.
 ## Parallel Imaging
 I will go over some of the parallel imaging methods I implemetned myself and some intuition behind them.  I had fun going down this rabbit hole. 
 
-First I should go over a brief background of the MR signal readout to emphasize how important phase-encoding is.  This will give the intuition of why scan time scales with parallel imaging, which will then be useful for understanding parallel imaging. First off, a single readout line  only provides a single projection of the image along the direction frequency encoding was applied. This readout signal is a sum of multiple spatial harmonic functions where all spins at the having the same coordinate along the frequency encoding direction same frequency, $$\gamma \vec{G}_{ro}  \vec{r}$$.   This does nothing to localize different spins along $\hat{u}_{pey}$ that are located along the same $\hat{u}_{ro}$
+First I should go over a brief background of the MR signal readout to emphasize how important phase-encoding is.  This will give the intuition of why scan time scales with parallel imaging, which will then be useful for understanding parallel imaging. First off, a single readout line  only provides a single projection of the image along the direction frequency encoding was applied. This readout signal is a sum of multiple spatial harmonic functions where all spins at the having the same coordinate along the frequency encoding direction same frequency,  $$\gamma \textbf{G}_{ro} \cdot \textbf{r}$$.   This does nothing to localize spins along either perpendicular phase-encoding direction.  
 
 ![](/figures/FrequencyEncoding.jpg)\
 
