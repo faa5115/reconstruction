@@ -144,4 +144,4 @@ There are two broad approaches to parallel imaging:
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
 
-After these, I will go into SMS imaging, spatial beamforming, and non-Cartesian MRI and upload my code.  
+After these, I will go into SMS imaging, spatial beamforming, and non-Cartesian MRI and upload the code I wrote of these as well. 
