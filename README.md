@@ -129,3 +129,7 @@ In order to distinguish $$$N$ harmonic signals, $$N$$ observations must be made 
 ![](/figures/PhaseEncoding_Part2.jpg)\
 
 Given this very brief discussion on phase-encoding, it is clear that the number of phase-encoding steps scales with scan time.  To reduce scan time, you must reduce the number of phase-encoding steps.  If you only spend time to acquire the k-space lines close to the center, you are only left with information that cannot distinguish many nearby spins from one another and are left with a low-resolution image.  What happens if you skip k-space lines?  
+
+To answer this question, it must be noted that the discrete sampling process unavoidably generates a periodic representation of the non-periodic signal. This in effect produces periodic copies of the signal, separated by a distance determined by the sampling frequency. In the case of phase-encoding, the distance between adjacent phase-encoding lines is reciprocal of the the \textit{encoded} FOV along the PE direction, $$\Delta k_{pey} = \frac{1}{FOV_{pey}}$$ where $$FOV_{pey}$$ is the FOV along the phase-encoding direction.  That is the signal in the image will repeat over a length of $$FOV_{pey}$$.  If the span of signal along the phase-encoding direction (as in the "real FOV") is larger than  $$FOV_{pey}$$, that is $$FOV_{pey} < FOV_{pey,true} $$ then you will have signal overlapping, a phenomenon called "aliasing." This is illustrated below for case where the encoded FOV is one-half of the full FOV. 
+
+![](/figures/BrainAliased.jpg)\
