@@ -2,7 +2,9 @@
 % Demonstrate 
 
 %% Load data
-load('hipSliceAndNoise.mat')
+% load('hipSliceAndNoise.mat')
+load('hipSlice.mat')
+load('noiseForHipSlice.mat')
 
 [Nx, Ny, Nz, Nc, Ns] = size(raw); 
 [Nt, ~] = size(noise);

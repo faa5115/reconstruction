@@ -5,8 +5,9 @@
 % This is useful for many reconstruction settings. 
 
 %% Load Data:  has a single slice hip data and a noise scan.
-load('hipSliceAndNoise.mat')
-
+%load('hipSliceAndNoise.mat')
+load('hipSlice.mat')
+load('noiseForHipSlice.mat')
 [Nx, Ny, Nz, Nc, Ns] = size(raw); 
 [Nt, ~] = size(noise);
 %% Show cross-channel correlation.
