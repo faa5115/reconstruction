@@ -150,6 +150,8 @@ There are two broad approaches to parallel imaging:
 
 
 ### Sensitivity Encoding (SENSE)
+I demonstration this in "parallelImaging/main_demonstrateSENSE.m"
+
 A common method to unalias the image is by explicitly exploiting the localized channel
 sensitivity, called sensitivity encoding (SENSE). SENSE is a generalization of the spatial
 matched filter discussed above (see "Adaptive Coil Combine" Above).  For generous simplicity when narrating SENSE, let’s
@@ -174,9 +176,16 @@ the complex channel sensitivities.  This equation  can be generalized as the fol
 ![](/figures/SENSEFilterEquationMatrix.jpg)\
 Where $$Im_{comb}(\textbf{r})$$ can be solved for my least-squares. A common way to estimate for the entries
 of the sensitivity matrix is to simply divide the image of each channel by their sum of
-squares (equation 2.31), followed by some filtering to smooth the data and threshold only
-for voxels with anatomical support.  
+squares, followed by some filtering to smooth the data and threshold only
+for voxels with anatomical support.  In the example shown in "parallelImaging/main_demonstrateSENSE.m", I use my own implementation of E-SPIRiT (which I call "simplified E-SPIRiT").  The magnitude and (relative). phase of the sensitivity maps are shown below.  I say "relative" phase because I rotated the phase of all channels negative to the phase of channel two in order to show a smooth phase variation in channel senseitivity profile. 
 
+![](/figures/senseMaps.jpg)\
+
+As mentioned earlier, the channel sensitivity profiles are explicitly used to achieve the necessary spatial encoded to unalias the image. Although this narration featured a simplified
+explanation of the spatial matched filter, a thorough investigation on the ideal channel sensitivities used for the matched filter has the potential to achieve an SNR optimal parallel imaging scheme. SENSE is the generalization of the spatial matched filter for subsampled imaging.  This is different from the Walsh method, which does not consider aliasing.  Because they are both coil combine methods based on the principles of the matched filter I included four images below to compare the magnitude and phase of a SENSE R=2 reconstruction with a fully sampled Walsh coil combination. 
+
+
+![](/figures/SENSE_and_Walsh.jpg)\
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
