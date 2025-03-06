@@ -215,7 +215,7 @@ magnetization distribution perceived by each channel,
 
 $$
 \begin{align}
-\sum_{l=1}^{N_c}[n_l^m Im_{l}^{cal}(\textbf{r})|_{pe}]  = f(\textbf{r})  
+\sum_{l=1}^{N_c}[n_l^m Im_{l}^{cal}(\textbf{r})|_{pe}]  = Im_{comb}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}  
 \end{align}
 $$
 
