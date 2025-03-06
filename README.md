@@ -147,6 +147,19 @@ There are two broad approaches to parallel imaging:
 - Explicity used the localized channel sensitivty profiles to unaliased the signal in the image domain.  The most famous approach is "Sensitivity Encoding" ("SENSE"). 
 - Implicitly using the channel sensitivity profiles to figure out how to mimic the spatial harmonics that would have been achieved by the unacquired phase-encodings steps.  SMASH (Simultaneous Acquisition of Spatial Harmonics) was the first method to try this approach.  It has variants (such as Auto-SMASH and VD-Auto SMASH).  These methods laid the foundation for more mature approaches such as GRAPPA and SPIRiT.  I will explain how these methods work and upload my code for them soon.  After explaining them, I will then discuss how low rank mathematics can be used for parallel imaging.  To be brief,  I will say that methods like GRAPPA and SPIRiT show that any k-space entry of a given channel can be expressed as a linear combination of surrounding k-space entries across all channels.  This means a local neighbor patch of k-space across all  channels exist in some low-rank space.  By figuring out the null space, one can recover the missing k-space entries.  This gets us into methods such as PRUNO, SAKE, and p-LORAKS.
 
+
+
+### Sensitivity Encoding (SENSE)
+A common method to unalias the image is by explicitly exploiting the localized channel
+sensitivity, called sensitivity encoding (SENSE). SENSE is a generalization of the spatial
+matched filter discussed above (see "Adaptive Coil Combine" Above).  For generous simplicity when narrating SENSE, let’s
+assume the channels are whitened, meaning that the noise covariance matrix is the identity matrix. 
+
+
+
+
+
+................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
 
