@@ -199,6 +199,16 @@ $$
 
 This implies if $$S(\textbf{k})$$ is not explicitly acquired, it can be estimated from an
 acquired k-space $$S(\textbf{k} + m \Delta \textbf{k})$$ if a $$-m \Delta \textbf{k}$$ - harmonic function, $$M(\textbf{r}) e^{i 2 \pi  (- m \Delta \textbf{k}) \textbf{r} }$$ is somehow known.  
+
+A low-resolution calibration is used in SMASH to estimate these harmonics.  It determines a set of weights for each channel $$l$$ , $$n^{m}_l$$ , to sum the channels to estimate an $$m$$-order spatial harmonic: 
+
+$$
+\begin{align}
+\sum_{l=1}^{N_c}[n_l^m (C_l(\textbf{r})M_{\textbf{r}})|_{pe}]
+\end{align}
+$$
+
+
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
