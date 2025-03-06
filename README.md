@@ -193,7 +193,7 @@ This section covers k-space based approaches.  I want to go into detail but for 
 $$
 \begin{align}
 S(\textbf{k}) = \int M(\textbf{r}) e^{i*2* \pi * \textbf{k} \textbf{r}} d\textbf{r}
-              = \int M(\textbf{r}) e^{i*2* \pi * (\textbf{k}  + m \Delta \textbf{k})\textbf{r}} e^{i*2* \pi * (- m \Delta \textbf{k}) \textbf{r}} d\textbf{r}
+              = \int M(\textbf{r}) e^{i*2* \pi * (\textbf{k}  + m \Delta \textbf{k}) \textbf{r}} e^{i * 2 * \pi * (- m \Delta \textbf{k}) \textbf{r}} d\textbf{r}
 \end{align}
 $$
 
