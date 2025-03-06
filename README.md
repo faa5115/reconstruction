@@ -219,7 +219,11 @@ $$
 \end{align}
 $$
 
-
+$$ 
+\begin{align}
+Im_{j}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}  
+\end{align}
+$$
 
 
 
