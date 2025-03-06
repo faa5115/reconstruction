@@ -162,9 +162,16 @@ Im_{cc}(\textbf{r}) = \textbf{c}^H(\textbf{r}) \textbf{Im}(\textbf{r})
 $$
 
 where $$\textbf{c}^H(\textbf{r})$$ is an $$N_cx1$$ vector containing hte channel sensitivy at position $$\textbf{r}$$. 
+This can be expanded into matrix format (a screenshot from my Chatper 2 of my thesis): 
 
+![](/figures/MatchedFilterEquationMatrix.jpg)\
 
+where Nvox  is the total number of voxels in an image and $$\textbf{r}_j$$ , with $$ j \in [1, Nvox] $$
+refers to the location of each voxel. The second line of the image above is written in a block matrix
+format to conserve space. Each block matrix $$ \textbf{C}(\textbf{r})$$ is a diagonal matrix with each being
+the complex channel sensitivities.  This equation  can be generalized as the following to describe aliasing when skipping each $$R$$ k-space lines (another screenshot from my thesis):
 
+![](/figures/SENSEFilterEquationMatrix.jpg)\
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
