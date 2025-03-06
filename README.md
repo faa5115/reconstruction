@@ -157,11 +157,11 @@ assume the channels are whitened, meaning that the noise covariance matrix is th
 
 $$
 \begin{align}
-Im_{cc}(\textbf{r}) = \textbf{c}^H(\textbf{r}) \textbf{Im}(\textbf{r})
+Im_{comb}(\textbf{r}) = \textbf{c}^H(\textbf{r}) \textbf{Im}(\textbf{r})
 \end{align}
 $$
 
-where $$\textbf{c}^H(\textbf{r})$$ is an $$N_cx1$$ vector containing hte channel sensitivy at position $$\textbf{r}$$. 
+where $$\textbf{c}^H(\textbf{r})$$ is an $$N_cx1$$ vector containing hte channel sensitivy at position $$\textbf{r}$$ and I write $$Im_{comb}(\textbf{r})$$ here to indicate the coil combined image. 
 This can be expanded into matrix format (a screenshot from my Chatper 2 of my thesis): 
 
 ![](/figures/MatchedFilterEquationMatrix.jpg)\
@@ -172,6 +172,11 @@ format to conserve space. Each block matrix $$ \textbf{C}(\textbf{r})$$ is a dia
 the complex channel sensitivities.  This equation  can be generalized as the following to describe aliasing when skipping each $$R$$ k-space lines (another screenshot from my thesis):
 
 ![](/figures/SENSEFilterEquationMatrix.jpg)\
+Where $$Im_{comb}(\textbf{r})$$ can be solved for my least-squares. A common way to estimate for the entries
+of the sensitivity matrix is to simply divide the image of each channel by their sum of
+squares (equation 2.31), followed by some filtering to smooth the data and threshold only
+for voxels with anatomical support.  
+
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
