@@ -1,4 +1,4 @@
-# reconstruction
+ # reconstruction
 
  I HAVE NOT YET UPLOADED EVERYTHING YET. I am creating figures and "main files" that show how to use the reconstruction code I wrote.  When this is complete, this repository will have my written codes of SENSE, GRAPPA, SPIRiT, SAKE (plus other low rank methods such as p-LORAKS), "simplified E-SPIRiT", spatial beamforming (ROVir, and then my recon i developed as a post doctoral fellow (under the guidance of Dr. Xioajuan Li) once the work gets accepted), and non-Cartesian reconstruction.  With regards to "pluse other low rank methods" in the parenthesis in the previous sentence, in faa5115/uncle_sam_recon, I have my code of low-rank based k-space completion that I developed under the guidance of Dr Mark Bydder and Dr. J. Paul Finn.  We proposed using low-rank k-space based parallel imaging to unfold outflow effects (outflowing spins have different channel sensitivities than the imaged slice).  So if you want some low-rank k-space based reconstruction, you can use that code.  
 
@@ -241,7 +241,11 @@ S_{j}^{cal}(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S^{cal}_j(\textbf{k}+m\Delta
 \end{align}
 $$
 
+ Below is an illustration of the fitting.  The top row shows different channel images of a scan of an ACR phantom. The second row shows the the complex signal projection on the phase-encoding direction. The third row shows the target fitting function, which in this example is a single harmonic phase-dispersion along the phase-encoding FOV.  If you want to see an illustration of the $$m$$-order spatial harmonic of a given channel $$j$$, you just the weighted sum of the individual channel images, multiplied by their respective weight: $$\sum_{l=1}^{N_c}[n_l^{m,j} Im_{l}^(\textbf{r})|_{pe}]$$.  This is what the last row shows.  
 
+ ![](/figures/harmonicFitting.jpg)\
+
+ 
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
