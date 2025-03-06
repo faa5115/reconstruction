@@ -208,7 +208,17 @@ $$
 \end{align}
 $$
 
-where $$|_{pe}$$ indicates the projection, and $$ Im_{l}^{cal}$$ is the low-resolution calibration image.  $$f(\textbf{r})  $$ is some harmonic fitting function.  In the original smash paper, the fitting function was the coil-combined calibration modulated by the harmonic function: $$ Im_{comb}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})} $$.  
+where $$|_{pe}$$ indicates the projection, and $$ Im_{l}^{cal}$$ is the low-resolution calibration image.  $$f(\textbf{r})  $$ is some harmonic fitting function.  In the original smash paper, the fitting function was the coil-combined calibration modulated by the harmonic function: $$Im_{comb}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}$$.  
+
+
+
+
+
+
+
+
+
+
 
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
