@@ -215,7 +215,7 @@ magnetization distribution perceived by each channel,
 
 $$
 \begin{align}
-\sum_{l=1}^{N_c}[n_l^m Im_{l}^{cal}(\textbf{r})|_{pe}]  =  
+\sum_{l=1}^{N_c}[n_l^{m,j} Im_{l}^{cal}(\textbf{r})|_{pe}]  =  
 \end{align}
 $$
 
@@ -225,7 +225,7 @@ Im_{j}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}
 \end{align}
 $$
 
-
+where now the weight, $$n_l^{m,j$$, is used to estimate the missing k-space entry of channel $$j$$ from channel $$l$$.  
 
 
 
