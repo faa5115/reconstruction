@@ -225,15 +225,21 @@ Im_{j}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}
 \end{align}
 $$
 
-where now the weight, $$n_l^{m,j}$$, is used to estimate the missing k-space entry of channel $$j$$ from channel $$l$$.  These weigths can then be used to estimate an unacquired k-space entry, $$\textbf{k}$$ of a given channel as a  linear combination of surrounding entries, $$\textbf{k} + m \Delta \textbf{k}$$ across all channels:  
+where now the weight, $$n_l^{m,j}$$, is used to estimate the missing k-space entry of channel $$j$$ from channel $$l$$.  These weigths can then be used to estimate an unacquired k-space entry, $$\textbf{k}$$ of a given channel as a  linear combination of a neighboring, $$\textbf{k} + m \Delta \textbf{k}$$ across all channels:  
 
 $$ 
 \begin{align}
-Im_{j}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}  
+S_j(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S_j(\textbf{k}+m)
 \end{align}
 $$
 
+Seeing the above equation, it makes it more convenient to solve the weights from the calibration k-space, rather than trying to form harmonic functions from the calibration images: 
 
+$$ 
+\begin{align}
+S^{cal}_{j}(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S^{cal}_j(\textbf{k}+m)
+\end{align}
+$$
 
 
 ................
