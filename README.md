@@ -237,7 +237,7 @@ Seeing the above equation, it makes it more convenient to solve the weights from
 
 $$ 
 \begin{align}
-S^{cal}_{j}(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S^{cal}_j(\textbf{k}+m)
+S_{j}^{cal}(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S^{cal}_j(\textbf{k}+m)
 \end{align}
 $$
 
