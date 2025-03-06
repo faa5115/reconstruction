@@ -197,8 +197,8 @@ S(\textbf{k}) = \int M(\textbf{r}) e^{i 2 \pi  \textbf{k} \textbf{r}} d \textbf{
 \end{align}
 $$
 
-This implies if $$ S(\textbf{k}) $$ is not acquired, is not explicitly acquired, it can be determined from an
-acquired k-space $$  S(\textbf{k + m \Delta \textbf{k}) $$ if a $$ -m \Delta \textbf{k} $$ - harmonic function, $$  M(\textbf{r})  e^{i 2 \pi  (- m \Delta \textbf{k}) \textbf{r}} $$ is somehow known.  
+This implies if $$S(\textbf{k})$$ is not explicitly acquired, it can be estimated from an
+acquired k-space $$S(\textbf{k + m \Delta \textbf{k})$$ if a $$-m \Delta \textbf{k}$$ - harmonic function, $$ M(\textbf{r})  e^{i 2 \pi  (- m \Delta \textbf{k}) \textbf{r} $$ is somehow known.  
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
