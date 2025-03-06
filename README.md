@@ -251,7 +251,7 @@ k-Space estimations are improved when using both directions for fitting, $$+/- m
 
 $$ 
 \begin{align}
-S_j(\textbf{k}) = \sum_{l=1}^{N_c} \sum_{m=-M}^{M} n_l^{m,j}S_j(\textbf{k}+m \Delta \textbf{k})
+S_j(\textbf{k}) = \sum_{l=1}^{N_c} \sum_{m=-M}^{M} n_l^{m,j}S_j(\textbf{k}+m \Delta \textbf{k}), m \neq 0
 \end{align}
 $$
  
