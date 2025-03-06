@@ -193,21 +193,22 @@ This section covers k-space based approaches.  I want to go into detail but for 
 $$
 \begin{align}
 S(\textbf{k}) = \int M(\textbf{r}) e^{i 2 \pi  \textbf{k} \textbf{r}} d \textbf{r}   
-= \int M(\textbf{r}) e^{i 2 \pi  (\textbf{k} + m \Delta \textbf{k}) \textbf{r}} e^{i 2 \pi  (- m \Delta \textbf{k}) \textbf{r}} d \textbf{r} 
+= \int M(\textbf{r}) e^{-i 2 \pi  (\textbf{k} + m \Delta \textbf{k}) \textbf{r}} e^{-i 2 \pi  (- m \Delta \textbf{k}) \textbf{r}} d \textbf{r} 
 \end{align}
 $$
 
 This implies if $$S(\textbf{k})$$ is not explicitly acquired, it can be estimated from an
-acquired k-space $$S(\textbf{k} + m \Delta \textbf{k})$$ if a $$-m \Delta \textbf{k}$$ - harmonic function, $$M(\textbf{r}) e^{i 2 \pi  (- m \Delta \textbf{k}) \textbf{r} }$$ is somehow known.  
+acquired k-space $$S(\textbf{k} + m \Delta \textbf{k})$$ if a $$-m \Delta \textbf{k}$$ - harmonic function, $$M(\textbf{r}) e^-{i 2 \pi  (- m \Delta \textbf{k}) \textbf{r} }$$ is somehow known.  
 
 A low-resolution calibration is used in SMASH to estimate these harmonics.  It determines a set of weights for each channel $$l$$ , $$n^{m}_l$$ , to sum the channels to estimate an $$m$$-order spatial harmonic: 
 
 $$
 \begin{align}
-\sum_{l=1}^{N_c}[n_l^m (Im_{l}^{cal}(\textbf{r}))_{pe}]  = f_{pe}(\textbf{r})
+\sum_{l=1}^{N_c}[n_l^m Im_{l}^{cal}(\textbf{r})|_{pe}]  = f(\textbf{r})  
 \end{align}
 $$
 
+where $$|_{pe}$$ indicates the projection, and $$ Im_{l}^{cal}$$ is the low-resolution calibration image.  $$f(\textbf{r})  $$ is some harmonic fitting function.  In the original smash paper, the fitting function was the coil-combined calibration modulated by the harmonic function: $$ Im_{comb}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (m \Delta \textbf{k})} $$.  
 
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
