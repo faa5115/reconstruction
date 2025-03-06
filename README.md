@@ -208,9 +208,16 @@ $$
 \end{align}
 $$
 
-where $$|_{pe}$$ indicates the projection, and $$ Im_{l}^{cal}$$ is the low-resolution calibration image.  $$f(\textbf{r})  $$ is some harmonic fitting function.  In the original smash paper, the fitting function was the coil-combined calibration modulated by the harmonic function: $$Im_{comb}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}$$.  
+where $$|_{pe}$$ indicates the projection, and $$ Im_{l}^{cal}$$ is the low-resolution calibration image.  $$f(\textbf{r})  $$ is some harmonic fitting function.  In the original smash paper, the fitting function was the coil-combined calibration modulated by the harmonic function: $$f(\textbf{r}) = Im_{comb}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}$$.  However it is
+difficult to find a composite signal profile without avoiding destructive interference from the
+multiple channels. Because of this it was later shown that one could use the transverse
+magnetization distribution perceived by each channel, 
 
-
+$$
+\begin{align}
+\sum_{l=1}^{N_c}[n_l^m Im_{l}^{cal}(\textbf{r})|_{pe}]  = f(\textbf{r})  
+\end{align}
+$$
 
 
 
