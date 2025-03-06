@@ -225,8 +225,13 @@ Im_{j}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}
 \end{align}
 $$
 
-where now the weight, $$n_l^{m,j}$$, is used to estimate the missing k-space entry of channel $$j$$ from channel $$l$$.  
+where now the weight, $$n_l^{m,j}$$, is used to estimate the missing k-space entry of channel $$j$$ from channel $$l$$.  These weigths can then be used to estimate an unacquired k-space entry, $$\textbf{k}$$ of a given channel as a  linear combination of surrounding entries, $$\textbf{k} + m \Delta \textbf{k}$$ across all channels:  
 
+$$ 
+\begin{align}
+Im_{j}^{cal}(\textbf{r})|_{pe} e^{-i 2 \pi (-m \Delta \textbf{k} \textbf{r})}  
+\end{align}
+$$
 
 
 
