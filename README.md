@@ -191,13 +191,9 @@ This section covers k-space based approaches.  I want to go into detail but for 
 
 
 $$
-
 \begin{align}
-
-S(\textbf{k}) = \int M(\textbf{r}) e^{i 2 \pi  \textbf{k} \textbf{r}} d \textbf{r}
-             
+S(\textbf{k}) = \int M(\textbf{r}) e^{i 2 \pi  \textbf{k} \textbf{r}} d \textbf{r}            
 \end{align}
-
 $$
 
 
