@@ -204,7 +204,7 @@ A low-resolution calibration is used in SMASH to estimate these harmonics.  It d
 
 $$
 \begin{align}
-\sum_{l=1}^{N_c}[n_l^m Im_{l}^{cal}(\textbf{r})|_{pe}]  
+\sum_{l=1}^{N_c}[n_l^m Im_{l}^{cal}(\textbf{r})|_{pe}]  = f(\textbf{r})
 \end{align}
 $$
 
