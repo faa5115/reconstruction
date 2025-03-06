@@ -189,6 +189,7 @@ explanation of the spatial matched filter, a thorough investigation on the ideal
 ## k-Space based parallel imaging approaches
 This section covers k-space based approaches.  I want to go into detail but for now I will be brief for the sake of time - I just want to get my code uploaded first before typing the detail on the theory behind these approaches.  To be brief, these k-space methods use the channel sensitivity profiles to mimic the effects of phase-encoding lines.  Phase-encoding gradients add a phase-dispersion across the FOV along the direction of the phase-encoding gradient, $$\textbf{r}_{pe}$$.  The signal for a given MR channel of sensitivity $$C$$ can be described as (this is very simple and ignoring relaxation and recovery, $$\Delta B_0$$ and $$\Delta B_1} effects : 
 
+
 $$
 \begin{align}
 S(\textbf{k}} = \int M(\textbf{r}) e^{i*2* \pi * \textbf{k} \textbf{r}} \textbf{r}
