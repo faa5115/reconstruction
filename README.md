@@ -154,11 +154,13 @@ A common method to unalias the image is by explicitly exploiting the localized c
 sensitivity, called sensitivity encoding (SENSE). SENSE is a generalization of the spatial
 matched filter discussed above (see "Adaptive Coil Combine" Above).  For generous simplicity when narrating SENSE, let’s
 assume the channels are whitened, meaning that the noise covariance matrix is the identity matrix. The formulat for the matched filter then becomes 
+
 $$
 \begin{align}
 Im_{cc}(\textbf{r}) = \textbf{c}^H(\textbf{r}) \textbf{Im}(\textbf{r})
 \end{align}
 $$
+
 where $$\textbf{c}^H(\textbf{r})$$ is an $$N_cx1$$ vector containing hte channel sensitivy at position $$\textbf{r}$$. 
 
 
