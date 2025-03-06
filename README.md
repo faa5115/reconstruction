@@ -254,7 +254,9 @@ $$
 S_j(\textbf{k}) = \sum_{l=1}^{N_c} \sum_{m=-M}^{M} n_l^{m,j}S_j(\textbf{k}+m \Delta \textbf{k}), m \neq 0
 \end{align}
 $$
- 
+
+ where $$ m \neq 0$$ is included because that refers to the unacquired k-space entry.  . Despite the readout direction being fully sampled, this formulation can be
+extended by exploiting channel sensitivity variation along this direction.  This **is** GRAPPA.  
 ................................................................................................................................................................
 ................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
