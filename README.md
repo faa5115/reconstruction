@@ -229,7 +229,7 @@ where now the weight, $$n_l^{m,j}$$, is used to estimate the missing k-space ent
 
 $$ 
 \begin{align}
-S_j(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S_j(\textbf{k}+m)
+S_j(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S_j(\textbf{k}+m \Delta \textbf{k})
 \end{align}
 $$
 
@@ -237,7 +237,7 @@ Seeing the above equation, it makes it more convenient to solve the weights from
 
 $$ 
 \begin{align}
-S_{j}^{cal}(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S^{cal}_j(\textbf{k}+m)
+S_{j}^{cal}(\textbf{k}) = \sum_{l=1}^{N_c} n_l^{m,j}S^{cal}_j(\textbf{k}+m\Delta \textbf{k})
 \end{align}
 $$
 
