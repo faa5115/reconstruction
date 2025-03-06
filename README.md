@@ -184,16 +184,19 @@ for voxels with anatomical support.  In the example shown in "parallelImaging/ma
 As mentioned earlier, the channel sensitivity profiles are explicitly used to achieve the necessary spatial encoded to unalias the image. Although this narration featured a simplified
 explanation of the spatial matched filter, a thorough investigation on the ideal channel sensitivities used for the matched filter has the potential to achieve an SNR optimal parallel imaging scheme. SENSE is the generalization of the spatial matched filter for subsampled imaging.  This is different from the Walsh method, which does not consider aliasing.  Because they are both coil combine methods based on the principles of the matched filter I included four images below to compare the magnitude and phase of a SENSE R=2 reconstruction with a fully sampled Walsh coil combination. 
 
+![](/figures/SENSE_and_Walsh.jpg)\
 
 ## k-Space based parallel imaging approaches
 This section covers k-space based approaches.  I want to go into detail but for now I will be brief for the sake of time - I just want to get my code uploaded first before typing the detail on the theory behind these approaches.  To be brief, these k-space methods use the channel sensitivity profiles to mimic the effects of phase-encoding lines.  Phase-encoding gradients add a phase-dispersion across the FOV along the direction of the phase-encoding gradient, $$\textbf{r}_{pe}$$.  The signal for a given MR channel of sensitivity $$C$$ can be described as (this is very simple and ignoring relaxation and recovery, $$\Delta B_0$$ and $$\Delta B_1} effects : 
 
+$$
 \begin{align}
 S(\textbf{k}} = \int M(\textbf{r}) e^{i*2* \pi * \textbf{k} \textbf{r}} \textbf{r}
               = \int M(\textbf{r}) e^{i*2* \pi * (\textbf{k}  + m \Delta \textbf{k})\textbf{r}} e^{i*2* \pi * (- m \Delta \textbf{k})\textbf{r}}\textbf{r}
 \end{align}
+$$
 
-![](/figures/SENSE_and_Walsh.jpg)\
+
 ................
 I will soon upload my simple SENSE implementation and discuss the approach.  Because I do not often use SENSE, my implementation is very simple.  I will then go to the k-space based approaches, starting off with SMASH and then go into GRAPPA, and SPIRiT.  I will then get into low-rank k-space based approaches and demonstrate some code.  I use GRAPPA and low-rank reconstruction methods often, the code I wrote of these methods are mature and I hope they can be useful for the imaging community.  
 
