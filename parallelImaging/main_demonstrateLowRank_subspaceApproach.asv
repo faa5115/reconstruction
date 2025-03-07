@@ -1,0 +1,23 @@
+% this demonstrates how a low rank subspace approach is done. 
+
+load('whitened2DACR.mat') % whitened acr data
+load('whitenedNoise4ACRData.mat') % whitened noise data
+% The noise data was acquired using the same readout bandwidth as the
+% image.  We use this data to identify the null space. 
+raw = rawW; clear rawW;
+[Nx, Ny, Nz, Nc, Np] = size(raw);
+
+% prepare calibration/reference data.  called "calib"
+refLines = 24;
+calib = raw(:, Ny/2 -  refLines/2 : Ny/2 + refLines/2 - 1, :, :, :);
+
+R = 6; % acceleration factor.  we will need 2 kernel shapes.
+raw6x = zeros(size(raw));
+raw6x(:, 1 : R : end, :, :) = raw(:, 1 : R : end, :, :);
+%% Show raw images. 
+imRaw = zeros(size(raw));
+imRaw6x = zeros(size(raw));
+
+for chiter = 1 : Nc
+    imRaw(:, :, :, chiter) = ifftnc();
+end
