@@ -1,6 +1,10 @@
  # reconstruction
 
- I HAVE NOT YET UPLOADED EVERYTHING YET. I am creating figures and "main files" that show how to use the reconstruction code I wrote.  When this is complete, this repository will have my written codes of SENSE, GRAPPA, SPIRiT, SAKE (plus other low rank methods such as p-LORAKS), "simplified E-SPIRiT", spatial beamforming (ROVir, and then my recon i developed as a post doctoral fellow (under the guidance of Dr. Xioajuan Li) once the work gets accepted), and non-Cartesian reconstruction.  With regards to "pluse other low rank methods" in the parenthesis in the previous sentence, in faa5115/uncle_sam_recon, I have my code of low-rank based k-space completion that I developed under the guidance of Dr Mark Bydder and Dr. J. Paul Finn.  We proposed using low-rank k-space based parallel imaging to unfold outflow effects (outflowing spins have different channel sensitivities than the imaged slice).  So if you want some low-rank k-space based reconstruction, you can use that code.  
+Not everything is uploaded yet.  
+and this readme does not yet descibe all of the methods I uploaded either. 
+ 
+ 
+ I am creating figures and "main files" that show how to use the reconstruction code I wrote.  When this is complete, this repository will have my written codes of SENSE, GRAPPA, SPIRiT, SAKE (plus other low rank methods such as p-LORAKS), "simplified E-SPIRiT", spatial beamforming (ROVir, and then my recon i developed as a post doctoral fellow (under the guidance of Dr. Xioajuan Li) once the work gets accepted), and non-Cartesian reconstruction.  With regards to "pluse other low rank methods" in the parenthesis in the previous sentence, in faa5115/uncle_sam_recon, I have my code of low-rank based k-space completion that I developed under the guidance of Dr Mark Bydder and Dr. J. Paul Finn.  We proposed using low-rank k-space based parallel imaging to unfold outflow effects (outflowing spins have different channel sensitivities than the imaged slice).  So if you want some low-rank k-space based reconstruction, you can use that code.  
 
  
 
