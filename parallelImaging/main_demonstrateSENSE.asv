@@ -33,19 +33,18 @@ for channelIter = 1 : Nc
     imCalibPad   (:, :, :, channelIter) = ifftnc(calibPad   (:, :, :, channelIter));
 end
 
-[imRaw_cc     ] = func_WalshMethod(imRaw     ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
-[imRawUs_cc   ] = func_WalshMethod(imRawUs   ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
-[imCalib_cc   ] = func_WalshMethod(imCalib   ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
-[imCalibPad_cc] = func_WalshMethod(imCalibPad,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
-imRaw_sos      = func_sqSOS(imRaw  , []);
-imRawUs_sos    = func_sqSOS(imRawUs, []);
-imCalib_sos    = func_sqSOS(imCalib, []);
-imCalibPad_sos = func_sqSOS(imCalibPad, []);
+[imRaw_cc     ] = func_WalshMethod(imRaw  ,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+[imRawUs_cc   ] = func_WalshMethod(imRawUs,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+[imCalib_cc   ] = func_WalshMethod(imCalib,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+[imCalibPad_cc] = func_WalshMethod(imCalib,        [], [Npatchx, Npatchy, Npatchz, Npatchm]);
+imRaw_sos   = func_sqSOS(imRaw  , []);
+imRawUs_sos = func_sqSOS(imRawUs, []);
+imCalib_sos = func_sqSOS(imCalib, []);
 
 mask_im   = imRaw_cc   > 0.06 * max(imRaw_cc  (:));
 mask_imus = imRawUs_cc > 0.06 * max(imRawUs_cc(:));
 
-%%
+
 figure,
 subplot(3, 3, 1)
 imshow(abs(imRaw_cc), [])
@@ -59,23 +58,13 @@ title('original fully sampled k-space')
 
 subplot(3, 3, 4)
 imshow(abs(imRawUs_cc), [])
-title('Undersampled image')
+title('original fully sampled image')
 subplot(3, 3, 5)
 imshow(angle(imRawUs_cc), [-pi, pi])
-title('Undersampled phase')
+title('original fully sampled phase')
 subplot(3, 3, 6)
 imshow(log(abs(rawUs(:, :, 1, 1))), [])
-title('Undersampled k-space')
-
-subplot(3, 3, 7)
-imshow(abs(imCalibPad_cc), [])
-title('Low resolution image')
-subplot(3, 3, 8)
-imshow(angle(imCalibPad_cc), [-pi, pi])
-title('Low resolution phase')
-subplot(3, 3, 9)
-imshow(log(abs(calibPad(:, :, 1, 1))), [])
-title('Low resolution k-space')
+title('original fully sampled k-space')
 
 %% Generate Sensitivity maps.
 % To unalias the signal, we must generate sensitivity maps. A common
@@ -128,19 +117,15 @@ end
 figure,
 for chiter = 1 : Nc
     subplot(2, 4, chiter)
-    imshow(abs(squeeze(sensemap(:, :, 1, chiter))) .* ...
-        squeeze(mask_eig(:, :, :, 1)), [])
-    title(strcat('Magnitude of sens. map for channel',32,num2str(chiter)), ...
-        'fontsize', 10,'fontweight', 'bold')
+    imshow(abs(squeeze(sensemap(:, :, 1, chiter))), [])
+    title(strcat('Magnitude of sens. map for channel',32,num2str(chiter)))
 end
 
 figure, 
 for chiter = 1 : Nc
     subplot(2, 4, chiter)
-    imshow(angle(squeeze(sensemap(:, :, 1, chiter))) .* ...
-        squeeze(mask_eig(:, :, :, 1)), [-pi, pi])
-    title(strcat('Phase of sens. map for channel',32,num2str(chiter)), ...
-        'fontsize', 10, 'fontweight','bold')
+    imshow(angle(squeeze(sensemap(:, :, 1, chiter))), [-pi, pi])
+    title(strcat('Phase of sens. map for channel',32,num2str(chiter)))
 end
 
 %%
