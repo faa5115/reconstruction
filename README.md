@@ -261,6 +261,20 @@ extended by exploiting channel sensitivity variation along this direction.  This
 ### GRAPPA
 The code will be demonstrated in parallelImaging/main_demonstrateGRAPPA.m
 
+main_demonstrateGRAPPA has two parts:  My implmentation of GRAPPA for 2D imaging and GRAPPA for 3D imaging.  In the future, you could just use my 3D code for all cases.  The reason I structure this tutorial this way is because I want to show how I handled the different kernel structures needed for 3D imaging. I will go over GRAPPA for 2D imaging first.  
+
+#### 2D GRAPPA 
+
+For 2D imaging, you are acquiring each R phase-encoding lines, skipping over R-1 lines.  To reconstruct each of the missing R-1 lines, you need R-1 different kernels.  In my implementation, I call these "kernel shapes."  For example, for R = 5, I will need 4 different kernel shapes:
+
+
+^       * * *        * * *     * * *        * * *
+|       0 x 0        0 0 0     0 0 0        0 0 0
+|ky     0 0 0        0 x 0     0 0 0        0 0 0
+        0 0 0        0 0 0     0 x 0        0 0 0
+        0 0 0        0 0 0     0 0 0        0 x 0
+        * * *        * * *     * * *        * * *
+------> kx
 
 ................................................................................................................................................................
 ................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
