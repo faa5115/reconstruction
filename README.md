@@ -243,6 +243,19 @@ where $$\mathbf{y}$$ is the vector of undersampled coil images, and $$\mathbf{S}
 I provide an implementation of SENSE in `SENSE_fa1D.m`. This function takes as input the undersampled multi-channel image data and the coil sensitivity maps, then solves for the fully sampled reconstruction.  
 
 ### Spatial Harmonics in k-Space  
+
+#### Phase Encoding and Frequency Encoding  
+Before diving into parallel imaging techniques like SMASH and GRAPPA, it’s essential to understand the two primary ways in which spatial information is encoded in MRI data: **phase encoding** and **frequency encoding**. These techniques are fundamental for reconstructing images from k-space data.
+
+- **Phase Encoding**: This technique involves applying a gradient along one axis (typically the vertical axis) to encode spatial information. The resulting phase shifts correspond to different positions along the phase encoding axis in the image.
+  
+- **Frequency Encoding**: Similarly, a gradient is applied along the other axis (usually the horizontal axis) to encode frequency information. The frequency shifts provide spatial information for the corresponding direction.
+
+Illustrations of phase encoding and frequency encoding are available below:  
+![](/figures/PhaseEncoding.jpg)  
+![](/figures/FrequencyEncoding.jpg)
+
+
 Before discussing GRAPPA, it is useful to examine the concept of **spatial harmonics** in k-space. Because phased-array coils have distinct spatial sensitivity patterns, the k-space data from each coil contains modulated versions of the underlying object. This modulation creates additional harmonics in k-space that allow for reconstruction of missing k-space lines.  
 
 The image below illustrates these spatial harmonics, showing how coil sensitivity variations introduce structured modulations in k-space:  
