@@ -275,7 +275,7 @@ $$
 
 where $$w_{c,j}$$ are the learned weights, $$\mathbf{k}_{c,j}$$ are sampled k-space points from coil $$c$$, and $$N_c$$ is the number of coils. The weights are computed by minimizing the error between the acquired and estimated ACS data.  
 
-My implementation of GRAPPA is available in `func_GRAPPA.m`, which reconstructs the missing k-space data using the ACS region and outputs the combined image.  
+My implementation of GRAPPA is available in `func_grappa_recon.m`.  I also have 'func_complete_grappa_recon.m' which loops over 'func_grappa_recon.m' with different kernel structures, which is useful in 3D imaging.  I will demonstrate this later. 
 
 ---
 
