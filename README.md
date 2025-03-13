@@ -281,7 +281,7 @@ My implementation of GRAPPA is available in `func_grappa_recon.m`.  I also have 
 
 ---
 
-### Future Topics  
+## Coming Soon
 The implementations for SPIRiT, Simplified E-SPIRiT, low-rank parallel imaging, beamforming, simultaneous multi-slice (SMS) imaging, and non-Cartesian reconstruction have also been uploaded. I will provide detailed explanations for these topics later, but in the meantime, anyone interested is welcome to explore and use the code.
 
 
