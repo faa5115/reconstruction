@@ -259,6 +259,8 @@ Before diving into parallel imaging techniques like SMASH and GRAPPA, it’s ess
 Before discussing GRAPPA, it is useful to examine the concept of **spatial harmonics** in k-space. Because phased-array coils have distinct spatial sensitivity patterns, the k-space data from each coil contains modulated versions of the underlying object. This modulation creates additional harmonics in k-space that allow for reconstruction of missing k-space lines.  
 
 The image below illustrates these spatial harmonics, showing how coil sensitivity variations introduce structured modulations in k-space:  
+harmonicFitting.jpg
+![Spatial Harmonics in k-Space](/figures/harmonicFitting.jpg)  
 
 ![Spatial Harmonics in k-Space](/figures/SpatialHarmonics.jpg)  
 
@@ -276,6 +278,7 @@ $$
 where $$w_{c,j}$$ are the learned weights, $$\mathbf{k}_{c,j}$$ are sampled k-space points from coil $$c$$, and $$N_c$$ is the number of coils. The weights are computed by minimizing the error between the acquired and estimated ACS data.  
 
 My implementation of GRAPPA is available in `func_grappa_recon.m`.  I also have 'func_complete_grappa_recon.m' which loops over 'func_grappa_recon.m' with different kernel structures, which is useful in 3D imaging.  I will demonstrate this later. 
+
 
 ---
 
