@@ -293,7 +293,11 @@ Contact
 If you have questions, suggestions, or would like to collaborate, feel free to reach out:
 
 Name: Fadil Ali
+
+
 Email: faa5115@g.ucla.edu 
+
+
 Institution: The Cleveland Clinic Foundation
 
 
