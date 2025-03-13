@@ -259,10 +259,9 @@ Before diving into parallel imaging techniques like SMASH and GRAPPA, it’s ess
 Before discussing GRAPPA, it is useful to examine the concept of **spatial harmonics** in k-space. Because phased-array coils have distinct spatial sensitivity patterns, the k-space data from each coil contains modulated versions of the underlying object. This modulation creates additional harmonics in k-space that allow for reconstruction of missing k-space lines.  
 
 The image below illustrates these spatial harmonics, showing how coil sensitivity variations introduce structured modulations in k-space:  
-harmonicFitting.jpg
+
 ![Spatial Harmonics in k-Space](/figures/harmonicFitting.jpg)  
 
-![Spatial Harmonics in k-Space](/figures/SpatialHarmonics.jpg)  
 
 Understanding these harmonics is crucial for GRAPPA, as they enable the estimation of missing k-space lines from acquired data.  
 
