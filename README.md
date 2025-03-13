@@ -247,13 +247,13 @@ I provide an implementation of SENSE in `SENSE_fa1D.m`. This function takes as i
 #### Phase Encoding and Frequency Encoding  
 Before diving into parallel imaging techniques like SMASH and GRAPPA, it’s essential to understand the two primary ways in which spatial information is encoded in MRI data: **phase encoding** and **frequency encoding**. These techniques are fundamental for reconstructing images from k-space data.
 
-- **Phase Encoding**: This technique involves applying a gradient along one axis (typically the vertical axis) to encode spatial information. The resulting phase shifts correspond to different positions along the phase encoding axis in the image.
-  
-- **Frequency Encoding**: Similarly, a gradient is applied along the other axis (usually the horizontal axis) to encode frequency information. The frequency shifts provide spatial information for the corresponding direction.
-
-Illustrations of phase encoding and frequency encoding are available below:  
-![](/figures/PhaseEncoding.jpg)  
+- **Frequency Encoding**: A gradient is applied along an axis  during the time of the readout.  This creates a gradient of frequencies along that axis while the receivers are listening to the time-varying signal. The FFT of this signal shows the relative "amount" each frequency existed during the readout.  Because the frequencies depend on the position along the readout axis, the FFT therefore gives a projection of the image along the frequency encoding axis.  Here is an illustration below. 
 ![](/figures/FrequencyEncoding.jpg)
+
+- **Phase Encoding**:  Frequency encoding only maps the signal onto one axis:  it does nothing to split up the signal sourced from different locations that map onto the same frequency encoding direction. Multiple readouts must be made, with each having a different phase-offset along a direction perpendicular to frequency encoding in order to distinguish signal sourced from different locations that project onto the same frequency encoding axis.  This is "phase-encoding." This technique involves applying a gradient along a perpendicular axis to the frequency encoding to encode spatial information. The resulting phase shifts correspond to different positions along the phase encoding axis in the image.  The more different phase-offsets you make, the higher the resolution you can achieve along that direction, as shown below.  
+
+
+![](/figures/PhaseEncoding.jpg)  
 
 
 Before discussing GRAPPA, it is useful to examine the concept of **spatial harmonics** in k-space. Because phased-array coils have distinct spatial sensitivity patterns, the k-space data from each coil contains modulated versions of the underlying object. This modulation creates additional harmonics in k-space that allow for reconstruction of missing k-space lines.  
