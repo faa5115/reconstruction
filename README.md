@@ -217,7 +217,8 @@ figure,
 imagesc(abs(Rn))
 ```
 ![](/figures/ChannelCrossCorrelation.jpg)
-
+Ideal, * *whitened* *, noise ($$N_w$$) would have a its correlation matrix be the identity matrix:  $$N_w^H N_w = I$$. 
+To decorellate the multi-channel data, a ***whitening transform*** ($$W$$) must be determined.   If $$W$$ is known, $$N_w$$ can be determined by $$N_w = N W$$
 The whitening transform \( W \) is chosen such that the whitened noise satisfies:
 $$N_w^H N_w = I$$
 where:
