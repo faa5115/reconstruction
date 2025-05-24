@@ -278,12 +278,13 @@ imagesc(abs(Rnw))
 
 ![](/figures/WhitenedChannelsCrossCorrelation.jpg)
 
-Whitening is applied to k-space data as:
-<!--- 
-One can then use $$W$$ to whiten the raw data at each k-space index $$k_n$$ ($$k_n \in [1, N_x \cdot N_y \cdot N_z]), $$\textbf{d}[k_n]$$ 
---->
+One can then use $$W$$ to whiten the raw data at each acquried k-space index $$k_n$$ (where $$k_n \in [1, N_x \cdot N_y \cdot N_z]$$ ) by $$\textbf{d}_w[k_n]=[\textbf{d}[k_n]]^TW$$ where $$\textbf{d}[k_n]$$ is a $$N_cx1$$ length vector of the acquired k-space of each channel.
 
-One can then use $$W$$ to whiten the raw data at each acquried k-space index $$\textbf{d}_w[k_n]=[k_n]$$ by $$ [\textbf{d}[k_n]]^TW$$ where $$\textbf{d}[k_n]$$ is a $$N_cx1$$ length array of the acquired k-space of each channel.
+The same can be done in the image domain   $$\textbf{im}_w[r_n]=[\textbf{im}[r_n]]^TW$$ where $$r_n$$ is an index in the image domain and $$\textbf{im}[r_n]$$ is a $$N_cx1$$ length vector of the channel data in the image domain.  
+
+
+
+
 ---
 
 ### Square Root Sum of Squares (Sq. SOS)
