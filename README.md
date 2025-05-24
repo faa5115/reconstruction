@@ -282,7 +282,28 @@ One can then use $$W$$ to whiten the raw data at each acquried k-space index $$k
 
 The same can be done in the image domain   $$\textbf{im}_w[r_n]=[\textbf{im}[r_n]]^TW$$ where $$r_n$$ is an index in the image domain and $$\textbf{im}[r_n]$$ is a $$N_cx1$$ length vector of the channel data in the image domain.  
 
+The following snippet of code demonstrates how we take the correlate raw k-space data ```raw``` and whiten the data in the image domain: 
 
+```
+imRaw = zeros(size(raw));
+imRaw_vect = zeros(Nx*Ny*Nz, Nc  );
+imRaw_w = zeros(size(raw));
+for chiter = 1 : Nc
+    imRawiter = ifftnc(squeeze(raw(:, :, :, chiter)));
+    imRaw(:, :, :, chiter ) = imRawiter;
+    imRaw_vect(:, chiter) = imRawiter(:);
+end
+
+imRaw_w_vect(:, :) = imRaw_vect(:, :) * W;
+for chiter = 1 : Nc
+    imRaw_w(:, :, :, chiter) = ...
+        reshape(imRaw_w_vect(:, chiter), [Nx, Ny, Nz]);
+
+end
+
+
+
+```
 
 
 ---
