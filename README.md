@@ -263,10 +263,23 @@ W = V * diag(diag(D).^(-0.5)) * V';
 ```
 
 #### Noise Correlation After Whitening
+
+To demonstrate the that noise is whitened, the correlation matrix should be the identity matrix.  That means all off-diagonal entries should be zeros.\
+This guarantees independence between the data of each channel. 
+
+The following block of code and figure illustrate the whitened noise correlation matrix:  
+```
+noisew = noise * W;
+Rnw = noisew'*noisew;
+
+figure,
+imagesc(abs(Rnw))
+```
+
 ![](/figures/WhitenedChannelsCrossCorrelation.jpg)
 
 Whitening is applied to k-space data as:
-$$ d_w(\mathbf{k}) = d(\mathbf{k})^T W $$
+$$d_w(\mathbf{k}) = d(\mathbf{k})^T W$$
 
 ---
 
