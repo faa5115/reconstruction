@@ -344,9 +344,11 @@ Even if one whitens his data, he still has multiple images, each weighted by the
 **Channel phases**:
 ![](/figures/HipChannelPhases.jpg)
 
-One would like to combine the multi-channel data to form a single image that represents the signal.  One simple way to do that is by square-root sum of squares (Sq.sos).  Conceptually, the Sq.sos image at each voxel  index $$r_n$$, $$\textbf{Im_{sos}[r_n]$$, is basically a magntidue of the all the channel values:  
+One would like to combine the multi-channel data to form a single image that represents the signal.\
+One simple way to do that is by square-root sum of squares (Sq.sos).\
+Conceptually, the Sq.sos image at each voxel index $$r_n$$, $$\textbf{Im_{sos}[r_n]$$, is basically a magntidue of the all the channel values:  
 $$
-Im_{sos}(\mathbf{r})  = \sqrt{ Im^T(\mathbf{r}) Im(\mathbf{r}) }
+Im_{sos}(\mathbf{r})  = \sqrt{ Im^H(\mathbf{r}) Im(\mathbf{r}) }
 $$
 
 
