@@ -224,12 +224,20 @@ To decorellate the multi-channel data, a ***whitening transform*** ($$W$$) must 
 
 If $$W$$ is known, $$N_w$$ can be determined by $$N_w = N W$$
 
-To determine $$W$$:  
-$$N_w^H N_w = I$$
-$$[NW]^H[NW] = I$$
-$$W^HN^HNW = I$$
-$$W^HR_nW = I$$
-$$WV_N \Lambda_N V_N^HW = I$$
+To determine $$W$$:  < br / >
+$$N_w^H N_w = I$$ < br / >
+$$[NW]^H[NW] = I$$ < br / >
+$$W^HN^HNW = I$$ < br / >
+$$W^HR_nW = I$$  < br / >
+$$WV_N \Lambda_N V_N^HW = I$$ where $$V_N$$ and $$\Lambda_N$$ are the eigenvector and eigenvalue matrices from eigen-decomposition of   $$R_n$$.  < br / > 
+$$WV_N \Lambda_N^{1/2} \Lambda_N^{1/2} V_N^HW = I$$ < br / >
+$$ \Lambda_N^{1/2} V_N^HW = I$$  < br / > 
+$$W = V_N \Lambda_N^{-1/2}$$  < br / > 
+
+Having the whitening transform be $$W = V_N \Lambda_N^{-1/2}$$ will leave the channel data in a different vector space, so to bring it back to the space, I post multiply by $$V_N^H$$, which is just a personal preference of mine:  $$W = V_N \Lambda_N^{-1/2}$V_N^H$.  
+
+
+
 
 The whitening transform \( W \) is chosen such that the whitened noise satisfies:
 $$N_w^H N_w = I$$
