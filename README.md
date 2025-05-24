@@ -279,8 +279,11 @@ imagesc(abs(Rnw))
 ![](/figures/WhitenedChannelsCrossCorrelation.jpg)
 
 Whitening is applied to k-space data as:
-$$d_w(\mathbf{k}) = d(\mathbf{k})^T W$$
+<!--- 
+One can then use $$W$$ to whiten the raw data at each k-space index $$k_n$$ ($$k_n \in [1, N_x \cdot N_y \cdot N_z]), $$\textbf{d}[k_n]$$ 
+--->
 
+One can then use $$W$$ to whiten the raw data at each acquried k-space index $$\textbf{d}_w[k_n]=[k_n]$$ by $$ [\textbf{d}[k_n]]^TW$$ where $$\textbf{d}[k_n]$$ is a $$N_cx1$$ length array of the acquired k-space of each channel.
 ---
 
 ### Square Root Sum of Squares (Sq. SOS)
