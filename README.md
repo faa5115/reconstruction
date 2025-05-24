@@ -280,7 +280,7 @@ imagesc(abs(Rnw))
 
 One can then use $$W$$ to whiten the raw data at each acquried k-space index $$k_n$$ (where $$k_n \in [1, N_x \cdot N_y \cdot N_z]$$ ) by $$\textbf{d}_w[k_n]=[\textbf{d}[k_n]]^TW$$ where $$\textbf{d}[k_n]$$ is a $$N_cx1$$ length vector of the acquired k-space of each channel.
 
-The same can be done in the image domain   $$\textbf{im}_w[r_n]=[\textbf{im}[r_n]]^TW$$ where $$r_n$$ is an index in the image domain and $$\textbf{im}[r_n]$$ is a $$N_cx1$$ length vector of the channel data in the image domain.  
+The same can be done in the image domain   $$\textbf{Im}_w[r_n]=[\textbf{Im}[r_n]]^TW$$ where $$r_n$$ is an index in the image domain and $$\textbf{Im}[r_n]$$ is a $$N_cx1$$ length vector of the channel data in the image domain.  
 
 The following snippet of code demonstrates how we take the correlate raw k-space data ```raw``` and whiten the data in the image domain: 
 
@@ -310,18 +310,21 @@ Now that this multi-channel data is whitened, we have to combine them. This will
 
 ### Square Root Sum of Squares (Sq. SOS)
 **Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
-
+<!---
 Sq. SOS combines multi-channel images by computing the vector magnitude at each voxel:
 $$
 Im_{sos}(\mathbf{r})  = \sqrt{ Im^T(\mathbf{r}) Im(\mathbf{r}) }
 $$
 where \( Im(\mathbf{r}) \) is the Nc-length vector of channel intensities at voxel \( \mathbf{r} \).
 
+
+
 **Function**: `func_sqSOS(multi_channel_images, noise)`
 - **Inputs**:
   - `multi_channel_images`: Size `Nx x Ny x Nz x Nc`
   - `noise`: Size `Nt x Nc` (leave as `[]` if already whitened)
 - **Output**: Sq. SOS image.
+
 
 #### Results
 **Individual channel images**:
@@ -332,6 +335,20 @@ where \( Im(\mathbf{r}) \) is the Nc-length vector of channel intensities at vox
 
 **Final Sq. SOS reconstruction**:
 ![](/figures/HipSqSOSRecon.jpg)
+--->
+Even if one whitens his data, he still has multiple images, each weighted by the sensity of the channel it was received from.  Each individual channels image has a magnitude and phase, as shown below: 
+
+**Individual channel images**:
+![](/figures/HipChannelImages.jpg)
+
+**Channel phases**:
+![](/figures/HipChannelPhases.jpg)
+
+One would like to combine the multi-channel data to form a single image that represents the signal.  One simple way to do that is by square-root sum of squares (Sq.sos).  Conceptually, the Sq.sos image at each voxel  index $$r_n$$, $$\textbf{Im_{sos}[r_n]$$, is basically a magntidue of the all the channel values:  
+$$
+Im_{sos}(\mathbf{r})  = \sqrt{ Im^T(\mathbf{r}) Im(\mathbf{r}) }
+$$
+
 
 ---
 
