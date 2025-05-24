@@ -301,10 +301,10 @@ for chiter = 1 : Nc
 
 end
 
-
+% imRaw_w (size Nx x Ny x Nz x Nc) is the whitened raw data.  
 
 ```
-
+Now that this multi-channel data is whitened, we have to combine them. This will be discussed in the following three subsections.  
 
 ---
 
