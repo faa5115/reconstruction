@@ -195,22 +195,19 @@ This section covers three key methods: **whitening**, **square root sum of squar
 ### Data Whitening
 **Code Demonstration**: [`coilCombine/main_demonstrateWhitening.m`](coilCombine/main_demonstrateWhitening.m)
 To follow, load the raw k-space and noise data: 
-
-'''
-
+```
 load('hipSlice.mat')
 load('noiseForHipSlice.mat')
+```
 
-'''
-
-This loads the raw data (''' raw ''') and noise (''' noise '''). 
+This loads the raw data (``` raw ```) and noise (``` noise ```). 
 
 Mutual inductance causes noise correlation across channels, leading to variations in noise power across the combined image. Whitening transforms the data to:
 - **Decorrelate** the channels.
 - **Normalize** noise variance across channels.
 
 The cross-correlation matrix for the noise is:
-$$ R_n = N^H N $$
+$$R_n = N^H N$$
 where \( N \) is the noise matrix (`Nt x Nc`), and \( ^H \) indicates the Hermitian conjugate.
 
 #### Noise Correlation Before Whitening
