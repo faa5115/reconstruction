@@ -310,32 +310,7 @@ Now that this multi-channel data is whitened, we have to combine them. This will
 
 ### Square Root Sum of Squares (Sq. SOS)
 **Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
-<!---
-Sq. SOS combines multi-channel images by computing the vector magnitude at each voxel:
-$$
-Im_{sos}(\mathbf{r})  = \sqrt{ Im^T(\mathbf{r}) Im(\mathbf{r}) }
-$$
-where \( Im(\mathbf{r}) \) is the Nc-length vector of channel intensities at voxel \( \mathbf{r} \).
 
-
-
-**Function**: `func_sqSOS(multi_channel_images, noise)`
-- **Inputs**:
-  - `multi_channel_images`: Size `Nx x Ny x Nz x Nc`
-  - `noise`: Size `Nt x Nc` (leave as `[]` if already whitened)
-- **Output**: Sq. SOS image.
-
-
-#### Results
-**Individual channel images**:
-![](/figures/HipChannelImages.jpg)
-
-**Channel phases**:
-![](/figures/HipChannelPhases.jpg)
-
-**Final Sq. SOS reconstruction**:
-![](/figures/HipSqSOSRecon.jpg)
---->
 Even if one whitens his data, he still has multiple images, each weighted by the sensity of the channel it was received from.  Each individual channels image has a magnitude and phase, as shown below: 
 
 **Individual channel images**:
@@ -353,7 +328,8 @@ $$Im_{sos}(\mathbf{r})  = \sqrt{ Im^H(\mathbf{r}) Im(\mathbf{r}) }$$
 The following snippet of code shows my square-root sum of squares function, ```func_sqSOS```.   \
 Its inputs are the raw image data and noise data, which is optional.  If you do not have or wish to use noise data, simply place ```[]``` instead. \
 If noise is included, the data will be whitened.  
-'''
+```
+
 function imRaw_sos = func_sqSOS(imRaw, noise)
 
 [Nx, Ny, Nz, Nc] = size(imRaw);
@@ -388,7 +364,9 @@ end
 
 
 imRaw_sos = sqrt(sum(abs(imRaw_w).^2, 4));
-'''
+
+```
+
 The following snippet is an example using ```func_sqSOS``` on the multi-channel hip data above and the final coil-combined image: 
 
 ```
@@ -397,10 +375,11 @@ imRawsos = func_sqSOS(imRaw, noise);
 figure, 
 imshow(flip(abs(imRawsos), 1), [])
 title('Sq. SOS. Recon.')
+
 ```
 
 
-**Final Sq. SOS reconstruction**:
+**Final Sq. SOS reconstruction**:\
 ![](/figures/HipSqSOSRecon.jpg)
 
 ---
