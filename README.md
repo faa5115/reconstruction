@@ -150,7 +150,27 @@ Topics I will go over:
 Sample datasets for testing and validation are included in the data directory:
 
 Brain Imaging Data: brain_8ch.mat, brain_alias_8ch.mat
-Hip Imaging Data: hipSlice.mat, noiseForHipSlice.mat
+Hip Imaging Data: hipSlice.mat
+  The hip image data has a separte noise scan:  noiseForHipSlice.mat
+
+The data has the following size dimensions: Nx x Ny x Nz x Nc x Ns x Nm
+### Understanding the Data Structure
+#### raw data
+- **Nx**: Number of readout points.
+- **Ny**: Number of phase encoding lines.
+- **Nz**: Number of partitions (1 for 2D scans).
+- **Nc**: Number of coil channels.
+- **Ns**: Number of excited slices (1 here).
+
+#### noise data
+- **Ntp**: Number of time-points sampled
+- **Nc**:  Number of channels, same as **raw data**. 
+
+  
+
+
+This discussion is in the context of MRI.  In MRI the the raw data is the Fourier transform of the image, which is referred to as "k-space." 
+That means if you have a fully sampled (satisfying Nyquist-Shannon sampling criteria which we will discuss below in the "Aliasing and Parallel Imaging" subsection) raw data, you must do a 3D spatial inverse fast Fourier Transform (IFFT) for each channel, slice. 
 
 # Concepts and Demonstrations
 Here I go over the concepts listed in the "Methods Included" section. 
@@ -160,6 +180,7 @@ This section covers three key methods: **whitening**, **square root sum of squar
 - **"raw"**: k-space data of a single hip slice (`Nx x Ny x Nz x Nc x Ns`).
 - **"noise"**: noise data (`Nt x Nc`) acquired at the same readout bandwidth as the raw scan.
 
+<!---
 ### Understanding the Data Structure
 - **Nx**: Number of readout points.
 - **Ny**: Number of phase encoding lines.
@@ -167,6 +188,7 @@ This section covers three key methods: **whitening**, **square root sum of squar
 - **Nc**: Number of coil channels.
 - **Ns**: Number of excited slices (1 here).
 - **Nt**: Number of time points in the noise scan.
+---> 
 
 ---
 
@@ -271,7 +293,7 @@ This method is especially useful for **multi-echo MRI** (e.g., R2* mapping), as 
 Further demonstrations (e.g., multi-echo data) will be added in future updates.
 
 
-## Parallel Imaging  
+## Aliasing and Parallel Imaging  
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
 
 ### SENSE (Sensitivity Encoding)  
