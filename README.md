@@ -192,7 +192,7 @@ This section covers three key methods: **whitening**, **square root sum of squar
 
 ---
 
-## Data Whitening
+### Data Whitening
 **Code Demonstration**: [`coilCombine/main_demonstrateWhitening.m`](coilCombine/main_demonstrateWhitening.m)
 
 Mutual inductance causes noise correlation across channels, leading to variations in noise power across the combined image. Whitening transforms the data to:
@@ -226,7 +226,7 @@ $$ d_w(\mathbf{k}) = d(\mathbf{k})^T W $$
 
 ---
 
-## Square Root Sum of Squares (Sq. SOS)
+### Square Root Sum of Squares (Sq. SOS)
 **Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
 
 Sq. SOS combines multi-channel images by computing the vector magnitude at each voxel:
@@ -253,12 +253,12 @@ where \( Im(\mathbf{r}) \) is the Nc-length vector of channel intensities at vox
 
 ---
 
-## Adaptive Coil Combination (Walsh's Method)
+### Adaptive Coil Combination (Walsh's Method)
 **Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
 
 Walsh’s method estimates **spatially varying coil sensitivity profiles** to perform optimal coil combination. The sensitivity map \( c(\mathbf{r}) \) is estimated adaptively from a local voxel patch.
 
-### Theory
+#### Theory
 Given:
 - **Noise covariance matrix**: \( R_n \)
 - **Signal covariance matrix**: \( R_s(\mathbf{r}) \)
@@ -270,7 +270,7 @@ This **double-diagonalizes** noise and signal covariance matrices, ensuring:
 - Maximum **SNR** improvement.
 - Phase preservation by normalizing weights using \( e^{-i\theta_{max}} \).
 
-### Function: `func_WalshMethod(imRaw, noise, patchSize)`
+#### Function: `func_WalshMethod(imRaw, noise, patchSize)`
 - **Inputs**:
   - `imRaw`: Multi-channel image (`Nx x Ny x Nz x Nc x Nm`).
   - `noise`: Noise scan (`Nt x Nc`).
@@ -285,7 +285,7 @@ This method is especially useful for **multi-echo MRI** (e.g., R2* mapping), as 
 
 ---
 
-## Summary
+### Summary
 - **Whitening** removes channel noise correlation.
 - **Sq. SOS** provides a simple but suboptimal combination method.
 - **Walsh's method** is the most advanced, yielding SNR-optimal reconstructions.
