@@ -1,9 +1,21 @@
 # MRI Reconstruction Methods
-Welcome to the MRI Reconstruction Methods repository! This project is the culmination of my research efforts in MRI image reconstruction, developed through my Ph.D. at UCLA and postdoctoral work at the Cleveland Clinic Foundation. My research has focused on improving MRI acquisition and reconstruction techniques to accelerate imaging and enhance clinical diagnostics.
+Welcome to the MRI Reconstruction Methods repository. This project represents my body of work in MRI image reconstruction, developed during my Ph.D. at UCLA and my postdoctoral fellowship at the Cleveland Clinic Foundation. While this work focuses on magnetic resonance imaging, the techniques and principles applied here—digital signal processing, sensor array combination, aliasing mitigation, and inverse problem formulation—are foundational to Synthetic Aperture Radar (SAR) as well.
 
-During my work, I encountered key limitations in MRI acquisition—particularly signal corruption and aliasing artifacts in accelerated scans. These challenges motivated me to develop novel reconstruction techniques that improve image fidelity while reducing scan times. This repository brings together some of the methods I have worked on, with the goal of making them accessible to researchers and practitioners in the field.
+My goal in sharing this repository is to demonstrate the depth of my experience in solving complex imaging problems that are closely analogous to those in SAR. Though my work has been in the medical imaging domain, the core challenges—sparse sampling, spatial aliasing, beamforming, non-Cartesian data acquisition, and image reconstruction from frequency-domain measurements—are fundamentally similar.
 
-Table of Contents
+## Relevance to Radar Signal Processing
+
+Key skills demonstrated in this repository that translate directly to SAR include:
+
+Multi-sensor data fusion: Combining spatially varying signals from array elements (MRI coils) using methods such as SENSE and adaptive beamforming (David Walsh).
+Aliasing mitigation from sub-Nyquist sampling: Solving inverse problems to reconstruct unaliased images, akin to resolving spatial aliasing in radar aperture synthesis.
+Image reconstruction from frequency-space data: Processing raw k-space (analogous to SAR phase history data) with gridding, NUFFT, and backprojection algorithms.
+Low-rank and structured signal recovery: Leveraging low-dimensional structure in undersampled measurements for robust image recovery, as in compressed sensing radar.
+This repository brings together multiple reconstruction strategies, each accompanied by code and visual examples, to highlight my hands-on DSP proficiency and adaptability across imaging domains.
+
+
+
+# Table of Contents
 Introduction
 Features
 Installation
@@ -13,14 +25,20 @@ Data
 License
 Contact
 # Introduction
-MRI is a powerful but inherently slow imaging modality. Reducing scan time without compromising image quality is a long-standing challenge, especially in applications like cardiac imaging where motion artifacts and signal loss are common. My research has explored ways to accelerate imaging by reconstructing high-fidelity images from undersampled data using both physics-driven and machine learning-based approaches.
+MRI is a highly flexible imaging modality, but its performance is limited by slow acquisition times and sensitivity to artifacts caused by undersampling and motion. These challenges mirror many of the signal reconstruction issues found in radar imaging.
 
-This repository contains implementations of various MRI reconstruction techniques, including parallel imaging, region-of-interest-based methods, and deep learning approaches for artifact removal. My goal is to provide an open resource for the community to build upon, experiment with, and apply in their own research.
+My work addresses these problems by developing robust reconstruction algorithms based on signal processing theory and array systems engineering. The techniques presented here reflect both a deep theoretical understanding and hands-on implementation experience in advanced reconstruction pipelines.
+
+This repository is not only a showcase of MRI reconstruction techniques—it is a demonstration of transferable digital signal processing skills applicable to radar and remote sensing applications.
+
+
 
 # Features
-Diverse Reconstruction Techniques: Implementations of multiple MRI reconstruction methods.
-Modular Codebase: Organized structure for easy integration and extension.
-Sample Data: Example datasets included for testing and validation.
+**DSP-Rich Algorithms:** Implementations of SENSE, GRAPPA, beamforming (ROVir), low-rank matrix recovery, and NUFFT—all of which apply core DSP techniques.
+**Array Data Processing:** Multi-channel coil combination strategies (e.g., adaptive combining and sensitivity encoding).
+**Modular Codebase:** Easily extensible Python/Matlab code with demos and results.
+**Visual Artifacts + Solutions:** Side-by-side illustrations of aliasing, beam pattern formation, and artifact suppression.
+**Sample Data:** Toy datasets provided for easy experimentation and reproducibility.
 
 # Installation
 To use the methods in this repository:
@@ -60,7 +78,7 @@ Documentation: Detailed descriptions and usage instructions.
 Examples: Sample data and scripts demonstrating the method’s application. (For most methods)
 
 # Methods Included
-These are all my implementation of these methods
+These are all my implementation of these methods:
 
 ## Coil Combination
 Topics I go over: 
