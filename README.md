@@ -382,6 +382,9 @@ title('Sq. SOS. Recon.')
 **Final Sq. SOS reconstruction**:\
 ![](/figures/HipSqSOSRecon.jpg)
 
+
+Unfortunately, this approach is not the most signal-to-noise (SNR) optimal approach.  It also loses phases information of the data, which can be crucial for many applications, such as observing moving signal, assessing for spectral components (different chemical shifts), etc.  
+
 ---
 
 ### Adaptive Coil Combination (Walsh's Method)
