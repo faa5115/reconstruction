@@ -86,8 +86,10 @@ Topics I go over:
 * Square Root Sum of Squares
 * Adaptive Coil Combine (Walsh's Method)
   * I will later go over Mark Bydder's generalization of Walsh's method for time series data.
+* Sensitivity Encoding (SENSE)
 
-## Parallel Imaging
+## Aliasing and Parallel Imaging
+<!--
 Topics in parallel imaging that I will go over: 
 * Image domain unaliasing.
   * Sensitivity Encoding (SENSE)  
@@ -97,6 +99,8 @@ Topics in parallel imaging that I will go over:
   * SPIRiT:  show how the linear dependence of local k-space neighbors across all channels can be enforced with data consistency to accurately estimate a complete k-space.
   * "Simplified E-SPIRiT":  I will show how by using the concepts of spatial harmonics, one can estimate coil sensitivity maps.
   * Low-Rank (or "subspace") Based Parallel Imaging methods:  show how the linear dependence of multi-channel k-space neighbors can be generalized to treat them as a low-rank system.
+  -->
+  
  ## Spatial Beamforming
  For now I will discuss ROVir, which was a novel adaptation of Walsh's adaptive coil combine method to combine the acquired channel data in different linear combination to generate a new set of "virtual" channels that optimize the signal power within the specific region of interest (ROI) over the signal power outside of that region of interest.  
  I will later upload my new approach once it is published or filed for patent; whichever comes first. 
