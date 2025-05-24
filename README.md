@@ -211,6 +211,7 @@ $$R_n = N^H N$$
 where \( N \) is the noise matrix (`Nt x Nc`), and \( ^H \) indicates the Hermitian conjugate.
 
 #### Noise Correlation Before Whitening
+The following block of code and figure show how to generate the noise correlation matrix and displays it. 
 ```
 Rn = noise' * noise;
 figure,
@@ -231,27 +232,35 @@ $$W^HN^HNW = I$$\
 $$W^HR_nW = I$$\
 $$WV_N \Lambda_N V_N^HW = I$$ where $$V_N$$ and $$\Lambda_N$$ are the eigenvector and eigenvalue matrices from eigen-decomposition of   $$R_n$$.\
 $$WV_N \Lambda_N^{1/2} \Lambda_N^{1/2} V_N^HW = I$$\
-$$ \Lambda_N^{1/2} V_N^HW = I$$\
+$$\Lambda_N^{1/2} V_N^HW = I$$\
 $$W = V_N \Lambda_N^{-1/2}$$\
 \
 \
 \
-Having the whitening transform be $$W = V_N \Lambda_N^{-1/2}$$ will leave the channel data in a different vector space, so to bring it back to the space, I post multiply by $$V_N^H$$, which is just a personal preference of mine:  $$W = V_N \Lambda_N^{-1/2}$V_N^H$.  
+Having the whitening transform be $$W = V_N \Lambda_N^{-1/2}$$ will leave the channel data in a different vector space, so to bring it back to the space, I post multiply by $$V_N^H$$, which is just a personal preference of mine:  $$W = V_N \Lambda_N^{-1/2}$V_N^H$$.  
+
+The following block of code illustrates how to determine the $$W$$ from the noise data ``` noise ```: 
+```
+[V, D] = eig(Rn); % V (eigenvector matrix) W (diagonal matrix of eigenvalues). 
+W = V * diag(diag(D).^(-0.5)) * V';
+```
 
 
 
 
-The whitening transform \( W \) is chosen such that the whitened noise satisfies:
-$$N_w^H N_w = I$$
-where:
-$$ N_w = N W $$
-Solving for \( W \), we get:
-$$ W = \Lambda_N^{-1/2}V_N $$
-where \( V_N \) and \( \Lambda_N \) are the eigenvector and eigenvalue matrices from eigen-decomposition of \( R_n \).
 
-The function `func_whitenMatrix(noise)` computes \( W \), returning:
-- `W`: Whitening matrix.
-- `V`, `D`: Eigenvectors and eigenvalues.
+
+The function ```func_whitenMatrix(noise)``` computes \( W \), returning:
+- ```W```: Whitening matrix.
+- ```V```, ```D```: Eigenvectors and eigenvalues.
+```
+function [W, V, D] = func_whitenMatrix(noise)
+% Input :  noise is number of timepoints x Nc
+% Output:  W is the whitening matrix.  V and D are the eigenvector and diagonal eigenvalue matrix respectively.   
+Rn = noise' * noise;
+[V, D] = eig(Rn);% eigen value decomposition of noise correlation matrix
+W = V * diag(diag(D).^(-0.5)) * V';
+```
 
 #### Noise Correlation After Whitening
 ![](/figures/WhitenedChannelsCrossCorrelation.jpg)
