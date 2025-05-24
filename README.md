@@ -102,21 +102,50 @@ Topics in parallel imaging that I will go over:
   -->
   
  ## Spatial Beamforming
+ <!--
  For now I will discuss ROVir, which was a novel adaptation of Walsh's adaptive coil combine method to combine the acquired channel data in different linear combination to generate a new set of "virtual" channels that optimize the signal power within the specific region of interest (ROI) over the signal power outside of that region of interest.  
  I will later upload my new approach once it is published or filed for patent; whichever comes first. 
+  -->
+
+* Subsampling and Aliasing
+* SENSE Unaliasing
+* GRAPPA Reconstruction
+* SENSE vs GRAPPA: Side Lobe Artifacts
+* Structured Low-Rank Matrix Completion
+
+## Spatial Beamforming 
+* Region-of-Interest Beamforming (ROVir)
+* I will briefly go over my new approach Coil Localized Elimination of Aliased NMR (CLEAN). It is not yet published and currently filed a provisional patent application), so I will not go over any details on the implementation.
+<!--
  ## SMS Imaging.
  Topics in SMS Imaging: 
  * Controlled aliasing in parallel imaging (CAIPI).
  * SENSE based reconstruction
  * GRAPPA based CAIPI for 3D imaging.
  * Split-slice GRAPPA.
+   -->
 
 ## Non-Cartesian Reconstruction 
+<!--
 Topics I will go over: 
 * The "problem statement" in trying to get an image from non-Cartesian sampled data.
 * Gridding (often called the adjoint)
 * Least-squares gridding. 
+-->
+* Radial Sampling & Filtered Backprojection
+* Gridding Reconstruction
+* NUFFT-Based Reconstruction
 
+## Image slice interference
+* Simultaneous acquisition of mutliple slices.
+   * Controlled Aliasing in Parallel Imaging (CAIPI).
+   * Using standard parallel imaging based approach.
+   * A demonstration of our CLEAN approach to spatially beamform for the specific slice.
+* Signal leakage from the desired slice
+  * Demonstrate the on-slice projection of the out of slice signal.
+  * Show how 3D Fourier ("k-space") sampling can resolve this.
+  * Use channel sensitivity profiles to unfold the image.
+  * Use CLEAN to spatially beamform for the leaked signal. 
 # DATA
 Sample datasets for testing and validation are included in the data directory:
 
