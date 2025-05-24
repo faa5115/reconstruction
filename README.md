@@ -211,10 +211,15 @@ $$R_n = N^H N$$
 where \( N \) is the noise matrix (`Nt x Nc`), and \( ^H \) indicates the Hermitian conjugate.
 
 #### Noise Correlation Before Whitening
+```
+Rn = noise' * noise;
+figure,
+imagesc(abs(Rn))
+```
 ![](/figures/ChannelCrossCorrelation.jpg)
 
 The whitening transform \( W \) is chosen such that the whitened noise satisfies:
-$$ N_w^H N_w = I $$
+$$N_w^H N_w = I$$
 where:
 $$ N_w = N W $$
 Solving for \( W \), we get:
