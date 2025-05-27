@@ -548,7 +548,7 @@ $$\mathbf{m} = P \mathbf{q}_{max}$$\
 which is the column of $$P$$ that corresponds to the highest eigenvalue in $$D$$.  
 
 Therefore, the optimal matched filter is the vector $$\mathbf{m}$$ that is the eigenvector corresponding to the largest eigen value of $$R_n^{-1}R_s$$
-A reconstruction with approximately uniform noise variance can be achieved by scaling $$\mathbf{m}=\mathbf{m}_{max}$$ with $$\alpha = \frac{1}{\sqrt{\mathbf{m}R_n\mathbf{m}}}$$.
+A reconstruction with approximately uniform noise variance can be achieved by scaling $$\mathbf{m}=\mathbf{m}_{max}$$ with $$\alpha = \frac{1}{\sqrt{\mathbf{m}^HR_n\mathbf{m}}}$$.
 
 
 This described determining the matched filter from a stochastic time-varying process.  In MRI, we deal with images, which can be treated as spatially varying random variables.  
@@ -584,12 +584,32 @@ Therefore this recosntruction determines a spatailly adaptive stochastic matched
    
 In my implementation of the stochastic matched filter ( titled ```func_WalshMethod```), my scaling factor, $$\alpha$$ involves a spatially varying phase term: 
 
-$$\alpha(\mathbf{r}_c) = \frac{e^{-i \theta(r_c)} }{\sqrt{\mathbf{m}R_n\mathbf{m}}}$$
+$$\alpha(\mathbf{r}_c) = \frac{e^{-i \theta(r_c)} }{\sqrt{\mathbf{m}^HR_n\mathbf{m}}}$$
 
 
 where $$\theta(r_c)$$ is the phase of the index in $$\mathbf{m}$$ that corresponds to the channel with the highest signal power.  
 
 
+#### Function
+The snippet of code below shows how one can use my implementation: 
+```
+patch = [5, 5, 1, size(imRaw, 4)]; 
+[imRawcc] = func_WalshMethod(imRaw, noise, patch) ;
+
+```
+
+- **Inputs**:
+  - `imRaw`: Multi-channel image (`Nx x Ny x Nz x Nc x Nm`). `Nm` is the number of echoes timepoints acquired for each spatial coordinate.  
+  - `noise`: Noise scan (`Nt x Nc`). 
+  - `patchSize`: Patch size (`Npatchx x Npatchy x Npatchz x Nm`). Leave as `[]` for auto-selection (~250 voxels).
+- **Output**: Coil-combined image (`Nx x Ny x Nz x 1 x Nm`).
+
+  #### Results
+**Magnitude and phase of adaptive stochastic matched filterreconstruction**:
+I called this the "walsh method" out of respect for David Walsh who adapted this SAR image reconstruction process to MRI.  
+![](/figures/WalshCombine_signal_and_phase.jpg)
+
+You may notice in my ```func_WalshMethod``` code that I have a time-domain measurement in the image data.  This is because Mark Bydder has a paper titled "Optimal phased-array combination for spectroscopy" where he uses the stochastic matched filter to combine NMR spectroscopy data. So I modified my implementation of the stochastic matched filter to accomodate for time-varying signal as well.  
 <!--
 #### Theory
 Given:
