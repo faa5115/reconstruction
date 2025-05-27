@@ -539,7 +539,11 @@ If  $$\mathbf{q}$$ optimizes SNR, then so can any scalar multiple of $$\mathbf{q
 
 $$\frac{E[signal power]}{E[noise power]} = \mathbf{q}^HD \mathbf{q}$$
 
-Because the eigenvalues in $$D$$ are arranged in descending order, then $$\mathbf{q}_{max} = [1, 0, 0, 0, ..., 0]^T$$.
+Because the eigenvalues in $$D$$ are arranged in descending order, then $$\mathbf{q}_{max} = [1, 0, 0, 0, ..., 0]^T$$.\
+
+The vector that combines the channels with the optimal SNR output is therefore: \
+
+$$\mathbf{m}_{max} =P\mathbf{q}_{max}$$
 
 
 
