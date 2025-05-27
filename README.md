@@ -395,10 +395,18 @@ In many cases, such as with NMR or MRI, the signal is complex-valued.  This info
 
 The multi-channel image data at voxel $$\mathbf{r}_n$$ can be described with the following channel-sensitivty encoding scheme: \
 
+<!--
+$$\mathbf{Im}(\mathbf{r}_n)=[S(\mathbf{r}_n)] Imcc(\mathbf{r}_n)$$
+-->
+$$\mathbf{Im}(\mathbf{r}_n)=[S(\mathbf{r}_n)] M(\mathbf{r}_n)$$
 
-$$\mathbf{Im}(\mathbf{r}_n)=S Imcc(\mathbf{r}_n)$$
+where $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued  image from each of the $$N_c$$ channels at position $$\mathbf{r}_n$$. $$M(\mathbf{r}_n)$$ is the original complex-valued signal at location  $$\mathbf{r}_n$$.  $$[S(\mathbf{r}_n)]$$ is a matrix $$N_c \times 1$$ that holds how sensitive each channel is from signal at position $$\mathbf{r}_n$$.  
+This is the forward problem describing how one gets the individual channel images from a spatially varying signal $$M(\mathbf{r}_n)$$.
 
-where $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued channel image at position $$\mathbf{r}_n$$. 
+If one had the sensitivity values, one could compute an estimate of $$M$$, $$M_{est}$$  solve **inverse problem**  of the above formula: 
+$$M_{est} = Im_{cc}(\mathbf{r}_n) = [S(\mathbf{r}_n)]^{-1}\mathbf{Im}(\mathbf{r}_n)$$
+
+
 
 
 
