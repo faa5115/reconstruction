@@ -491,8 +491,11 @@ $$E[]$$ is the expectation value of the term within the brackets.  Expectation v
 
 The stochastic matched filter is a vector $$\mathbf{m}$$ that maximizes signal power to noise power: \
 
-$$\frac{E[signal power]}{E[noise power]} = \frac{|\mathbf{m}^H \mathbf{s}|^2}{|\mathbf{m}^H \mathbf{n}|^2}$$
+$$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s}|^2]}{E[|\mathbf{m}^H \mathbf{n}|^2]}$$
 
+This can be expanded as 
+$$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s} \mathbf{s}^H \mathbf{m}|]}{E[|\mathbf{m}^H \mathbf{n} \mathbf{n}^H \mathbf{m}|]}$$
+$$= \frac{E[|\mathbf{m}^H R_s \mathbf{m}|]}{E[|\mathbf{m}^H R_n \mathbf{m}|]} =  \frac{\mathbf{m}^HE[|R_s \mathbf{m}|\mathbf{m}]}{E[\mathbf{m}^H| R_n| \mathbf{m}]}$$
 
 #### Theory
 Given:
