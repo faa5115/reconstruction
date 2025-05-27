@@ -396,7 +396,9 @@ In many cases, such as with NMR or MRI, the signal is complex-valued.  This info
 The multi-channel image data at voxel $$\mathbf{r}_n$$ can be described with the following channel-sensitivty encoding scheme: \
 
 
-$$\mathbf{Im}(\mathbf{r}_n)=S Im_{cc}(\mathbf{r}_n)$$
+$$\mathbf{Im}(\mathbf{r}_n)=S Imcc(\mathbf{r}_n)$$
+
+where $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued channel image at position $$\mathbf{r}_n$$. 
 
 
 
