@@ -526,7 +526,11 @@ $$P^HR_NP = I$$  $$R_N = (P^H)^{-1}P^{-1}$$
 With this in mind, we can return to our SNR objective function: 
 
 $$\frac{E[signal power]}{E[noise power]} = \frac{\mathbf{m}^HR_s\mathbf{m}}{\mathbf{m}^H R_n \mathbf{m}}$$
-$$= \frac{\mathbf{m}^H(P^H)^{-1}DP^{-1} \mathbf{m}}{\mathbf{m}^H (P^H)^{-1}P^{-1} \mathbf{m}}$$$
+$$= \frac{\mathbf{m}^H(P^H)^{-1}DP^{-1} \mathbf{m}}{\mathbf{m}^H (P^H)^{-1}P^{-1} \mathbf{m}}$$
+
+For convenience, let's write $$q = P^{-1}\mathbf{m}$$: \
+$$= \frac{\mathbf{q}^H^{-1}D \mathbf{a}}{\mathbf{q}^H \mathbf{q}}$$
+
 
 #### Theory
 Given:
