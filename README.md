@@ -431,7 +431,22 @@ The difficulty remains in determining the sensitivity values.  One simple way to
 
 A common low-pass filter for k-space used is a rect function that only selects the center k-space lines.  But this could problematic becuase it will cause Gibbs ringing in the sensitivity maps.  
 
-Here is 
+Here is a snippet on how one can use my sensitivity encoding function to generate images: 
+
+```
+senseMapsOption = 1; % I have two options in generating sensitivity maps.  
+                     % Option 1 simply makes low resolution images from  
+                     % the center k-space lines and divides each low
+                     % resolution image by their square root sum of squares.
+                     % Option 2 uses a method called E-SPIRiT which I will
+                     % discuss in a later section. 
+R = [1, 1];  % This is "acceleration factor" along ky and kz encoding which I will discuss in the parallel imaging section.  
+             % We did not accelerate the acceleration in this example, so
+             % the values for both is 1. 
+
+[imRawSense, senseMaps] = func_SENSE(imRaw, imCalib, R, noise, senseMapsOption);
+
+```
 SHOW SENSE RESULTS HERE
 
 I will later discuss, in parallel imaging an alternative way to generate the sensitivity maps.  
