@@ -547,10 +547,10 @@ $$\mathbf{m} = P \mathbf{q}_{max}$$\
 
 which is the column of $$P$$ that corresponds to the highest eigenvalue in $$D$$.  
 
-A reconstruction with apprximately uniform noise variance can be achieved by scaling $$\mathbf{m}=\mathbf{m}_{max}$$ with $$\alpha = \frac{1}{\sqrt{\mathbf{m}R_n\mathbf{m}}}$$.
+A reconstruction with approximately uniform noise variance can be achieved by scaling $$\mathbf{m}=\mathbf{m}_{max}$$ with $$\alpha = \frac{1}{\sqrt{\mathbf{m}R_n\mathbf{m}}}$$.
 
 
-
+This described determining the matched filter from a stochastic time-varying process.  In MRI, we deal with images, which can be treated as spatially varying random variables.  
 
 #### Theory
 Given:
