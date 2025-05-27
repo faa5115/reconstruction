@@ -495,7 +495,7 @@ $$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s}|^2]}
 
 This can be expanded as 
 $$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s} \mathbf{s}^H \mathbf{m}|]}{E[|\mathbf{m}^H \mathbf{n} \mathbf{n}^H \mathbf{m}|]}$$
-$$= \frac{\mathbf{m}^HR_s\mathbf{m}|]\mathbf{m}}{\mathbf{m}^H R_n ]\mathbf{m}}$$
+$$= \frac{\mathbf{m}^HR_s\mathbf{m} \mathbf{m}}{\mathbf{m}^H R_n \mathbf{m}}$$
 
 #### Theory
 Given:
