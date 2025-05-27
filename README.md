@@ -386,8 +386,12 @@ title('Sq. SOS. Recon.')
 Unfortunately, this approach is not the most signal-to-noise (SNR) optimal approach.  It also loses phases information of the data, which can be crucial for many applications, such as observing moving signal, assessing for spectral components (different chemical shifts), etc.  
 
 ---
+### Using Channel Sensitivity Encoding to approximate the Spatial Matched Filter Reconstruction.
 
-### Adaptive Coil Combination (Walsh's Method)
+
+---
+
+### Adaptive Coil Combination:  The Stochastic Matched Filter Coil Combination ("Walsh's Method")
 **Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
 
 Walsh’s method estimates **spatially varying coil sensitivity profiles** to perform optimal coil combination. The sensitivity map \( c(\mathbf{r}) \) is estimated adaptively from a local voxel patch.
