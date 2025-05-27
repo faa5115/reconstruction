@@ -417,7 +417,7 @@ $$M_{est} = Im_{cc}(\mathbf{r}_n) = [\mathbf{S}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\
 
 Here $$Im_{cc}(\mathbf{r}_n)$$ is introduced because the estimated signal, $$M _{est}$$, is the coil combined image. 
 
-To "match" the matched filter formulation, this can be expanded to the spatial matched filter, if noise data is provided:\
+To "match" the matched filter formulation, this can be expanded to the spatial matched filter, if noise data is provided:  \
 
 
 
@@ -425,6 +425,18 @@ $$Im_{cc}(\mathbf{r}_n) = [\mathbf{S}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\mathbf{r}_
 
 
 $$[\mathbf{U}_{sense}]=[S^HRn^{-1}S]^{-1}[S^H]Rn^{-1}$$
+
+
+The difficulty remains in determining the sensitivity values.  One simple way to approximate for sensitivities is by taking a low-resolution version of each channel image, and then dividing each low-resolution image by the square-root sum of squares of the low resolution images.  Getting a low-resolution channel images can be done by applying a low pass filter to the k-space (Fourier transform) of each channel image, thereby keeping low-frequency components of k-space and penalizing the high-resolution edges.   By the convolution theorem of the Fourier transform, this is equivalent to convolving the channel images by kernel. 
+
+A common low-pass filter for k-space used is a rect function that only selects the center k-space lines.  But this could problematic becuase it will cause Gibbs ringing in the sensitivity maps.  
+
+Here is 
+SHOW SENSE RESULTS HERE
+
+I will later discuss, in parallel imaging an alternative way to generate the sensitivity maps.  
+
+
 
 
 
