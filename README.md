@@ -466,7 +466,33 @@ Given the difficulty in proper assessment of channel sensitivity, I will go into
 ### Adaptive Coil Combination:  The Stochastic Matched Filter Coil Combination ("Walsh's Method")
 **Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
 
-Walsh’s method estimates **spatially varying coil sensitivity profiles** to perform optimal coil combination. The sensitivity map \( c(\mathbf{r}) \) is estimated adaptively from a local voxel patch.
+<!-- Walsh’s method estimates **spatially varying coil sensitivity profiles** to perform optimal coil combination. The sensitivity map \( c(\mathbf{r}) \) is estimated adaptively from a local voxel patch. -->
+The adaptive coil combine method (which I sometimes called "Walsh's Method") combines the channels using a ***stochastic matched filter***.  
+
+This signal reconstruction method was based off of a polametric technique used to optimize signal power to clutter power ratio, or in other contexts Signal to noise power (SNR), in SAR imagery (see SM Verbout "Polarimetric techniques for enhancing SAR imagery" *Synthetic Aperture Radar SPIE*, Vol. 1630 1992).  
+
+In the context of SAR imaging, the data is the measurement of a time-domain signal, which is assumed to be *stochastic*.  This measurement consists of the desired signal s(t) and the undesired noise process n(t). 
+
+In this section I will summarize the proof used to generate the method and then go over my implementation 
+
+#### Proof
+
+With an $$N_c$$ element phased-array system, the signal and noise received for each channel can be described as:  \
+
+$$\mathbf{s}(t) = [s_1(t), s_t(t), ..., s_{N_c}(t)]^T$$
+$$\mathbf{n}(t) = [n_1(t), n_t(t), ..., n_{N_c}(t)]^T$$
+
+$$N_c \times N_c$$ correlation matrices can be constructed:  \
+
+$$R_s = E[\mathbf{s}(t) \textbf{s}^H(t)]$$
+$$R_n = E[\mathbf{n}(t) \textbf{n}^H(t)]$$
+
+$$E[]$$ is the expectation value of the term within the brackets.  Expectation value is evaluated over time.  
+
+The stochastic matched filter is a vector $$\mathbf{m}$$ that maximizes signal power to noise power: \
+
+$$\frac{E[signal power]}{E[noise power]} = \frac{|\mathbf{m}^H \mathbf{s}|^2}{|\mathbf{m}^H \mathbf{n}|^2}$$
+
 
 #### Theory
 Given:
