@@ -551,6 +551,11 @@ A reconstruction with approximately uniform noise variance can be achieved by sc
 
 
 This described determining the matched filter from a stochastic time-varying process.  In MRI, we deal with images, which can be treated as spatially varying random variables.  
+Therefore, the correlation statistics for the signal must be applied to the channel data in a spatially adaptive fashion for each voxel coordinate $$\mathbf{r}_c$$.  The signal correlation of channels $$j$$ and $$l$$ can be approximated for each spatial voxel $$\mathbf{r}_c$$:  \
+
+$$R_s(j,l) = \sum_{\mathbf{r}_n \in patch[\mathbf{r}_c]} [\mathbf{Im}(\mathbf{r}_n) \mathbf{Im}^H(\mathbf{r}_n)]
+
+where $$patch[\mathbf{r}_c]$$ define a local patch of voxels centered around voxel $$\mathbf{r}_c$$. 
 
 #### Theory
 Given:
