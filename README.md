@@ -447,12 +447,16 @@ R = [1, 1];  % This is "acceleration factor" along ky and kz encoding which I wi
 [imRawSense, senseMaps] = func_SENSE(imRaw, imCalib, R, noise, senseMapsOption);
 
 ```
-SHOW SENSE RESULTS HERE
+Here I show sensitivity maps generated from simply selecting the center region of k-space, where I took only the center 28 lines, and the resulting image reconstructions from sensitivity encoding: 
+
+![](/figures/senseMapsMagnitude.jpg)
+
+![](/figures/senseRecon.jpg)
 
 I will later discuss, in parallel imaging an alternative way to generate the sensitivity maps.  
 
 
-
+Given the difficulty in proper assessment of channel sensitivity, I will go into Adaptive coil combination.  This approach exploits local correlation statistics across all channels to generate a stochastic mathced filter.   
 
 
 
