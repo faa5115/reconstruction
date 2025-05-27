@@ -387,7 +387,11 @@ Unfortunately, this approach is not the most signal-to-noise (SNR) optimal appro
 
 ---
 ### Using Channel Sensitivity Encoding to approximate the Spatial Matched Filter Reconstruction.
+**Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
 
+In many cases, such as with NMR or MRI, the signal is complex-valued.  This information is lost in square-root sum-of-squares.  Furthermore. it does not yield the SNR optimal signal reconstruction.  A spatial matched filter would yield the SNR optimal reconstruction, as Roemer et al discussed when writing the NMR Phased Array.  We will first discuss the spatial matched filter as an inverse problem and then proceed modify the inverse problem into the format of the Matched Filter.  
+
+The multi-channel image data at voxel $$$\textbr{r}$$$ can be 
 
 ---
 
