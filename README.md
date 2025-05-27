@@ -413,7 +413,13 @@ $$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n)] M(\mathbf{r}_n)$$
 This is the forward problem describing how one gets the individual channel images from a spatially varying signal $$M(\mathbf{r}_n)$$.
 
 If one had the sensitivity values, one could compute an estimate of $$M$$, $$M_{est}$$  solve **inverse problem**  of the above formula: 
-$$M_{est} = Im_{cc}(\mathbf{r}_n) = [\mathbf{S}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\mathbf{r}_n)$$
+$$M_{est} = Im_{cc}(\mathbf{r}_n) = [\mathbf{S}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\mathbf{r}_n)$$\
+
+Here $$Im_{cc}(\mathbf{r}_n)}$$ is introduced because the estimated signal, $$M _{est}$$, is the coil combined image. 
+
+To "match" the matched filter formulation, this can be expanded to the spatial matched filter: 
+
+$$$$
 
 
 
