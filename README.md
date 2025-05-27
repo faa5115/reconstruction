@@ -417,7 +417,9 @@ $$M_{est} = Im_{cc}(\mathbf{r}_n) = [\mathbf{S}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\
 
 Here $$Im_{cc}(\mathbf{r}_n)$$ is introduced because the estimated signal, $$M _{est}$$, is the coil combined image. 
 
-To "match" the matched filter formulation, this can be expanded to the spatial matched filter, if noise data is provided: 
+To "match" the matched filter formulation, this can be expanded to the spatial matched filter, if noise data is provided:\
+
+
 
 $$Im_{cc}(\mathbf{r}_n) = [\mathbf{S}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\mathbf{r}_n)$$  \
 
