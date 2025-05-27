@@ -547,15 +547,44 @@ $$\mathbf{m} = P \mathbf{q}_{max}$$\
 
 which is the column of $$P$$ that corresponds to the highest eigenvalue in $$D$$.  
 
+Therefore, the optimal matched filter is the vector $$\mathbf{m}$$ that is the eigenvector corresponding to the largest eigen value of $$R_n^{-1}R_s$$
 A reconstruction with approximately uniform noise variance can be achieved by scaling $$\mathbf{m}=\mathbf{m}_{max}$$ with $$\alpha = \frac{1}{\sqrt{\mathbf{m}R_n\mathbf{m}}}$$.
 
 
 This described determining the matched filter from a stochastic time-varying process.  In MRI, we deal with images, which can be treated as spatially varying random variables.  
 Therefore, the correlation statistics for the signal must be applied to the channel data in a spatially adaptive fashion for each voxel coordinate $$\mathbf{r}_c$$.  The signal correlation of channels $$j$$ and $$l$$ can be approximated for each spatial voxel $$\mathbf{r}_c$$:  \
 
-$$R_s(j,l) = \sum_{\mathbf{r}_n \in patch[\mathbf{r}_c]} [\mathbf{Im}(\mathbf{r}_n) \mathbf{Im}^H(\mathbf{r}_n)]$$
+$$R_s(j,l) (r_c) = \sum_{\mathbf{r}_n \in patch[\mathbf{r}_c]} [\mathbf{Im}(\mathbf{r}_n) \mathbf{Im}^H(\mathbf{r}_n)]$$
 
-where $$patch[\mathbf{r}_c]$$ define a local patch of voxels centered around voxel $$\mathbf{r}_c$$. 
+where $$patch[\mathbf{r}_c]$$ defines a local patch of voxels centered around voxel $$\mathbf{r}_c$$. 
+
+$$R_s(j,l) (r_c)$$ is evaluated locally for each $$\mathbf{r}_n$$ and used in place of $$R_s$$.
+
+Therefore this recosntruction determines a spatailly adaptive stochastic matched filter.  The matched filter is determined for each voxel.  The following steps are carried out: 
+
+1. Use $$Nt \times Nc$$ noise data to compute $$R_n$$:  $$R_n = N^HN$$
+2. Iterate through all voxels $$\mathbf{r}_c$$:
+  2a. compute:  
+   
+   $$R_s(j,l) (r_c) = \sum_{\mathbf{r}_n \in patch[\mathbf{r}_c]} [\mathbf{Im}(\mathbf{r}_n) \mathbf{Im}^H(\mathbf{r}_n)]$$
+
+   2.b compute:
+   $$R_n^{-1}R_s(j,l) (r_c)$$
+
+   2.c $$\mathbf{m}_{max}(\mathbf{r}_c)$$ is the highest eigenvector of $$R_n^{-1}R_s(j,l) (r_c)$$
+
+   2.d Scale:
+
+    $$\mathbf{m}_{max}(r_c) = \alpha \mathbf{m} _{max}(r_c)$$
+
+   2.c
+
+   $$Im_{cc}(\mathbf{r}_c) = \mathbf{m}(r_c) \cdot \mathbf{Im}(r_c)$$
+
+   
+   
+
+
 
 #### Theory
 Given:
