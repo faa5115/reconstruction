@@ -520,8 +520,8 @@ $$P^H R_s P = D$$
 This gives use two equalities we can use in the SNR objective function: \
 
 
-$$P^H R_s P = D$$ ---> $$R_s = (P^H)^{-1}DP^{-1}$$ and \
-$$P^HR_NP = I$$  ---> $$R_N = (P^H)^{-1}P^{-1}$$
+$$P^H R_s P = D$$  $$R_s = (P^H)^{-1}DP^{-1}$$ and \
+$$P^HR_NP = I$$  $$R_N = (P^H)^{-1}P^{-1}$$
 
 With this in mind, we can return to our SNR objective function: 
 
