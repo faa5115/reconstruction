@@ -550,7 +550,7 @@ which is the column of $$P$$ that corresponds to the highest eigenvalue in $$D$$
 Therefore, the optimal matched filter is the vector $$\mathbf{m}$$ that is the eigenvector corresponding to the largest eigen value of $$R_n^{-1}R_s$$
 A reconstruction with approximately uniform noise variance can be achieved by scaling $$\mathbf{m}=\mathbf{m}_{max}$$ with $$\alpha = \frac{1}{\sqrt{\mathbf{m}^HR_n\mathbf{m}}}$$.
 
-
+#### Adaptation to MRI
 This described determining the matched filter from a stochastic time-varying process.  In MRI, we deal with images, which can be treated as spatially varying random variables.  
 Therefore, the correlation statistics for the signal must be applied to the channel data in a spatially adaptive fashion for each voxel coordinate $$\mathbf{r}_c$$.  The signal correlation of channels $$j$$ and $$l$$ can be approximated for each spatial voxel $$\mathbf{r}_c$$:  \
 
@@ -643,7 +643,9 @@ This method is especially useful for **multi-echo MRI** (e.g., R2* mapping), as 
 ### Summary
 - **Whitening** removes channel noise correlation.
 - **Sq. SOS** provides a simple but suboptimal combination method.
-- **Walsh's method** is the most advanced, yielding SNR-optimal reconstructions.
+- **Matched Filter** yields SNR optimal coil combination by using **channel sensitivity** encoding.
+- **Difficul to estimate channel sensitivity neded**
+- **Walsh's method adaptive coil combine** is the most advanced, yielding SNR-optimal reconstructions, and determines a **stochastic** matched filter **locally**.  
 
 Further demonstrations (e.g., multi-echo data) will be added in future updates.
 
