@@ -495,7 +495,37 @@ $$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s}|^2]}
 
 This can be expanded as 
 $$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s} \mathbf{s}^H \mathbf{m}|]}{E[|\mathbf{m}^H \mathbf{n} \mathbf{n}^H \mathbf{m}|]}$$
-$$= \frac{\mathbf{m}^HR_s\mathbf{m} \mathbf{m}}{\mathbf{m}^H R_n \mathbf{m}}$$
+$$= \frac{\mathbf{m}^HR_s\mathbf{m}}{\mathbf{m}^H R_n \mathbf{m}}$$
+
+This objective function can turn into an eigenvalue problem by exploiting the simultaneous diagonalization of $$R_s$$ and $$R_n$$:
+
+
+$$R_n^{-1}R_s P= PD$$ 
+
+where the columns of $$P$$ are the eigenvectors of $$R_n^{-1}R_s$$ and $$D$$ is a diagonal matrix consisting of the eigenvalues to the corresponding eigenvector column of $$P$$.  
+For convenience, the eigenvalues are arranged in decending order. 
+
+Because $$R_n^{-1}R_s$$ is not necessarily Hermitian, the columns of $$P$$ do not make an orthonormal basis.  Rather, $$P$$ is orthogonal with $$R_NP$$: \
+
+
+$$P^HR_NP = I$$ where $$I$$ is the identity matrix.  
+
+Because of this, one can plug this equality in $$R_n^{-1}R_s P= PD$$ :
+
+$$R_n^{-1}R_s P= PD$$ \
+$$R_s P = R_n PD$$ \
+$$P^H R_s P =P ^H R_n PD = I D$$ 
+$$P^H R_s P = D$$
+
+This gives use two equalities we can use in the SNR objective function: 
+$$P^H R_s P = D$$ ---> $$R_s = (P^H)^{-1}DP^{-1}$$ and \
+
+$$P^HR_NP = I$$  ---> $$R_N = (P^H)^{-1}P^{-1}$$
+
+With this in mind, we can return to our SNR objective function: 
+
+$$\frac{E[signal power]}{E[noise power]} = \frac{\mathbf{m}^HR_s\mathbf{m}}{\mathbf{m}^H R_n \mathbf{m}}$$
+$$= \frac{\mathbf{m}^H P^H R_s\mathbf{m}}{\mathbf{m}^H R_n \mathbf{m}}$$$
 
 #### Theory
 Given:
