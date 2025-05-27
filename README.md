@@ -529,7 +529,7 @@ $$\frac{E[signal power]}{E[noise power]} = \frac{\mathbf{m}^HR_s\mathbf{m}}{\mat
 $$= \frac{\mathbf{m}^H(P^H)^{-1}DP^{-1} \mathbf{m}}{\mathbf{m}^H (P^H)^{-1}P^{-1} \mathbf{m}}$$
 
 For convenience, let's write $$q = P^{-1}\mathbf{m}$$: \
-$$= \frac{\mathbf{q}^H^{-1}D \mathbf{a}}{\mathbf{q}^H \mathbf{q}}$$
+$$= \frac{\mathbf{q}^HD \mathbf{a}}{\mathbf{q}^H \mathbf{q}}$$
 
 
 #### Theory
