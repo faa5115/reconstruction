@@ -493,6 +493,8 @@ The stochastic matched filter is a vector $$\mathbf{m}$$ that maximizes signal p
 
 $$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s}|^2]}{E[|\mathbf{m}^H \mathbf{n}|^2]}$$
 
+The goal is to find $$\mathbf{m}$$ that maximizes this SNR objective function, $$\mathbf{m}_{max}$$.
+
 This can be expanded as 
 $$\frac{E[signal power]}{E[noise power]} = \frac{E[|\mathbf{m}^H \mathbf{s} \mathbf{s}^H \mathbf{m}|]}{E[|\mathbf{m}^H \mathbf{n} \mathbf{n}^H \mathbf{m}|]}$$
 $$= \frac{\mathbf{m}^HR_s\mathbf{m}}{\mathbf{m}^H R_n \mathbf{m}}$$
@@ -529,7 +531,17 @@ $$\frac{E[signal power]}{E[noise power]} = \frac{\mathbf{m}^HR_s\mathbf{m}}{\mat
 $$= \frac{\mathbf{m}^H(P^H)^{-1}DP^{-1} \mathbf{m}}{\mathbf{m}^H (P^H)^{-1}P^{-1} \mathbf{m}}$$
 
 For convenience, let's write $$q = P^{-1}\mathbf{m}$$: \
-$$= \frac{\mathbf{q}^HD \mathbf{a}}{\mathbf{q}^H \mathbf{q}}$$
+$$\frac{E[signal power]}{E[noise power]} = \frac{\mathbf{q}^HD \mathbf{q}}{\mathbf{q}^H \mathbf{q}}$$
+
+
+If  $$\mathbf{q}$$ optimizes SNR, then so can any scalar multiple of $$\mathbf{q}$$ because the scalars will cancel out.  If we normalize the objective function, ($$\mathbf{q}^H\mathbf{q}=1$$), then we are finding the vector $$\mathbf{q}$$ that maximizes:
+
+
+$$\frac{E[signal power]}{E[noise power]} = \mathbf{q}^HD \mathbf{q}$$
+
+Because the eigenvalues in $$D$$ are arranged in descending order, then $$\mathbf{q}_{max} = [1, 0, 0, 0, ..., 0]^T$$.
+
+
 
 
 #### Theory
