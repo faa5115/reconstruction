@@ -78,6 +78,8 @@ R = [1, 1];  % This is "acceleration factor" along ky and kz encoding which I wi
              % We did not accelerate the acceleration in this example, so
              % the values for both is 1. 
 
+
+% func_SENSE can be found in ../parallelImaging.
 [imRawSense, senseMaps] = func_SENSE(imRaw, imCalib, R, noise, senseMapsOption);
 
 %%
