@@ -541,11 +541,13 @@ $$\frac{E[signal power]}{E[noise power]} = \mathbf{q}^HD \mathbf{q}$$
 
 Because the eigenvalues in $$D$$ are arranged in descending order, then $$\mathbf{q}_{max} = [1, 0, 0, 0, ..., 0]^T$$.\
 
-The vector that combines the channels with the optimal SNR output is therefore: \
+The vector that combines the channels with the optimal SNR output is therefore: 
 
-$$\mathbf{m}_{max} = P\mathbf{q}_{max}$$\
+$$\mathbf{m} = P \mathbf{q}_{max}$$\
 
+which is the column of $$P$$ that corresponds to the highest eigenvalue in $$D$$.  
 
+A reconstruction with apprximately uniform noise variance can be achieved by scaling $$\mathbf{m}=\mathbf{m}_{max}$$ with $$\alpha = \frac{1}{\sqrt{\mathbf{m}R_n\mathbf{m}}}$$.
 
 
 
