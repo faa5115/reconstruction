@@ -543,7 +543,9 @@ Because the eigenvalues in $$D$$ are arranged in descending order, then $$\mathb
 
 The vector that combines the channels with the optimal SNR output is therefore: \
 
-$$\mathbf{m}_{max} =P\mathbf{q}_{max}$$
+$$\mathbf{m}_{max} = P\mathbf{q}_{max}$$\
+
+
 
 
 
