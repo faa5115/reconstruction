@@ -582,10 +582,15 @@ Therefore this recosntruction determines a spatailly adaptive stochastic matched
    $$Im_{cc}(\mathbf{r}_c) = \mathbf{m}(r_c) \cdot \mathbf{Im}(r_c)$$
 
    
-   
+In my implementation of the stochastic matched filter ( titled ```func_WalshMethod```), my scaling factor, $$\alpha$$ involves a spatially varying phase term: 
+
+$$\alpha(\mathbf{r}_c) = \frac{e^{-i \theta(r_c)} }}{\sqrt{\mathbf{m}R_n\mathbf{m}}}$$
 
 
+where $$\theta(r_c)$$ is the phase of the index in $$\mathbf{m}$$ that corresponds to the channel with the highest signal power.  
 
+
+<!--
 #### Theory
 Given:
 - **Noise covariance matrix**: \( R_n \)
@@ -610,6 +615,8 @@ This **double-diagonalizes** noise and signal covariance matrices, ensuring:
 ![](/figures/WalshCombine_signal_and_phase.jpg)
 
 This method is especially useful for **multi-echo MRI** (e.g., R2* mapping), as shown in work by **Mark Bydder**.
+
+-->
 
 ---
 
