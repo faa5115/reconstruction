@@ -419,8 +419,10 @@ Here $$Im_{cc}(\mathbf{r}_n)$$ is introduced because the estimated signal, $$M _
 
 To "match" the matched filter formulation, this can be expanded to the spatial matched filter, if noise data is provided: 
 
-$$Im_{cc}(\mathbf{r}_n) = [\mathbf{U}_{sense}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\mathbf{r}_n)$$
-$$ [\mathbf{U}_{sense}]=[S^HRn^{-1}S]^{-1}[S^H]Rn^{-1}$$
+$$Im_{cc}(\mathbf{r}_n) = [\mathbf{U}_{sense}(\mathbf{r}_n)]^{-1}\mathbf{Im}(\mathbf{r}_n)$$  \
+
+
+$$[\mathbf{U}_{sense}]=[S^HRn^{-1}S]^{-1}[S^H]Rn^{-1}$$
 
 
 
