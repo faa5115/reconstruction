@@ -790,7 +790,7 @@ We can multiply the SENSE reconstructed images by the senstivitiy maps to genera
 
 Let's write out the math of multiplying a SENSE reconstructed image of Rx subsampled data for a given channel $$j$$:
 
-$$Im_{j,est}(\mathbf{r}_n) = 
+$$Im_{j,est}(\mathbf{r}_n) = $$
 
 
 A few years later, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions)
