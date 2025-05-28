@@ -689,7 +689,7 @@ We will first discuss how to unalias this in the image domain.  This is called S
 ---
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
 
-### SENSE (Sensitivity Encoding) 
+### Image Domain Unaliasing using SENSE (Sensitivity Encoding) 
 Code demonstrating this concept is found in ```./parallelImaging/main_demonstrateSENSE.m```
 
 Let's revisit the channel sensitivity encoding forward problem for a voxel at locatoin $$\mathbf{r}_n$$: 
