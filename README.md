@@ -737,6 +737,8 @@ Just as with using channel sensitivity maps to combine the channels, the sensiti
 
 Then an unfolding matrix $$[U]_R$$ can be determiend as $$[U]_R = ([S]^H_R R_n^{-1}[S]_R)^-1[S]^H_R R_n^{-1}$$ to obtain a coil-combined unaliased image:  
 
+$$M_{est} = Im_{cc}(\mathbf{r}_n) = [U]_R[\mathbf{Im}(\mathbf{r}_n)]$$
+
  Below show the sensitivty maps, orignal image of a fully sampled acquisition, and 2x and 4x SENSE reconstructions of a brain dataset. 
 
  
