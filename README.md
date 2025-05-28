@@ -728,8 +728,9 @@ Just as with using channel sensitivity maps to combine the channels, the sensiti
 
 Then an unfolding matrix $$[U]_R$$ can be determiend as $$[U]_R = ([S]^H_R R_n^{-1}[S]_R)^-1[S]^H_R R_n^{-1}$$ to obtain a coil-combined unaliased image:  
 
-$$M_{est} = Im_{cc}(\mathbf{r}_n) = [U]_R[\mathbf{Im}(\mathbf{r}_n)]_R$$
+$$[M_{est}] = [Im_{cc}(\mathbf{r}_n)] = [U]_R[\mathbf{Im}(\mathbf{r}_n)]_R$$
 
+where the evaluation of $$[U]_R[\mathbf{Im}(\mathbf{r}_n)]_R$$ is a $$R\times 1$$ vector of the unfolded signals located at positions $$\mathbf{r} + b \frac{N_F}{R}$$ for $$b\in[0, (R-1)]$$.  
  Below show the sensitivty maps, orignal image of a fully sampled acquisition, and 2x and 4x SENSE reconstructions of a brain dataset. 
 
  
@@ -790,8 +791,26 @@ We can multiply the SENSE reconstructed images by the senstivitiy maps to genera
 
 Let's write out the math of multiplying a SENSE reconstructed image of Rx subsampled data for a given channel $$j$$:
 
-$$Im_{j,est}(\mathbf{r}_n) = $$
+***Channel by channel SENSE images***
+$$[\mathbf{Im}(\mathbf{r}_n)]_{est,N_c} = [S] _{R,N_c}[U]_R[\mathbf{Im}(\mathbf{r}_n)]_R$$
 
+where $$[\mathbf{Im}(\mathbf{r})]_{est,N_c}$$ is a $$R N_c \times 1$$ length vector that has the estimate of the $$R$$ unaliased voxel values at locations $$\mathbf{r}_n + b \frac{N_F}{R}$$ for $$b \in [0, R-1]$$ for each channel and $$[S] _{R,N_c}$$ is a $$R N_c \times R$$ matrix that has the sensitivity values at each of those locations.  I have the subscript "est,Nc" to mean "estimated channel images."
+
+Essentially, the unaliased channel images $$[\mathbf{Im}(\mathbf{r}_n)]_{est,N_c}$$ is the product of a low spatial resolution operator $$ [S] _{R,N_c}[U]_R$$ and the aliased channel images $$[\mathbf{Im}(\mathbf{r}_n)]_R$$.  
+
+
+Let's take a look at the spatial Fourier transform for each term of the channel by channel SENSE images:  
+- Let  $$[\mathbf{K}(\mathbf{k}_n)]_{est,N _c} = F_s [\mathbf{Im}(\mathbf{r}_n)] _{est,N_c}]$$ where $$F_s$$ is the Fourier transform in the spatial dimensions only.  This consists of sampled k-space lines and the estimated skipped k-space lines. 
+- $$K_{ker}$$ is the spatial Fourier transform of $$[S] _{R,N_c}[U]_R$$, $$K _{ker} = F_S [[S] _{R,N_c}[U]_R]$$.  The subscript "ker" stands for "kernel" which I will discuss shortly.
+- $$[\mathbf{K}(\mathbf{k}_n)]_R =F_s [[\mathbf{Im}(\mathbf{r}_n)]_R]$$.  This is only consists of the sampled k-space lines, with 0s for the skipped k-space lines.  
+
+Becuase the channel sensitivities are low resolution, $$K_{ker}$$ is a narrow range kernel in k-space.  Because of the convolution theorem of the Fourier transform, the channel by channel SENSE image equation translates to the following equation: 
+
+***Estimate k-space by convolution***
+
+ $$[\mathbf{K}(\mathbf{k}_n)]_{est,N _c} = conv [ K _{ker}, [\mathbf{K}] _R ]$$
+ 
+ where essentially the unacquired k-space entries are estimated as a linear combination of the surrounding entries.  
 
 A few years later, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions)
 
