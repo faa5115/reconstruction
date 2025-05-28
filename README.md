@@ -698,48 +698,37 @@ $$[\mathbf{Im}(\mathbf{r}_n)]=[\mathbf{S}(\mathbf{r}_n)] M(\mathbf{r}_n)$$
 Where just as before:  
 
 $$[\mathbf{Im}(\mathbf{r}_n)]$$ is a vector whose entries are each complex-valued  image from each of the $$N_c$$ channels at position $$\mathbf{r}_n$$.  \
-  $$[\mathbf{Im}(\mathbf{r}_n)] = [Im_1(\mathbf{r}_n), Im_2(\mathbf{r}_n), ... , Im _{Nc}(\mathbf{r}_n) ]^T$$, where $$Im_j(\mathbf{r}_n)$$ is the channel image of channel $$j$$.
+$$[\mathbf{Im}(\mathbf{r}_n)] = [Im_1(\mathbf{r}_n), Im_2(\mathbf{r}_n), ... , Im _{Nc}(\mathbf{r}_n) ]^T$$, where $$Im_j(\mathbf{r}_n)$$ is the channel image of channel $$j$$.
   
-<!--
-  $$M(\mathbf{r}_n)$$ is the original complex-valued signal at location  $$\mathbf{r}_n$$.\
 
-  $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued  image from each of the $$N_c$$ channels at position $$\mathbf{r}_n$$.  \
-  $$\mathbf{Im}(\mathbf{r}_n) = [Im_1(\mathbf{r}_n), Im_2(\mathbf{r}_n), ... , Im _{Nc}(\mathbf{r}_n) ]^T$$, where $$Im_j(\mathbf{r}_n)$$ is the channel image of channel $$j$$.  \
-  
-  
-  $$[\mathbf{S}(\mathbf{r}_n)]$$ is a matrix $$N_c \times 1$$ that holds how sensitive each channel is from signal at position $$\mathbf{r}_n$$.  \
-   $$[\mathbf{S}(\mathbf{r}_n)] = [S_1(\mathbf{r}_n), S_2(\mathbf{r}_n), ... , S _{Nc}(\mathbf{r}_n) ]^T$$ where $$S_j(\mathbf{r}_n)$$ is the channel sensitivty of channel $$j$$. 
-   -->
 
  If $$R$$ k-space lines were skipped along the $$k_r$$ axis, then the encoded FOV along the along the $$r$$ axis in the image domain was reduced to $$\frac{FOV_r}{R}$$.  This modifies the forward channel sensitivity encoding model for a specific channel $$j$$ to: 
 
- <!-- 
- $$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n),  \mathbf{S}(\mathbf{r}_n + \frac{FOV}{R}), ...,  \mathbf{S}(\mathbf{r}_n + (R-1)\frac{FOV}{R})] [M(\mathbf{r}_n) \\ M(\mathbf{r}_n + \frac{FOV}{R}) \\ ... \\  M(\mathbf{r}_n + (R-1)\frac{FOV}{R}) ]$$
- -->
+
 
  **Aliased SENSE Equation**
 
  
- $$Im_j((\mathbf{r}_n) = [S_j(\mathbf{r}_n),  S_j(\mathbf{r}_n + \frac{N_F}{R}), ...,  S_j(\mathbf{r}_n + (R-1)\frac{N_F}{R})][\mathbf{M}(\mathbf{r})]$$\
+ $$Im_{j,R}(\mathbf{r}_n) = [S_j(\mathbf{r}_n),  S_j(\mathbf{r}_n + \frac{N_F}{R}), ...,  S_j(\mathbf{r}_n + (R-1)\frac{N_F}{R})][\mathbf{M}(\mathbf{r})]$$\
  
- Where $$N_F$$ is the number of voxels across the original (not reduced) FOV and  $$[\mathbf{M}(\mathbf{r})]$$ is a $$R\times1$$ length vector with the following entries: 
+ The subscript $$_R$$ is included to indicate that the resulting image is aliased. $$N_F$$ is the number of voxels across the original (not reduced) FOV and  $$[\mathbf{M}(\mathbf{r})]$$ is a $$R\times1$$ length vector with the following entries: 
  
  $$[\mathbf{M}(\mathbf{r})] = [M(\mathbf{r}), M(\mathbf{r} + \frac{FOV}{R}), ... M(\mathbf{r} + (R-1)\frac{FOV}{R})]^T$$\
 
 The Aliased SENSE equation can be written more compactly as: 
 
 
-$$[\mathbf{Im}(\mathbf{r}_n)] = [ [\mathbf{S}(\mathbf{r}_n + 0 \frac{N_F}{R})] [\mathbf{S}(\mathbf{r}_n + 1 \frac{N_F}{R})] ... [\mathbf{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]][\mathbf{M}(\mathbf{r})]$$
+$$[\mathbf{Im}(\mathbf{r}_n)]_R = [ [\mathbf{S}(\mathbf{r}_n + 0 \frac{N_F}{R})] [\mathbf{S}(\mathbf{r}_n + 1 \frac{N_F}{R})] ... [\mathbf{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]][\mathbf{M}(\mathbf{r})]$$
 
 
-$$[\mathbf{Im}(\mathbf{r}_n)] = [S]_R [\mathbf{M}(\mathbf{r})]$$
+$$[\mathbf{Im}(\mathbf{r}_n)]_R = [S]_R [\mathbf{M}(\mathbf{r})]$$
 
 where $$[S]_R$$ is an $$N_c \times R$$ matrix where each column contains the channel sensitivities of the voxel positioned at $$\mathbf{r}_n+b\cdot \frac{N_F}{R}$$, $$b\in[0,(R-1)]$$.
 Just as with using channel sensitivity maps to combine the channels, the sensitivity map can be estimated from a fully sampled low resolution acquisition.  
 
 Then an unfolding matrix $$[U]_R$$ can be determiend as $$[U]_R = ([S]^H_R R_n^{-1}[S]_R)^-1[S]^H_R R_n^{-1}$$ to obtain a coil-combined unaliased image:  
 
-$$M_{est} = Im_{cc}(\mathbf{r}_n) = [U]_R[\mathbf{Im}(\mathbf{r}_n)]$$
+$$M_{est} = Im_{cc}(\mathbf{r}_n) = [U]_R[\mathbf{Im}(\mathbf{r}_n)]_R$$
 
  Below show the sensitivty maps, orignal image of a fully sampled acquisition, and 2x and 4x SENSE reconstructions of a brain dataset. 
 
@@ -793,7 +782,15 @@ Unaliasing can be achieved in the k-space domain.  Just as with unaliasing in th
 If i have time, I will go over Sodickson's proof with some plots on why SMASH works.  but for now, I just want to get the point across and put together all of my implemented reconstruction code online (which is the reason why I am putting together this repository).  so for now I will take a different route in explaining k-space domain parallel imaging.   
 
 
+We can multiply the SENSE reconstructed images by the senstivitiy maps to generate channel images that look strikingly similar to the channel images of a fully sampled acquisition:
+
+
+
 ![](/figures/SenseReconTimesSenseMaps.jpg)
+
+Let's write out the math of multiplying a SENSE reconstructed image of Rx subsampled data for a given channel $$j$$:
+
+$$Im_{j,est}(\mathbf{r}_n) = 
 
 
 A few years later, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions)
