@@ -694,11 +694,11 @@ Code demonstrating this concept is found in ```./parallelImaging/main_demonstrat
 
 Let's revisit the channel sensitivity encoding forward problem for a voxel at locatoin $$\mathbf{r}_n$$: 
 
-$$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n)] M(\mathbf{r}_n)$$
+$$[\mathbf{Im}(\mathbf{r}_n)]=[\mathbf{S}(\mathbf{r}_n)] M(\mathbf{r}_n)$$
 Where just as before:  
 
-$$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued  image from each of the $$N_c$$ channels at position $$\mathbf{r}_n$$.  \
-  $$\mathbf{Im}(\mathbf{r}_n) = [Im_1(\mathbf{r}_n), Im_2(\mathbf{r}_n), ... , Im _{Nc}(\mathbf{r}_n) ]^T$$, where $$Im_j(\mathbf{r}_n)$$ is the channel image of channel $$j$$.
+$$[\mathbf{Im}(\mathbf{r}_n)]$$ is a vector whose entries are each complex-valued  image from each of the $$N_c$$ channels at position $$\mathbf{r}_n$$.  \
+  $$[\mathbf{Im}(\mathbf{r}_n)] = [Im_1(\mathbf{r}_n), Im_2(\mathbf{r}_n), ... , Im _{Nc}(\mathbf{r}_n) ]^T$$, where $$Im_j(\mathbf{r}_n)$$ is the channel image of channel $$j$$.
   
 <!--
   $$M(\mathbf{r}_n)$$ is the original complex-valued signal at location  $$\mathbf{r}_n$$.\
@@ -716,13 +716,20 @@ $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued 
  <!-- 
  $$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n),  \mathbf{S}(\mathbf{r}_n + \frac{FOV}{R}), ...,  \mathbf{S}(\mathbf{r}_n + (R-1)\frac{FOV}{R})] [M(\mathbf{r}_n) \\ M(\mathbf{r}_n + \frac{FOV}{R}) \\ ... \\  M(\mathbf{r}_n + (R-1)\frac{FOV}{R}) ]$$
  -->
- 
- $$Im_j((\mathbf{r}_n) = [S_j(\mathbf{r}_n),  S_j(\mathbf{r}_n + \frac{FOV}{R}), ...,  S_j(\mathbf{r}_n + (R-1)\frac{FOV}{R})][\mathbf{M}(\mathbf{r})]$$\
- 
- Where $$\mathbf{M}(\mathbf{r})$$ is a $$R\times1$$ length vector with the following entries: 
- 
- $$\mathbf{M}(\mathbf{r}) = [M(\mathbf{r}), M(\mathbf{r} + \frac{FOV}{R}), ... M(\mathbf{r} + (R-1)\frac{FOV}{R})]^T$$\
 
+ **Aliased SENSE Equation**
+ $$Im_j((\mathbf{r}_n) = [S_j(\mathbf{r}_n),  S_j(\mathbf{r}_n + \frac{N_F}{R}), ...,  S_j(\mathbf{r}_n + (R-1)\frac{N_F}{R})][\mathbf{M}(\mathbf{r})]$$\
+ 
+ Where $$N_F$$ is the number of voxels across the original (not reduced) FOV and  $$[\mathbf{M}(\mathbf{r})]$$ is a $$R\times1$$ length vector with the following entries: 
+ 
+ $$[\mathbf{M}(\mathbf{r})] = [M(\mathbf{r}), M(\mathbf{r} + \frac{FOV}{R}), ... M(\mathbf{r} + (R-1)\frac{FOV}{R})]^T$$\
+
+The Aliased SENSE equation can be written more compactly as: 
+
+$$[\mathbf{Im}(\mathbf{r}_n)] = [ [\mathbs{S}(\mathbf{r}_n + 0 \frac{N_F}{R})]  [\mathbs{S}(\mathbf{r}_n + 1 \frac{N_F}{R})]  ... [\mathbs{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]]  [\mathbf{M}(\mathbf{r})]$$
+$$= [S]_{R}  [\mathbf{M}(\mathbf{r})]$$
+
+where $$[S]_R$$ is an $$N_c\timesR$$ matrix where each column contains the channel sensitivities of the voxel positioned at $$\mathbf{r}_n+b\cdot \frac{N_F}{R}$$, $$b\in[0,(R-1)]$$.
  
  The sensitivity map can be estimated from a fully sampled low resolution acquisition.  
 
