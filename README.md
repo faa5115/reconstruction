@@ -388,7 +388,7 @@ title('Sq. SOS. Recon.')
 Unfortunately, this approach is not the most signal-to-noise (SNR) optimal approach.  It also loses phases information of the data, which can be crucial for many applications, such as observing moving signal, assessing for spectral components (different chemical shifts), etc.  
 
 ---
-### Using Channel Sensitivity Encoding to approximate the Spatial Matched Filter Reconstruction.
+### Using Channel Sensitivity Encoding ("SENSE") to approximate the Spatial Matched Filter Reconstruction.
 **Code Demonstration**: [`coilCombine/main_demonstrateCoilCombine.m`](coilCombine/main_demonstrateCoilCombine.m)
 
 In many cases, such as with NMR or MRI, the signal is complex-valued.  This information is lost in square-root sum-of-squares.  Furthermore. it does not yield the SNR optimal signal reconstruction.  A spatial matched filter would yield the SNR optimal reconstruction, as Roemer et al discussed when writing the NMR Phased Array.  We will first discuss the spatial matched filter as an inverse problem and then proceed modify the inverse problem into the format of the Matched Filter.  
@@ -689,7 +689,33 @@ We will first discuss how to unalias this in the image domain.  This is called S
 ---
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
 
-### SENSE (Sensitivity Encoding)  
+### SENSE (Sensitivity Encoding) 
+
+Let's revisit the channel sensitivity encoding forward problem for a voxel at locatoin $$\mathbf{r}_n$$: 
+
+$$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n)] M(\mathbf{r}_n)$$
+Where just as before:  
+
+$$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued  image from each of the $$N_c$$ channels at position $$\mathbf{r}_n$$.  \
+  $$\mathbf{Im}(\mathbf{r}_n) = [Im_1(\mathbf{r}_n), Im_2(\mathbf{r}_n), ... , Im _{Nc}(\mathbf{r}_n) ]^T$$, where $$Im_j(\mathbf{r}_n)$$ is the channel image of channel $$j$$.
+  
+<!--
+  $$M(\mathbf{r}_n)$$ is the original complex-valued signal at location  $$\mathbf{r}_n$$.\
+
+  $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued  image from each of the $$N_c$$ channels at position $$\mathbf{r}_n$$.  \
+  $$\mathbf{Im}(\mathbf{r}_n) = [Im_1(\mathbf{r}_n), Im_2(\mathbf{r}_n), ... , Im _{Nc}(\mathbf{r}_n) ]^T$$, where $$Im_j(\mathbf{r}_n)$$ is the channel image of channel $$j$$.  \
+  
+  
+  $$[\mathbf{S}(\mathbf{r}_n)]$$ is a matrix $$N_c \times 1$$ that holds how sensitive each channel is from signal at position $$\mathbf{r}_n$$.  \
+   $$[\mathbf{S}(\mathbf{r}_n)] = [S_1(\mathbf{r}_n), S_2(\mathbf{r}_n), ... , S _{Nc}(\mathbf{r}_n) ]^T$$ where $$S_j(\mathbf{r}_n)$$ is the channel sensitivty of channel $$j$$. 
+   -->
+
+ If $$R$$ k-space lines were skipped along the $$k_r$$ axis, then the encoded FOV along the along the $$r$$ axis in the image domain was reduced to $$\frac{FOV_r}{R}$$.  This modifies the forward channel sensitivity encoding model to: 
+ $$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n),  \mathbf{S}(\mathbf{r}_n + \frac{FOV}{R}), ...,  \mathbf{S}(\mathbf{r}_n + (R-1)\frac{FOV}{R})] [M(\mathbf{r}_n) \\ M(\mathbf{r}_n + \frac{FOV}{R}) \\ ... \\  M(\mathbf{r}_n + (R-1)\frac{FOV}{R}) ]$$
+
+
+
+*************************
 SENSE is an image-domain method for parallel imaging that leverages the sensitivity profiles of individual coil elements to reconstruct missing k-space data. The undersampled k-space data from each coil is transformed to the image domain, where the aliasing artifacts due to undersampling appear as structured overlaps. These artifacts are resolved by solving a system of linear equations that incorporate the coil sensitivity maps.  
 
 Mathematically, let $$\mathbf{m}$$ be the fully sampled image, and let $$\mathbf{S}_c$$ represent the sensitivity profile of the $$c$$th coil. The measured signal for coil $$c$$, $$\mathbf{y}_c$$, is modeled as:  
