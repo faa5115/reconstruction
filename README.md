@@ -690,6 +690,7 @@ We will first discuss how to unalias this in the image domain.  This is called S
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
 
 ### SENSE (Sensitivity Encoding) 
+Code demonstrating this concept is found in ```./parallelImaging/main_demonstrateSENSE.m```
 
 Let's revisit the channel sensitivity encoding forward problem for a voxel at locatoin $$\mathbf{r}_n$$: 
 
@@ -716,15 +717,19 @@ $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued 
  $$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n),  \mathbf{S}(\mathbf{r}_n + \frac{FOV}{R}), ...,  \mathbf{S}(\mathbf{r}_n + (R-1)\frac{FOV}{R})] [M(\mathbf{r}_n) \\ M(\mathbf{r}_n + \frac{FOV}{R}) \\ ... \\  M(\mathbf{r}_n + (R-1)\frac{FOV}{R}) ]$$
  -->
  
- $$[Im_j((\mathbf{r}_n)] = [S_j(\mathbf{r}_n),  S_j(\mathbf{r}_n + \frac{FOV}{R}), ...,  S_j(\mathbf{r}_n + (R-1)\frac{FOV}{R})][\mathbf{M}(\mathbf{r})]$$\
+ $$Im_j((\mathbf{r}_n) = [S_j(\mathbf{r}_n),  S_j(\mathbf{r}_n + \frac{FOV}{R}), ...,  S_j(\mathbf{r}_n + (R-1)\frac{FOV}{R})][\mathbf{M}(\mathbf{r})]$$\
  
  Where $$\mathbf{M}(\mathbf{r})$$ is a $$R\times1$$ length vector with the following entries: 
  
  $$\mathbf{M}(\mathbf{r}) = [M(\mathbf{r}), M(\mathbf{r} + \frac{FOV}{R}), ... M(\mathbf{r} + (R-1)\frac{FOV}{R})]^T$$\
 
  
- 
+ The sensitivity map can be estimated from a fully sampled low resolution acquisition.  
 
+ Below show the sensitivty maps, orignal image of a fully sampled acquisition, and 2x and 4x SENSE reconstructions of a brain dataset. 
+
+ 
+![](/figures/BrainSenseRecons2xand4x.jpg)  
 
 *************************
 SENSE is an image-domain method for parallel imaging that leverages the sensitivity profiles of individual coil elements to reconstruct missing k-space data. The undersampled k-space data from each coil is transformed to the image domain, where the aliasing artifacts due to undersampling appear as structured overlaps. These artifacts are resolved by solving a system of linear equations that incorporate the coil sensitivity maps.  
