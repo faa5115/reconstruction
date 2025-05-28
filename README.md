@@ -684,7 +684,7 @@ Because imaging is done with a phased-array, which each element of the phased-ar
 
 If the channel sensitivity profiles between aliased voxels is enough, one could exploit the difference in channel sensitivities to unalias the signal.  Using phased-array data to unalias images is called "parallel imaging" because we are using the the data acquired by multiple phased-array channels in parallel.  Channel sensitivity profiles can be determined from the acquisition of a low-resolution data set.  
 
-We will first discuss how to unalias this in the image domain.  This is called SENSE (Sensitivity Encoding), and achieves the unaliasing by adapting the spatial matched filter.  We will then discuss how to achieve the unaliasing in the k-space domain.  In the k-space domain we will discuss a method called GRAPPA which uses the phased-array data to mimic estimate the spatial harmonics achieved in the image acquisition to complete the k-space grid.  We will then generalize k-space completion as a structured low rank matrix recovery problem.  
+We will first discuss how to unalias this in the image domain.  This is called SENSE (Sensitivity Encoding), and achieves the unaliasing by adapting the spatial matched filter.  We will then discuss how to unalias in the k-space domain.  In the k-space domain we will discuss a method called GRAPPA which uses the phased-array data to mimic estimate the spatial harmonics achieved in the image acquisition to complete the k-space grid.  We will then generalize k-space completion as a structured low rank matrix recovery problem.  
 
 ---
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
@@ -783,6 +783,20 @@ where $$\mathbf{y}$$ is the vector of undersampled coil images, and $$\mathbf{S}
 I provide an implementation of SENSE in `SENSE_fa1D.m`. This function takes as input the undersampled multi-channel image data and the coil sensitivity maps, then solves for the fully sampled reconstruction.  
 -->
 
+---
+### k-Space Domain Unaliasing
+
+Unaliasing can be achieved in the k-space domain.  Just as with unaliasing in the image domain, a low resolution fully sampled calibration region of k-space must be acquired to somehow exploit localized channel sensitivities.  For aliasing to be achieved in the k-space domain, the calibration region must somehow be used to estimate the missing k-space lines, resulting in a complete k-space grid.  This was first shown possible by Dan Sodickson's work called SMASH (Simultaneous Acquisition of Spatial Harmonics).  If all of the channel sensitivity profiles have a Gaussian-like or half-harmonic sensitivity profile, and there are enough varying sensitivity profiles along the undersampled directions, one could use the channel profiles to estimate the missing k-space harmonics.  In SMASH, the input was undersampled multi-channel k-space data and the low resolution channel images, and the output was an unaliased coil-combined image.  However this coil-combination was not necessarily optimal.  
+
+If i have time, I will go over Sodickson's proof with some plots on why SMASH works.  but for now, I just want to get the point across and put together all of my implemented reconstruction code online (which is the reason why I am putting together this repository).  so for now I will take a different route in explaining k-space domain parallel imaging.   
+
+
+![](/figures/SenseReconTimesSenseMaps.jpg)
+
+
+A few years later, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions)
+
+---
 ### Spatial Harmonics in k-Space  
 
 #### Phase Encoding and Frequency Encoding  
