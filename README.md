@@ -568,7 +568,7 @@ Therefore this recosntruction determines a spatailly adaptive stochastic matched
 2. Iterate through all voxels $$\mathbf{r}_c$$:
   2a. compute:  
    
-   $$R_s(j,l) (r_c) = \sum_{\mathbf{r}_n \in patch[\mathbf{r}_c]} [\mathbf{Im}(\mathbf{r}_n) \mathbf{Im}^H(\mathbf{r}_n)]$$
+   $$R_s(j,l) (r_c) = \sum_{\mathbf{r}_n \in patch[\mathbf{r}_c]} [[\mathbf{Im}(\mathbf{r}_n)] [\mathbf{Im}(\mathbf{r}_n)]^H]$$
 
    2.b compute:
    $$R_n^{-1}R_s(j,l) (r_c)$$
@@ -581,7 +581,7 @@ Therefore this recosntruction determines a spatailly adaptive stochastic matched
 
    2.c
 
-   $$Im_{cc}(\mathbf{r}_c) = \mathbf{m}(r_c) \cdot \mathbf{Im}(r_c)$$
+   $$Im_{cc}(\mathbf{r}_c) = \mathbf{m}(r_c) \cdot [\mathbf{Im}(r_c)]$$
 
    
 In my implementation of the stochastic matched filter ( titled ```func_WalshMethod```), my scaling factor, $$\alpha$$ involves a spatially varying phase term: 
