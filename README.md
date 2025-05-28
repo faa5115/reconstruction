@@ -18,14 +18,14 @@ This repository brings together multiple reconstruction strategies, each accompa
 
 
 # Table of Contents
-Introduction
-Features
-Installation
-Usage
-Methods Included
-Data
-License
-Contact
+**Introduction**\
+**Features**\
+**Installation**\
+**Usage**\
+**Methods Included**\
+**Data**\
+**License**\
+**Contact**\
 # Introduction
 MRI is a highly flexible imaging modality, but its performance is limited by slow acquisition times and sensitivity to artifacts caused by undersampling and motion. These challenges mirror many of the signal reconstruction issues found in radar imaging.
 
