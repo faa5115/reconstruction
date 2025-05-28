@@ -676,6 +676,13 @@ Meanwhile, if you skip lines in k-space, the image will result in aliased signal
 ![](/figures/PhaseEncoding.jpg)  
 -->
 
+The skipping $$R$$ k-space lines reduces the encoded FOV by a factor $$R$$, which also reduces the total scan time by $$R$$ as well.  If the total signal had a *real* FOV of $$FOV_{sig}$$, a reduction factor of $$R$$ will result in at most signal from at most $$R$$ different locations being aliased at the same voxel.  Signal at location $$\mathbf{r}$$ will receive aliasing from locations $$\mathbf{r} + b \frac{FOV_{sig}}{R}$$ where $$b \in [0, R-1]$$.
+Because imaging is done with a phased-array, which each element of the phased-array having its own localized sensitivity profile, once could notice that aliased signals have different channel profiles. This is illustrated below: 
+
+
+![](/figures/DemoAliasedSensitivities.jpg)  
+
+If the channel sensitivity profiles between aliased voxels is enough, one could exploit the difference in channel sensitivities to unalias the signal.  
 
 ---
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
