@@ -729,12 +729,13 @@ $$[\mathbf{Im}(\mathbf{r}_n)]$$ is a vector whose entries are each complex-value
 The Aliased SENSE equation can be written more compactly as: 
 
 
-$$[\mathbf{Im}(\mathbf{r}_n)] = [ [\mathbs{S}(\mathbf{r}_n + 0 \frac{N_F}{R})]  [\mathbs{S}(\mathbf{r}_n + 1 \frac{N_F}{R})]  ... [\mathbs{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]]  [\mathbf{M}(\mathbf{r})]$$
+$$[\mathbf{Im}(\mathbf{r}_n)] = [ [\mathbf{S}(\mathbf{r}_n + 0 \frac{N_F}{R})]  [\mathbf{S}(\mathbf{r}_n + 1 \frac{N_F}{R})]  ... [\mathbf{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]]  [\mathbf{M}(\mathbf{r})]$$
 $$[\mathbf{Im}(\mathbf{r}_n)] = [S]_{R}  [\mathbf{M}(\mathbf{r})]$$
 
 where $$[S]_R$$ is an $$N_c \times R$$ matrix where each column contains the channel sensitivities of the voxel positioned at $$\mathbf{r}_n+b\cdot \frac{N_F}{R}$$, $$b\in[0,(R-1)]$$.
- 
- The sensitivity map can be estimated from a fully sampled low resolution acquisition.  
+Just as with using channel sensitivity maps to combine the channels, the sensitivity map can be estimated from a fully sampled low resolution acquisition.  
+
+Then an unfolding matrix $$[U]_R$$ can be determiend as $$[U]_R = ([S]^H_R R_n^{-1}[S]_R)^-1[S]^H_R R_n^{-1}$$ to obtain a coil-combined unaliased image:  
 
  Below show the sensitivty maps, orignal image of a fully sampled acquisition, and 2x and 4x SENSE reconstructions of a brain dataset. 
 
