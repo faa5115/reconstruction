@@ -682,9 +682,9 @@ Because imaging is done with a phased-array, which each element of the phased-ar
 
 ![](/figures/DemoAliasedSensitivities.jpg)  
 
-If the channel sensitivity profiles between aliased voxels is enough, one could exploit the difference in channel sensitivities to unalias the signal.  
+If the channel sensitivity profiles between aliased voxels is enough, one could exploit the difference in channel sensitivities to unalias the signal.  Using phased-array data to unalias images is called "parallel imaging" because we are using the the data acquired by multiple phased-array channels in parallel.  Channel sensitivity profiles can be determined from the acquisition of a low-resolution data set.  
 
-We will first discuss how to unalias this in the image domain.  This is called SENSE (Sensitivity Encoding), and achieves the unaliasing by adapting the spatial matched filter.  We will then discuss how to achieve the unaliasing in the k-space domain.  
+We will first discuss how to unalias this in the image domain.  This is called SENSE (Sensitivity Encoding), and achieves the unaliasing by adapting the spatial matched filter.  We will then discuss how to achieve the unaliasing in the k-space domain.  In the k-space domain we will discuss a method called GRAPPA which uses the phased-array data to mimic estimate the spatial harmonics achieved in the image acquisition to complete the k-space grid.  We will then generalize k-space completion as a structured low rank matrix recovery problem.  
 
 ---
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
