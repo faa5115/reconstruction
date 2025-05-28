@@ -665,7 +665,12 @@ With that in mind, we can continue.  k-Space sampling is often done in spatially
 
 
 It can be seen that sampling k-space sufficiently, as in sampling a wide enough range to achieve a great resolution and sampling at a high enough density to resolve all the signal, takes time.  
-If you do not sample a wide enough range in k-space, you are left with a low-resolution image. 
+If you do not sample a wide enough range in k-space, you are left with a low-resolution image, as shown below.  
+
+<!--
+![](/figures/PhaseEncoding.jpg)  
+-->
+
 
 ---
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
