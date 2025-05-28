@@ -684,6 +684,8 @@ Because imaging is done with a phased-array, which each element of the phased-ar
 
 If the channel sensitivity profiles between aliased voxels is enough, one could exploit the difference in channel sensitivities to unalias the signal.  
 
+We will first discuss how to unalias this in the image domain.  This is called SENSE (Sensitivity Encoding), and achieves the unaliasing by adapting the spatial matched filter.  We will then discuss how to achieve the unaliasing in the k-space domain.  
+
 ---
 The following subsections describe two common parallel imaging techniques: SENSE and GRAPPA.  
 
