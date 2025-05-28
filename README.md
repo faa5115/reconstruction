@@ -730,6 +730,8 @@ The Aliased SENSE equation can be written more compactly as:
 
 
 $$[\mathbf{Im}(\mathbf{r}_n)] = [ [\mathbf{S}(\mathbf{r}_n + 0 \frac{N_F}{R})]  [\mathbf{S}(\mathbf{r}_n + 1 \frac{N_F}{R})]$$  ... $$[\mathbf{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]][\mathbf{M}(\mathbf{r})]$$
+
+
 $$[\mathbf{Im}(\mathbf{r}_n)] = [S]_{R}  [\mathbf{M}(\mathbf{r})]$$
 
 where $$[S]_R$$ is an $$N_c \times R$$ matrix where each column contains the channel sensitivities of the voxel positioned at $$\mathbf{r}_n+b\cdot \frac{N_F}{R}$$, $$b\in[0,(R-1)]$$.
