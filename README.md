@@ -710,9 +710,20 @@ $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued 
    $$[\mathbf{S}(\mathbf{r}_n)] = [S_1(\mathbf{r}_n), S_2(\mathbf{r}_n), ... , S _{Nc}(\mathbf{r}_n) ]^T$$ where $$S_j(\mathbf{r}_n)$$ is the channel sensitivty of channel $$j$$. 
    -->
 
- If $$R$$ k-space lines were skipped along the $$k_r$$ axis, then the encoded FOV along the along the $$r$$ axis in the image domain was reduced to $$\frac{FOV_r}{R}$$.  This modifies the forward channel sensitivity encoding model to: 
- $$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n),  \mathbf{S}(\mathbf{r}_n + \frac{FOV}{R}), ...,  \mathbf{S}(\mathbf{r}_n + (R-1)\frac{FOV}{R})] [M(\mathbf{r}_n) \\ M(\mathbf{r}_n + \frac{FOV}{R}) \\ ... \\  M(\mathbf{r}_n + (R-1)\frac{FOV}{R}) ]$$
+ If $$R$$ k-space lines were skipped along the $$k_r$$ axis, then the encoded FOV along the along the $$r$$ axis in the image domain was reduced to $$\frac{FOV_r}{R}$$.  This modifies the forward channel sensitivity encoding model for a specific channel $$j$$ to: 
 
+ <!-- 
+ $$\mathbf{Im}(\mathbf{r}_n)=[\mathbf{S}(\mathbf{r}_n),  \mathbf{S}(\mathbf{r}_n + \frac{FOV}{R}), ...,  \mathbf{S}(\mathbf{r}_n + (R-1)\frac{FOV}{R})] [M(\mathbf{r}_n) \\ M(\mathbf{r}_n + \frac{FOV}{R}) \\ ... \\  M(\mathbf{r}_n + (R-1)\frac{FOV}{R}) ]$$
+ -->
+ 
+ $$[Im_j((\mathbf{r}_n)] = [S_j(\mathbf{r}_n),  S_j(\mathbf{r}_n + \frac{FOV}{R}), ...,  S_j(\mathbf{r}_n + (R-1)\frac{FOV}{R})][\mathbf{M}(\mathbf{r})]$$\
+ 
+ Where $$\mathbf{M}(\mathbf{r})$$ is a $$R\times1$$ length vector with the following entries: 
+ 
+ $$\mathbf{M}(\mathbf{r}) = [M(\mathbf{r}), M(\mathbf{r} + \frac{FOV}{R}), ... M(\mathbf{r} + (R-1)\frac{FOV}{R})]^T$$\
+
+ 
+ 
 
 
 *************************
