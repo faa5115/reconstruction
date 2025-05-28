@@ -731,6 +731,25 @@ $$\mathbf{Im}(\mathbf{r}_n)$$ is a vector whose entries are each complex-valued 
  
 ![](/figures/BrainSenseRecons2xand4x.jpg)  
 
+The snippet of code below shows how to use my implementation of SENSE when trying to unalias images.  The output is a coil-combined reconstruction of an unalised image.  
+```
+
+imCalibInput = imCalib; % ImCalib is the image from the low resolution region of k-space.  In this example, 
+
+
+senseMapsOption = 1; % this option takes the imCalib images and divide them by their square root sum of squares.  if you make it =2, I use E-SPIRiT to generate the sense maps.  I will discuss E-SPIRiT later. 
+noise = []; % I do not have noise data for this example. 
+
+Rinput = [R , 1];
+% Rinput is a vector of length 2.  The first index is the acceleration factor along ky and the second dimension is the acceleration along kz.
+% this is a 2D image example, so kz is fully sampled.  In this snippet of code R is either 2 or 4.  
+
+tic
+[imRawSense, senseMaps] = func_SENSE(imRawUs, imCalibInput, Rinput, noise, senseMapsOption);
+toc
+```
+
+<!--
 *************************
 SENSE is an image-domain method for parallel imaging that leverages the sensitivity profiles of individual coil elements to reconstruct missing k-space data. The undersampled k-space data from each coil is transformed to the image domain, where the aliasing artifacts due to undersampling appear as structured overlaps. These artifacts are resolved by solving a system of linear equations that incorporate the coil sensitivity maps.  
 
@@ -749,6 +768,7 @@ $$
 where $$\mathbf{y}$$ is the vector of undersampled coil images, and $$\mathbf{S}$$ is the concatenated sensitivity maps. The desired image $$\mathbf{m}$$ is then obtained by solving this system using least-squares or regularized inversion techniques.  
 
 I provide an implementation of SENSE in `SENSE_fa1D.m`. This function takes as input the undersampled multi-channel image data and the coil sensitivity maps, then solves for the fully sampled reconstruction.  
+-->
 
 ### Spatial Harmonics in k-Space  
 
