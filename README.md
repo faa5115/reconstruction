@@ -729,7 +729,7 @@ $$[\mathbf{Im}(\mathbf{r}_n)]$$ is a vector whose entries are each complex-value
 The Aliased SENSE equation can be written more compactly as: 
 
 
-$$[\mathbf{Im}(\mathbf{r}_n)] = [ [\mathbf{S}(\mathbf{r}_n + 0 \frac{N_F}{R})] [\mathbf{S}(\mathbf{r}_n + 1 \frac{N_F}{R})]$$...$$[\mathbf{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]][\mathbf{M}(\mathbf{r})]$$
+$$[\mathbf{Im}(\mathbf{r}_n)] = [ [\mathbf{S}(\mathbf{r}_n + 0 \frac{N_F}{R})] [\mathbf{S}(\mathbf{r}_n + 1 \frac{N_F}{R})] ... [\mathbf{S}(\mathbf{r}_n + (R-1) \frac{N_F}{R})]][\mathbf{M}(\mathbf{r})]$$
 
 
 $$[\mathbf{Im}(\mathbf{r}_n)] = [S]_R [\mathbf{M}(\mathbf{r})]$$
