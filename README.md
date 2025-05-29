@@ -836,7 +836,13 @@ $$[\mathbf{d}]_j$$ is long list of all unacquired k-space indices of channel $$j
 
 -->
 $$[\mathbf{d}]_{GRAPPA} = [W] [\mathbf{d}]$$
-Where $$[\mathbf{d}]$$ is a tall list of all vectorized k-space entries across all channels, having size $$N_c \cdot N_x \cdot N_y \cdot N_z \times 1$$.  Next, $$[\mathbf{d}] _{GRAPPA}$$ is the GRAPPA reconstructed k-space of size $$N_c \cdot N_x \cdot N_y \cdot N_z \times 1$$.  Finally, $$W$$ is a sparse  $$N_c \cdot N_x \cdot N_y \cdot N_z \times N_c \cdot N_x \cdot N_y \cdot N_z$$ matrix that consists of the weights needed to estimate the unacquired entries of $$[\mathbf{d}]$$.  Each row of $$W$$ has $$N_b$$ nonzero members.  Because the weights in $$W$$ are shift invariant, which means that the same weights are used to estimate a k-space index at any location, it can be seen that $$W$$ is a circulant matrix.  Because $$W$$ 
+
+
+Where $$[\mathbf{d}]$$ is a tall list of all vectorized k-space entries across all channels, having size $$N_c \cdot N_x \cdot N_y \cdot N_z \times 1$$.  
+
+Next, $$[\mathbf{d}] _{GRAPPA}$$ is the GRAPPA reconstructed k-space of size $$N_c \cdot N_x \cdot N_y \cdot N_z \times 1$$.  
+
+Finally, $$W$$ is a sparse  $$N_c \cdot N_x \cdot N_y \cdot N_z \times N_c \cdot N_x \cdot N_y \cdot N_z$$ matrix that consists of the weights needed to estimate the unacquired entries of $$[\mathbf{d}]$$.  Each row of $$W$$ has $$N_b$$ nonzero members.  Because the weights in $$W$$ are shift invariant, which means that the same weights are used to estimate a k-space index at any location, it can be seen that $$W$$ is a circulant matrix.  Because $$W$$ has repeated entries, it can be determined from the calibration dataset with high precision.  
 
 If the weights in $$W$$ were accurately chosen, and applied on a **fully sampled** k-space $$[\mathbf{d}]_{Full}$$, then
 
