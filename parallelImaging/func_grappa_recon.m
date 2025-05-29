@@ -1,12 +1,31 @@
 function [ rawRecon, weightsKernels] = func_grappa_recon(rawUs, calib, kernelShape, kSolveIndices)
-% Something to know:  Nkx, Nky, Nkz, numKernelShapes refer to number of
-% elements along kx, ky, kz, in a kernel, and the number of kernel shapes respetively. 
-% kernelShape has size:  Nkx, Nky, Nkz, numKernelShapes
-%
-% kSolveIndices tell us where the target index in the kernel is ... 3 x numKernelElements
-% element array saying the location along each kernel direction (kSolveX,
-% kSolveY, kSolveZ) for each numKernelShapes.  
-% kSolveIndices: 3 x numKernelShapes where each 3 entries is kSolveX, kSolveY, and kSolveZ
+
+%{
+ input:
+rawUs:  size Nx x Ny x Nz x Nc.  Undersampled raw k-space data.  If the acceleration factor along a dimension is R, then along one k-space axis, every R line is skipped.
+
+calib:  size Nxc x Nyc x Nzc x Nc.  Fully sampled low resolution calibraiton data.  Used to determine the kernels.
+
+kernelShape:  Defines the size of the kernel and has 1s for "source" k-space indices in the kernel and 0 otherwise.  size is the dimension of the kernel width in kspace:  Nkx x Nky x Nkz x numKernelShapes.  numKernelShapes is R-1. 
+The minimum size along the undersampled directoin should be R+1. For example, if undersampling is done along ky (the second dimension), then Nky should be R+1.
+I usually make Nkx =3 because  harmonic fitting is most accurate when the distance is at most +/1 one harmonic away. Nkz should be 1 if the dataset is 2D.  if the dataset is 3D and you have Nz >3, then i would make Nkz = 3.  
+An example for R = 3 along the y direction for a 2D dataset:
+
+---> ky
+|         1 0 0 1
+|         1 0 0 1
+v kx      1 0 0 1
+kernelShape has the same values for each of the numKernelShapes entries.  I know this is redundant, but I have it this way so I can be consistent with kSovleIndices.  because it does not cause an issue, I have not yet changed it. 
+
+kSolveIndices:  a 3 x numKernelShapes list that tells you the kx, ky, and kz coordinate in the kernel of the target.  For the example above:
+kSolveIndices(3, 1) = [2, 2, 1].'
+kSolveIndices(3, 2) = [2, 3, 1].'
+
+Output:
+rawRecon: Nx x Ny x Nz x Nc reconstructed k-space dataset.
+weightsKernels:  the weights for each kernel.  People do not need this.  I output this so that I could plot the spatial harmonics caused by the weights.  
+ 
+%}
 disp( 'starting grapa function')
     if size(calib, 4) == size(rawUs, 4)
         [Nxc, Nyc, Nzc, Nc] = size(calib);

@@ -1,4 +1,8 @@
 %%  
+
+% the data is too large to upload to github.
+% you can try with your own 3D dataset.  the arrangement of the data should
+% be Nx x Ny x Nz x Nc.  
 load('whitened3DACR_2xky_2xkz.mat') % load raw data:  raw3Dus,  Ry = 2 Rz = 2 undersampled data
 load('whitened3DCalibACR.mat') % load calibration data:  calib3D, 3d calibration data
 [Nx, Ny, Nz, Nc] = size(raw3Dus);
