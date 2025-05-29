@@ -1156,10 +1156,13 @@ or equivalently
 
 $$\mu = T K $$
 
- $$T$$ has a large size:  $$N_{ro} N_{spokes} \times N_x N_y N_z$$, which makes inverting it difficult to computer.  Therefore, this must be approximated by bounding this filter function, as a sparse matrix $$H$$.  This then models each sampled index in $$\mu$$ as a linear combination of only neighboring Cartesian grid coordinates in $$K$$.  However convolving the Cartesian k-space that you are trying to solve for with a narrow bandwidth kernel apodizes the signal.  If this is not accounted for, the resulting image will be bright at the center of the image
+ $$T$$ has a large size:  $$N_{ro} N_{spokes} \times N_x N_y N_z$$, which makes inverting it difficult to computer.  Therefore, this must be approximated by bounding this filter function, as a sparse matrix $$H$$.  This then models each sampled index in $$\mu$$ as a linear combination of only neighboring Cartesian grid coordinates in $$K$$.  However convolving the Cartesian k-space that you are trying to solve for with a narrow bandwidth kernel apodizes the signal.  If this is not accounted for, the resulting image will be bright at its center, which is an inaccurate representation.  This can be accounted for by multiplying by an image domain de-apodization filter: U.  This leaves us with following sparse inverse problem:  
 
 
+ ***Sparse NUFFT Inverse Problem***
+ 
 
+$$\mu = HF^{-1}UFK$$
 
 
 
