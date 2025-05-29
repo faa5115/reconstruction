@@ -1,4 +1,4 @@
-# MRI Reconstruction Methods
+Non-Cartesian Reconstruction# MRI Reconstruction Methods
 Welcome to the MRI Reconstruction Methods repository. This project represents my body of work in MRI image reconstruction, developed during my Ph.D. at UCLA and my postdoctoral fellowship at the Cleveland Clinic Foundation. While this work focuses on magnetic resonance imaging, the techniques and principles applied here—digital signal processing, sensor array combination, aliasing mitigation, and inverse problem formulation—are foundational to Synthetic Aperture Radar (SAR) as well.
 
 My goal in sharing this repository is to demonstrate the depth of my experience in solving complex imaging problems that are closely analogous to those in SAR. Though my work has been in the medical imaging domain, the core challenges—sparse sampling, spatial aliasing, beamforming, non-Cartesian data acquisition, and image reconstruction from frequency-domain measurements—are fundamentally similar.
@@ -1065,7 +1065,49 @@ My implementation of GRAPPA is available in `func_grappa_recon.m`.  I also have 
 -->
 ---
 
-## NonCar
+## Non-Cartesian Reconstruction
+
+Non-Cartesian signal reconstruciton refers to the reconstruction of signal where the sampling was not done on a rectilinear grid.  I will start my discussion with projection imaging because that is most common.  Then I will generalize to other non-uniform sampling schemes in imaging. 
+
+When discussing this, I will demonstrate my implementation of gridding and the non-uniform Fourier transform.  
+
+### Projection Imaging
+
+A common example is projection imaging, where different projections of an object are taken.  The goal is to reconstruct an image of the object from those projections.  
+
+Say you have an image described by signal profile $$M(x, y, z)$$. 
+
+
+The projection of this object $$p_{\theta, \phi}(t_1, t_2) is the sum is the sum along all values of $$M(x,y,z)$$ along the plane defined by the polar and azimutha angles $$\theta$$ and $$\phi$$.  This can be described mathematically as: 
+
+
+**3D Projection Function**
+$$p_{\theta, \phi}(t_1, t_2) = M(x,y,z) \delta(t_1 - \mathbf{u}_1 \cdot \mathbf{r}) \delta(t_2 - \mathbf{u}_2 \cdot \mathbf{r}) dxdydz$$
+
+where $$\mathbf{r} = [x, y, z]$$, $$t_1$$ and $$t_2$$ are  sampling coordinates on the 2D projection plane, $$\mathbf{u}_1$$ and $$\mathbf{u}_2$$ are the direction along those axes, and $$\delta$$ is the Dirac delta function. 
+
+A common way to resolve the image is by an algorithm called Filtered Back Projection (FBP).  In the context for simple 2D backprojection the algorithm is fairly simple.  First let's write down the 2D projection function, which is simply the sum of all values of $$M(x,y)$$  along the line defined by $$x cos(\theta) + y sin(\theta)$$:  
+
+$$p_{\theta}(t) = \int \int M(x,y) \delta(t - x cos(\theta) - y sin(\theta))dx dy$$
+
+The FBP algorithm to generate a 2D image $$Im(x,y)$$ is fairly simple: 
+
+1. Each projection is passed through a high-pass filter to pre-compensate for blurring that would occur if you did not filter.  this is important because a signal located at a specific $$(x,y)$$ coordinate will appear in multiple projections.  Not high-pass filtering this will result blurring across the image domain.  This can be done by multiplying the Fourier transform of the projection by some filtering function, $$f(k)$$:
+
+  **filter projection**
+  $$p^{filter}_{\theta}(t) = FT[p_{\theta}(t)](k) \cdot f(k)$$
+
+3. Back proejction.  You smear the filtered projection across the image domain at the corresponding angle $$\theta$$.
+   For each $$(x,y)$$:
+   a. Compute the corresponding position along the projection:
+
+   $$t = x cos(\theta) + y sin(\theta)$$
+
+   b.  Accumulate the filtered projection value at $$t$$ into into $$Im(x,y)$$:
+
+   $$Im(x,y) = \int^{\pi}_{0} p^{filter} _{\theta}(t) (x cos(\theta) + y sin(\theta)) d\theta$$
+
+
 
 
 
