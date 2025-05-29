@@ -857,7 +857,7 @@ Because the $$N_b$$ weights appear in each row of $$W$$, one could restructure t
 
 $$[\mathbf{d} _{cal}] = [D _{sources}] [\mathbf{w}]$$
 
-where $$[D_{sources}]$$ is a $$N _{xc} \cdot N _{yc} \cdot N _{zc} \cdot N_c \times N_b\cdot N_c$$ matrix where each row contains the neighbor $$N_b$$ k-space indices across all $$N_c$$ channels of each target in $$[\mathbf{d}_{cal}]$$.  The vector $$[\mathbf{w}]$$ is an $$N_b \cdot N_c$$ member long list of the kernel weights.  
+where $$[D_{sources}]$$ is a $$N _{xc} \cdot N _{yc} \cdot N _{zc} \cdot N_c \times N_b \cdot N_c$$ matrix where each row contains the neighbor $$N_b$$ k-space indices across all $$N_c$$ channels of each target in $$[\mathbf{d}_{cal}]$$.  The vector $$[\mathbf{w}]$$ is an $$N_b \cdot N_c$$ member long list of the kernel weights.  
 
 The terms in $$[\mathbf{w}]$$ can be solved by $$pinv[ [D_{sources}] ] [\mathbf{d}_{cal}]$$ where $$pinv[]$$ is the Moore-Pensrose pseudo-inverse of the matrix within the brackets.  This can be approximated from  the SVD of $$[D_{sources}]$$.  
 
