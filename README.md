@@ -1124,7 +1124,14 @@ It is convenient to solve the projection data using these k-space approach thank
 ### NUFFT and Gridding
 
 Both methods solve the same the same inverse problem, but differe slight:  the NUFFT solves a least-squares solution and gridding gives in approximation. 
-In this discussion, the *acquired* raw k-space data is $$\mu$$, and all acquired samples are concatenated as a tall vector.  For example say each readout projection had $$N_{ro}$$ samples, and there were $$N_{spokes}$$ total projections, then $$\mu$$ is a $$N_{ro} N_{spokes} \times 1$$ tall vector.  
+In this discussion, the *acquired* raw k-space data is $$\mu$$, and all acquired samples are concatenated as a tall vector.  For example say each readout projection had $$N_{ro}$$ samples, and there were $$N_{spokes}$$ total projections, then $$\mu$$ is a $$N_{ro} N_{spokes} \times 1$$ tall vector.  The cartesian image $$Im(x, y, z)$$ is on a rectilinear/Cartesian grid.  
+
+Both NUFFT and gridding try to find a solution $$Im(x,y,z)$$ given the non-Cartesian samples $$mu$$.  They model the relationship of the non-Cartesian samples as in inverse problem.  Let's call the vector $$K$$ the "cartesian sampled" Fourier transform of the image $$Im$$: $$K = F[Im]$$.  In this discussion $$F$$ is the discrete uniform Fourier transform and $$F^{-1}$$ is the discrete inverse uniform Fourier transform.  The inverse problem that the NUFFT solves for and that gridding approximates for is that the acquired non-uniform k-space samples $$\mu$$ can modeled as the convolution of the Cartesian sampled k-space $$K$$ with some filter.  A common filter used is the Kaiser-Bessel window: 
+
+***Forward NUFFT/Gridding Problem***
+$$\mu = conv(K, filter)$$
+
+
 
 
 
