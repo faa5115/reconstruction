@@ -810,7 +810,7 @@ Becuase the channel sensitivities are low resolution, $$K_{ker}$$ is a narrow ra
 
 ***Estimate k-space by convolution***
 
- $$[\mathbf{K}(\mathbf{k}_n)]_{est,N _c} = conv [ K _{ker}, [\mathbf{K}] _R ]$$
+ $$[\mathbf{K}(\mathbf{k} _n)] _{est,N _c} = conv [ K _{ker}, [\mathbf{K}] _R ]$$
  
 Because the convolution kernel is a narrow bandwidth  function in k-space, this essentially means that the k-space index of a missing $$\mathbf{k}_n$$ of channel $$j$$ is essentially a linear combination of all neighboring k-space indices across all channels.  
 
