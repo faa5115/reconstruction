@@ -1095,6 +1095,8 @@ The FBP algorithm to generate a 2D image $$Im(x,y)$$ is fairly simple:
 1. Each projection is passed through a high-pass filter to pre-compensate for blurring that would occur if you did not filter.  this is important because a signal located at a specific $$(x,y)$$ coordinate will appear in multiple projections.  Not high-pass filtering this will result blurring across the image domain.  This can be done by multiplying the Fourier transform of the projection by some filtering function, $$f(k)$$:
 
   **filter projection**
+
+  
   
   $$p^{filter} _{\theta}(t) = F[p _{\theta}(t)](k) \cdot f(k)$$
 
