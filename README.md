@@ -1062,9 +1062,11 @@ where $$w_{c,j}$$ are the learned weights, $$\mathbf{k}_{c,j}$$ are sampled k-sp
 
 My implementation of GRAPPA is available in `func_grappa_recon.m`.  I also have 'func_complete_grappa_recon.m' which loops over 'func_grappa_recon.m' with different kernel structures, which is useful in 3D imaging.  I will demonstrate this later. 
 
-
----
 -->
+---
+
+## NonCar
+
 
 
 ---
