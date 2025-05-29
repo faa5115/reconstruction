@@ -1098,7 +1098,7 @@ The FBP algorithm to generate a 2D image $$Im(x,y)$$ is fairly simple:
 
   
   
-  $$p^{filter} _{\theta}(t) = F[p _{\theta}(t)](k) \cdot f(k)$$
+  $$p^{filter} _{\theta}(t) = F [p _{\theta}(t)](k) \cdot f(k)$$
 
 2. Back proejction.  You smear the filtered projection across the image domain at the corresponding angle $$\theta$$.
    For each $$(x,y)$$:
