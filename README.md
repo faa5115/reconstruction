@@ -1113,9 +1113,21 @@ The FBP algorithm to generate a 2D image $$Im(x,y)$$ is fairly simple:
 
 
 
-I personally prefer reconstructing the data in the Fourier Domain.  Two common methods that do this are the NUFFT and "gridding" (gridding non-uniform k-space samples on a Cartesian/rectilinear Fourier grid) which are more flexible and robust to irregularly sampled data.  
+I personally prefer reconstructing the data in the Fourier Domain.  Two common methods that do this are the NUFFT and "gridding" (gridding non-uniform k-space samples on a Cartesian/rectilinear Fourier grid) which are more flexible and robust to irregularly sampled data.  Specifically, FBP is limited to projections, while the NUFFT and gridding k-space domain data can be used for any sampling trajectory.  
 
-They both solve the same the same problem.  As you will see, the NUFFT solves a least-squares solution and gridding gives in approximation.  
+It is convenient to solve the projection data using these k-space approach thanks to the Fourier projection theorem: the Fourier transform of the projection of the object is equal to a slice of the object's Fourier transform taken through the origin and oriented along the direction of the projection.  In other words:  projections map to slices in the Fourier space (k-space).  Collecting projections at different angles let one complete the k-space, which let's one complete the image.  The projection theorem is is illustrated with the Shepp-Logan phantom below.  
+
+
+![](/figures/ProjectionTheorem.jpg)  
+
+
+### NUFFT and Gridding
+
+Both methods solve the same the same inverse problem, but differe slight:  the NUFFT solves a least-squares solution and gridding gives in approximation. 
+
+
+
+
 
 
 ---
