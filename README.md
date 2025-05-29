@@ -907,10 +907,12 @@ $$d_j(\mathbf{k}_n)=\sum^{N_c} _{l=1}  \sum^{N_b} _{b=1} w _{j,l,b} d_l(\mathbf{
 -->
 
 ##### GRAPPA code
-Demonstration is found in file ```../parallelImaging/main_demonstrateGRAPPA2D3x.m```.  This example only demonstrate parallel imaging along 1 dimension.  I will later show how to do parallel imaging in two dimensions, which useful for accelerated 3D imaging.  However, the functions i have uploaded can be used for 3D datasets too. 
+
+Demonstration of doing parallel imaging along 1 undersampled direction (such as just ky or just kz) is found in  ```../parallelImaging/main_demonstrateGRAPPA2D3x.m```
+A demonstration of 2 undersampled directions (such as ky and kz) is found in  ```../parallelImaging/main_demonstrateGRAPPA3D.m```  The dataset used for the latter is too large to be uplaoded.  You could replace the line where i load my data in ```main_demonstrateGRAPPA3D.m``` with your own raw data to see for yourself.  Just make sure the size of the data is arranged in the following order Nx x Ny x Nz x Nc.  
 
 
-I have two functions:  ```func_grappa_recon.m``` and ```func_complete_grappa_recon.m```.  You can use ```func_grappa_recon``` for to solve any undersampling done under one dimension (say just $$ky$$ or just $$kz$$).  ```func_complete_grappa_recon.m``` should be used if you did undersampling in two dimensions, such as both $$ky$$ and $$kz$$.  As I said in the previous paragraph, I do not yet have a demonstration for func_complete_grappa_recon up **yet**.  
+I have two functions:  ```func_grappa_recon.m``` and ```func_complete_grappa_recon.m```.  You can use ```func_grappa_recon``` for to solve any undersampling done under one dimension (say just $$ky$$ or just $$kz$$).  ```func_complete_grappa_recon.m``` should be used if you did undersampling in two dimensions, such as both $$ky$$ and $$kz$$.  
 
 Let's take a look at func_grappa_recon
 
@@ -988,6 +990,38 @@ kSolveIndices(1, 2) = 2; kSolveIndices(2, 2) = 3; kSolveIndices(3, 2) = 1;
                           calib(:, :, :, :), ...
                           kernelShape, kSolveIndices);
 ```
+
+I had to make adjustments for 3D parallel imaging with undersampling in 2 dimensions.  
+This is why i have a separate function called ```func_complete_grappa_recon```.  Consider the following ky (vertical) and kz (horizontal) sampling grid, where kx is fully sampled and goes into the page:
+```
+% x 0 x 0 x 0 x 0 x 0 x 0
+% 0 0 0 0 0 0 0 0 0 0 0 0 
+% x 0 x 0 x 0 x 0 x 0 x 0
+% 0 0 0 0 0 0 0 0 0 0 0 0
+% x 0 x 0 x 0 x 0 x 0 x 0
+% 0 0 0 0 0 0 0 0 0 0 0 0
+```
+Three different ky,kz kernel structures are necessary when convolving through this k-space: 
+```
+% the first kernel: 
+% x 0 x
+% 0 T 0
+% x 0 x
+% the second kernel: 
+% 0 x 0
+% 0 T 0
+% 0 x 0
+% the second kernel: 
+% 0 0 0
+% x T x
+% 0 0 0
+```
+
+The first kenrel structure hasa four nonzero entries and second two just have two nonzero entries.  
+my previous GRAPPA ```func_getWeights``` and ```func_grappa_recon``` functions works where the kernel shapes all have the same number of nonzero entries. We do that so that for a given kernel the nonzero entries can be vectorized, and then we can carry out the solution for the missing k-space entries by multiplying the kernel (in vector form) by a matrix (that consists only of the source elements).  We cannot do that with the kernel shapes having different sizes.  so we should have a separate variable, called "kernel structure."  
+
+In ```func_complete_grappa_recon```, ```func_grappa_recon``` is called for each of these individual structures.  In each iteration, one of the structures is input as the kernel shape. 
+
 
 ---
 <!--
