@@ -820,6 +820,7 @@ On the other hand, the entries of a low-resolution kernel can be determined as t
 
 A few years after SMASH was published, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions), which estimated the kernel using only the surrounding k-space entries that were acquired. The kernel used in GRAPPA only considered acquired k-space neighbors:  An unacquired k-space index $$k_n$$ of channel $$j$$ is estimated as a linear combination of acquired k-space neighbors across all channels. 
 
+***GRAPPA linear dependence formula***
 $$d_j(\mathbf{k}_n)=\sum^{N_c} _{l=1}  \sum^{N_b} _{b=1} w _{j,l,b} d_l(\mathbf{k} _{n,b})$$
 
 where $$\mathbf{k} _{n,b}$$ is any acquired k-space neighbor of target coordinate $$\mathbf{k}_n$$ $$w _{j,l,b}$$ is the kernel-weight fitting neighbor $$b$$ of channel $$l$$ to target channel $$j$$.  In this case $$N_b$$ is the number of neighbors in the kernel contributing to estimating the target.  
@@ -842,10 +843,11 @@ Where $$[\mathbf{d}]$$ is a tall list of all vectorized k-space entries across a
 
 Next, $$[\mathbf{d}] _{GRAPPA}$$ is the GRAPPA reconstructed k-space of size $$N_c \cdot N_x \cdot N_y \cdot N_z \times 1$$.  
 
-Finally, $$W$$ is a sparse  $$N_c \cdot N_x \cdot N_y \cdot N_z \times N_c \cdot N_x \cdot N_y \cdot N_z$$ matrix that consists of the weights needed to estimate the unacquired entries of $$[\mathbf{d}]$$.  Each row of $$W$$ has $$N_b$$ nonzero members.  Because the weights in $$W$$ are shift invariant, which means that the same weights are used to estimate a k-space index at any location, it can be seen that $$W$$ is a circulant matrix.  Because $$W$$ has repeated entries, it can be determined from the calibration dataset with high precision.  
+Finally, $$W$$ is a sparse  $$N_c \cdot N_x \cdot N_y \cdot N_z \times N_c \cdot N_x \cdot N_y \cdot N_z$$ matrix that consists of the weights needed to estimate the unacquired entries of $$[\mathbf{d}]$$.  Each row of $$W$$ has $$N_bN_c$$ nonzero members.  Because the weights in $$W$$ are shift invariant, which means that the same weights are used to estimate a k-space index at any location, it can be seen that $$W$$ is a circulant matrix.  Because $$W$$ has repeated entries, it can be determined from the calibration dataset with high precision.  
 
 If the weights in $$W$$ were accurately chosen, and applied on a **fully sampled** k-space $$[\mathbf{d}]_{Full}$$, then
 
+***GRAPPA Marix Formula***
 $$[\mathbf{d}]_{GRAPPA} = [W] [\mathbf{d}]$$
 
 That is an important thing to consider, and this is core to determining channel sensitivity maps using E-SPIRiT. This is also important because this is the premise of how we determine the weights from the calibration data.  Given the calibration data, $$[\mathbf{d}]_{cal}$$,  of size $$N _{xc} \cdot N _{yc} \cdot N _{zc} \cdot N_c \times 1$$the terms of $$W$$ must best approximate:
@@ -855,11 +857,13 @@ $$[\mathbf{d}]_{cal} = [W] [\mathbf{d}] _{cal}$$
 
 Because the $$N_b$$ weights appear in each row of $$W$$, one could restructure the the equation above to solve for the $$N_b$$ weights: 
 
-$$[\mathbf{d} _{cal}] = [D _{sources}] [\mathbf{w}]$$
+***Structured Calibration Formula***
+$$[\mathbf{d} _{cal}] = [D _{sources, cal}] [\mathbf{w}]$$
 
-where $$[D_{sources}]$$ is a $$N_{xc} N_{yc}N_{zc}N_c \times N_b N_c$$ matrix where each row contains the neighbor $$N_b$$ k-space indices across all $$N_c$$ channels of each target in $$[\mathbf{d}_{cal}]$$.  The vector $$[\mathbf{w}]$$ is an $$N_b \cdot N_c$$ member long list of the kernel weights.  
+where $$[D_{sources, cal}]$$ is a $$N_{xc} N_{yc}N_{zc}N_c \times N_b N_c$$ matrix where each row contains the neighbor $$N_b$$ k-space indices across all $$N_c$$ channels of each target in $$[\mathbf{d}_{cal}]$$.  The vector $$[\mathbf{w}]$$ is an $$N_b \cdot N_c$$ member long list of the kernel weights.  
 
 The terms in $$[\mathbf{w}]$$ can be solved by
+
 
 $$pinv([D_{sources}]) [\mathbf{d}_{cal}]$$
 
@@ -867,8 +871,12 @@ where $$pinv()$$ is the Moore-Pensrose pseudo-inverse of the matrix within the b
 
 
 
+The complete k-space can then be estimated by properly arrange the weights in $$[mathbf{w}]$$ to their respective location in the ***GRAPPA Marix Formula***, or one can restructure this formula to the same format as the ***Structured Calibration Formula***:  
 
 
+$$[\mathbf{d}] = [D _{sources}] [\mathbf{w}]$$
+
+subject to that the acquired coordinates do not change.  
 
 
 
@@ -879,6 +887,9 @@ The figure below illustrates the procedure.
 
 
 ![](/figures/GRAPPA_Diagram.jpg)
+
+
+
 
 
 
