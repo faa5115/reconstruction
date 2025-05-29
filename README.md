@@ -1097,7 +1097,7 @@ The FBP algorithm to generate a 2D image $$Im(x,y)$$ is fairly simple:
   **filter projection**
   $$p^{filter}_{\theta}(t) = FT[p_{\theta}(t)](k) \cdot f(k)$$
 
-3. Back proejction.  You smear the filtered projection across the image domain at the corresponding angle $$\theta$$.
+2. Back proejction.  You smear the filtered projection across the image domain at the corresponding angle $$\theta$$.
    For each $$(x,y)$$:
    a. Compute the corresponding position along the projection:
 
@@ -1109,6 +1109,10 @@ The FBP algorithm to generate a 2D image $$Im(x,y)$$ is fairly simple:
 
 
 
+
+I personally prefer reconstructing the data in the Fourier Domain.  Two common methods that do this are the NUFFT and "gridding" (gridding non-uniform k-space samples on a Cartesian/rectilinear Fourier grid) which are more flexible and robust to irregularly sampled data.  
+
+They both solve the same the same problem.  As you will see, the NUFFT solves a least-squares solution and gridding gives in approximation.  
 
 
 ---
