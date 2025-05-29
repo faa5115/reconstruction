@@ -802,7 +802,7 @@ Essentially, the unaliased channel images $$[ \mathbf{Im} (\mathbf{r} _n)] _{est
 
 
 Let's take a look at the spatial Fourier transform for each term of the channel by channel SENSE images:  
-- Let  $$[\mathbf{K}(\mathbf{k}_n)]_{est,N _c} = F_s [\mathbf{Im}(\mathbf{r}_n)] _{est,N_c}]$$ where $$F_s$$ is the Fourier transform in the spatial dimensions only.  This consists of sampled k-space lines and the estimated skipped k-space lines. 
+- Let  $$[\mathbf{K} (\mathbf{k}_n)]_{est,N_c} = F_s [[ \mathbf{Im} (\mathbf{r} _n)] _{est,N_c}]$$ where $$F_s$$ is the Fourier transform in the spatial dimensions only.  This consists of sampled k-space lines and the estimated skipped k-space lines. 
 - $$K_{ker}$$ is the spatial Fourier transform of $$[S] _{R,N_c}[U]_R$$, $$K _{ker} = F_S [[S] _{R,N_c}[U]_R]$$.  The subscript "ker" stands for "kernel" which I will discuss shortly.
 - $$[\mathbf{K}(\mathbf{k}_n)]_R =F_s [[\mathbf{Im}(\mathbf{r}_n)]_R]$$.  This is only consists of the sampled k-space lines, with 0s for the skipped k-space lines.  
 
