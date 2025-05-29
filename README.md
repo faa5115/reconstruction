@@ -1162,7 +1162,13 @@ $$\mu = T K $$
  ***Sparse NUFFT Inverse Problem***
  
 
-$$\mu = HF^{-1}UFK$$
+$$\mu = HFUF^{-1}K$$
+
+or equivalently: 
+
+$$\mu = HFU Im$$
+
+
 
 
 
