@@ -804,15 +804,21 @@ Let's take a look at the spatial Fourier transform for each term of the channel 
 - $$K_{ker}$$ is the spatial Fourier transform of $$[S] _{R,N_c}[U]_R$$, $$K _{ker} = F_S [[S] _{R,N_c}[U]_R]$$.  The subscript "ker" stands for "kernel" which I will discuss shortly.
 - $$[\mathbf{K}(\mathbf{k}_n)]_R =F_s [[\mathbf{Im}(\mathbf{r}_n)]_R]$$.  This is only consists of the sampled k-space lines, with 0s for the skipped k-space lines.  
 
-Becuase the channel sensitivities are low resolution, $$K_{ker}$$ is a narrow range kernel in k-space.  Because of the convolution theorem of the Fourier transform, the channel by channel SENSE image equation translates to the following equation: 
+Becuase the channel sensitivities are low resolution, $$K_{ker}$$ is a narrow range kernel in k-space.  Because of the convolution theorem of the Fourier transform, the channel by channel SENSE image equation translates to estimating a full k-space grid by convolving a narrow bandwidth convolution kernel with the acquired (undersampled) k-space. This is shown in the following equation: 
 
 ***Estimate k-space by convolution***
 
  $$[\mathbf{K}(\mathbf{k}_n)]_{est,N _c} = conv [ K _{ker}, [\mathbf{K}] _R ]$$
  
- where essentially the unacquired k-space entries are estimated as a linear combination of the surrounding entries.  
+Because the convolution kernel is a narrow bandwidth  function in k-space, this essentially means that the k-space index of a missing $$\mathbf{k}_n$$ of channel $$j$$ is essentially a linear combination of all neighboring k-space indices across all channels.  
 
-A few years later, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions)
+Transitioning to the k-space domains has several advantages, as we will see later.  One very important advantage relates to the fact that, as I mentioned before, estimating channel sensitivities is difficult.  This is especially the case if your image acquisition consisted of a low SNR system.  
+
+On the other hand, the entries of a low-resolution kernel can be determined as the linear coefficients that fit the k-space index of one channel of your calibration data as a linear combination of the surrounding k-space indices across all channels.  
+
+A few years later, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions), which estimated the kernel using only the surrounding k-space entries that were acquired. The figure below illustrates the procedure.
+
+![](/figures/GRAPPA_Diagram.jpg)
 
 ---
 ### Spatial Harmonics in k-Space  
