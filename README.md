@@ -653,14 +653,14 @@ Further demonstrations (e.g., multi-echo data) will be added in future updates.
 
 
 ## Aliasing and Parallel Imaging  
-As discussed in the ```faa5115/blochSimulations``` repository, the signal readout in NMR and MRI is done in the Fourier domain.  This sampling domain is called "k-space".  The MRI acquisition process tries to  reconstruct an image of the spatial signal distribution.  Let's call this signal $$\mathbf{M}(\mathbf{r})$$.  The NMR/MR system employs time-varying gradients in the magnetic field that causes time-varying spatial harmonics in the signal $$\mathbf{M}(\mathbf{r})$$, which can be described as $$e^{-i2\pi\int \mathbf{G}(t)dt\cdot \mathbf{r}} = e^{-i2\pi \mathbf{k}(t) \cdot \mathbf{r}}$$.  Here $$\mathbf{k}(t)$$ is the sampled k-space coordinate at time $$t$$.  The receivers hear a time-varying signal that is a vector sum of the entire signal profile undergoing this spatially and time-varying precession:\
+As discussed in the ```faa5115/blochSimulations``` repository, the signal readout in NMR and MRI is done in the Fourier domain.  This sampling domain is called "k-space".  The MRI acquisition process tries to  reconstruct an image of the spatial signal distribution.  Let's call this signal $$\mathbf{M}(\mathbf{r})$$.  The NMR/MR system employs time-varying gradients in the magnetic field that causes time-varying spatial harmonics in the signal $$\mathbf{M}(\mathbf{r})$$, which can be described as $$e^{-i2\pi\int \mathbf{G}(t)dt\cdot \mathbf{r}} = e^{-i2\pi \mathbf{k}(t) \cdot \mathbf{r}}$$.  Here $$\mathbf{k}(t)$$ is the sampled k-space coordinate at time $$t$$.  The receiver $$j$$ hear a time-varying signal that is a vector sum of the entire signal profile undergoing this spatially and time-varying precession:\
 
 ***k-space signal model***
 
 
-$$S(k)=\int \mathbf{M}(\mathbf{r}) e^{-i 2 \pi \mathbf{k}(t) \cdot \mathbf{r}} dr$$
+$$d_j(k)=\int S_j(\mathbf{r}) \mathbf{M}(\mathbf{r}) e^{-i 2 \pi \mathbf{k}(t) \cdot \mathbf{r}} dr$$
 
-For the sake of simplicity this discussion is only focusing on k-space sampling because I want to demonstrate some reconstruction code later.  I want to make it clear that this formula is not complete when you consider other effects, such as signal decay (T2) of $$\mathbf{M}(\mathbf{r})$$ during your k-space sampling, which can cause blurring in your image domain (by Fourier convolution theorem k-space samples times a decay function equals a convolution of the image of $$\mathbf{M}(\mathbf{r})$$ with the Fourier transform of the decay function), does not consider spatially varing inhomogeneities in the magnetic field (which impacts the real spatial harmonics in the system and not having that in account causes spatial shifts and distortions in the image domain).  
+Here $$S_j(\mathbf{r})$$ is the spatial sensitivity profile of channel $$j$$ at position $$\mathbf{r}$$.  For the sake of simplicity this discussion is only focusing on k-space sampling because I want to demonstrate some reconstruction code later.  I want to make it clear that this formula is not complete when you consider other effects, such as signal decay (T2) of $$\mathbf{M}(\mathbf{r})$$ during your k-space sampling, which can cause blurring in your image domain (by Fourier convolution theorem k-space samples times a decay function equals a convolution of the image of $$\mathbf{M}(\mathbf{r})$$ with the Fourier transform of the decay function), does not consider spatially varing inhomogeneities in the magnetic field (which impacts the real spatial harmonics in the system and not having that in account causes spatial shifts and distortions in the image domain).  
 
 <!-- FADIL ALI COME BACK HERE LATER AND DISCUSS FREQUENCY AND PHASE ENCODING
 With that in mind, we can continue.  k-Space sampling is often done in spatially uniform, Cartesian, rectilinear coordinates.  
@@ -892,8 +892,8 @@ The figure below illustrates the procedure.
 ![](/figures/GRAPPA_Diagram.jpg)
 
 
-
-$$S(k)=\int \mathbf{M}(\mathbf{r}) e^{-i 2 \pi \mathbf{k}(t) \cdot \mathbf{r}} dr$$
+Given the k-space signal model, it is clear that
+$$d(k)=\int \mathbf{M}(\mathbf{r}) e^{-i 2 \pi \mathbf{k}(t) \cdot \mathbf{r}} dr$$
 
 
 ---
