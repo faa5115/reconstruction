@@ -1124,8 +1124,7 @@ It is convenient to solve the projection data using these k-space approach thank
 ### NUFFT and Gridding
 
 Both methods solve the same the same inverse problem, but differe slight:  the NUFFT solves a least-squares solution and gridding gives in approximation. 
-
-
+In this discussion, the *acquired* raw k-space data is $$\mu$$, and all acquired samples are concatenated as a tall vector.  For example say each readout projection had $$N_{ro}$$ samples, and there were $$N_{spokes}$$ total projections, then $$\mu$$ is a $$N_{ro} N_{spokes} \times 1$$ tall vector.  
 
 
 
