@@ -828,7 +828,8 @@ This can be expressed in matrix form as the following:
 
 $$[\mathbf{d}]_j = [W]_j [\mathbf{d}]$$
 
-$$[\mathbf{d}]_j$$:  A long list of all unacquired k-space indices of channel $$j$$.  If full sampling consisted of $$N_x \cdot N_y \cdot N_z$$ voxels, and the total reduction factor was $$R$$, then $$[\mathbf{d}]_j$$ has size $$\frac{(R-1)N_x N_y N_z}{R}$$
+Here $$[\mathbf{d}]_j$$ is long list of all unacquired k-space indices of channel $$j$$.  If full sampling consists of $$N_x \cdot N_y \cdot N_z$$ voxels, and the total reduction factor was $$R$$, then $$[\mathbf{d}]_j$$ has size $$\frac{(R-1)N_x N_y N_z}{R}$$.  
+
 
 
 The figure below illustrates the procedure.
