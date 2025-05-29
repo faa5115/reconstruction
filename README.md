@@ -793,7 +793,7 @@ Let's write out the math of multiplying a SENSE reconstructed image of Rx subsam
 
 ***Channel by channel SENSE images***
 
-$$[ \mathbf{Im} (\mathbf{r}_n)]_{est,N_c} = [S] _{ R,N_c}[U]_R [\mathbf{Im}(\mathbf{r}_n)]_R$$
+$$[ \mathbf{Im} (\mathbf{r} _n)]_{est,N_c} = [S] _{ R,N_c}[U]_R [\mathbf{Im}(\mathbf{r}_n)]_R$$
 
 
 where $$[\mathbf{Im}(\mathbf{r})]_{est,N_c}$$ is a $$R N_c \times 1$$ length vector that has the estimate of the $$R$$ unaliased voxel values at locations $$\mathbf{r}_n + b \frac{N_F}{R}$$ for $$b \in [0, R-1]$$ for each channel and $$[S] _{R,N_c}$$ is a $$R N_c \times R$$ matrix that has the sensitivity values at each of those locations.  I have the subscript "est,Nc" to mean "estimated channel images."
