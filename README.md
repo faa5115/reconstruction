@@ -818,9 +818,26 @@ Transitioning to the k-space domains has several advantages, as we will see late
 
 On the other hand, the entries of a low-resolution kernel can be determined as the linear coefficients that fit the k-space index of one channel of your calibration data as a linear combination of the surrounding k-space indices across all channels.  
 
-A few years later, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions), which estimated the kernel using only the surrounding k-space entries that were acquired. The figure below illustrates the procedure.
+A few years after SMASH was published, Mark Griswold published GRAPPA (Generalized autocalibrating partially parallel acquisitions), which estimated the kernel using only the surrounding k-space entries that were acquired. The kernel used in GRAPPA only considered acquired k-space neighbors:  An unacquired k-space index $$k_n$$ of channel $$j$$ is estimated as a linear combination of acquired k-space neighbors across all channels. 
+
+$$d_j(\mathbf{k}_n)=\sum^{N_c} _{l=1}  \sum^{N_b} _{b=1} w _{j,l,b} d_l(\mathbf{k} _{n,b})$$
+
+where $$\mathbf{k} _{n,b}$$ is any acquired k-space neighbor of target coordinate $$\mathbf{k}_n$$ $$w _{j,l,b}$$ is the kernel-weight fitting neighbor $$b$$ of channel $$l$$ to target channel $$j$$.  In this case $$N_b$$ is the number of neighbors in the kernel contributing to estimating the target.  
+
+This can be expressed in matrix form as the following: 
+
+$$[\mathbf{d}]_j = [W]_j [\mathbf{d}]$$
+
+$$[\mathbf{d}]_j$$:  A long list of all unacquired k-space indices of channel $$j$$.  If full sampling consisted of $$N_x \cdot N_y \cdot N_z$$ voxels, and the total reduction factor was $$R$$, then $$[\mathbf{d}]_j$$ has size $$\frac{(R-1)N_x N_y N_z}{R}$$
+
+
+The figure below illustrates the procedure.
+
+
 
 ![](/figures/GRAPPA_Diagram.jpg)
+
+
 
 ---
 ### Spatial Harmonics in k-Space  
