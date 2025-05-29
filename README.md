@@ -826,9 +826,30 @@ where $$\mathbf{k} _{n,b}$$ is any acquired k-space neighbor of target coordinat
 
 This can be expressed in matrix form as the following: 
 
+<!--
 $$[\mathbf{d}]_j = [W]_j [\mathbf{d}]$$
 
-Here $$[\mathbf{d}]_j$$ is long list of all unacquired k-space indices of channel $$j$$.  If full sampling consists of $$N_x \cdot N_y \cdot N_z$$ voxels, and the total reduction factor was $$R$$, then $$[\mathbf{d}]_j$$ has size $$\frac{(R-1)N_x N_y N_z}{R}$$.  
+
+Here $$[\mathbf{d}]$$ is a tall vector consisting of all 
+
+$$[\mathbf{d}]_j$$ is long list of all unacquired k-space indices of channel $$j$$.  If full sampling consists of $$N_x \cdot N_y \cdot N_z$$ voxels, and the total reduction factor was $$R$$, then $$[\mathbf{d}]_j$$ has size $$\frac{(R-1)N_x N_y N_z}{R}$$. 
+
+-->
+$$[\mathbf{d}]_{GRAPPA} = [W] [\mathbf{d}]$$
+Where $$[\mathbf{d}]$$ is a tall list of all vectorized k-space entries across all channels, having size $$N_c \cdot N_x \cdot N_y \cdot N_z \times 1$$.  Next, $$[\mathbf{d}] _{GRAPPA}$$ is the GRAPPA reconstructed k-space of size $$N_c \cdot N_x \cdot N_y \cdot N_z \times 1$$.  Finally, $$W$$ is a sparse  $$N_c \cdot N_x \cdot N_y \cdot N_z \times N_c \cdot N_x \cdot N_y \cdot N_z$$ matrix that consists of the weights needed to estimate the unacquired entries of $$[\mathbf{d}]$$.  Each row of $$W$$ has $$N_b$$ nonzero members.  Because the weights in $$W$$ are shift invariant, which means that the same weights are used to estimate a k-space index at any location, it can be seen that $$W$$ is a circulant matrix.  Because $$W$$ 
+
+If the weights in $$W$$ were accurately chosen, and applied on a **fully sampled** k-space $$[\mathbf{d}]_{Full}$$, then
+
+$$[\mathbf{d}]_{GRAPPA} ~ [W] [\mathbf{d}]$$
+
+That is an important thing to consider, and I will touch base on this point later when discussing E-SPIRiT.  
+
+
+
+
+
+
+
 
 
 
