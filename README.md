@@ -892,10 +892,22 @@ The figure below illustrates the procedure.
 ![](/figures/GRAPPA_Diagram.jpg)
 
 
-Given the k-space signal model, it is clear that
+<!-- 
+TALK ABOUT HARMONIC FITTING LATER!!!!!!!!
+One could plug in the  ***k-space signal model*** into the ***GRAPPA linear dependence formula*** to get the following:
+
+
+$$$$
+
 $$d(k)=\int \mathbf{M}(\mathbf{r}) e^{-i 2 \pi \mathbf{k}(t) \cdot \mathbf{r}} dr$$
 
+***GRAPPA linear dependence formula***
+$$d_j(\mathbf{k}_n)=\sum^{N_c} _{l=1}  \sum^{N_b} _{b=1} w _{j,l,b} d_l(\mathbf{k} _{n,b})$$
 
+-->
+
+
+<!--
 ---
 ### Spatial Harmonics in k-Space  
 
@@ -935,7 +947,10 @@ My implementation of GRAPPA is available in `func_grappa_recon.m`.  I also have 
 
 
 ---
+-->
 
+
+---
 ## Coming Soon
 The implementations for SPIRiT, Simplified E-SPIRiT, low-rank parallel imaging, beamforming, simultaneous multi-slice (SMS) imaging, and non-Cartesian reconstruction have also been uploaded. I will provide detailed explanations for these topics later, but in the meantime, anyone interested is welcome to explore and use the code.
 
