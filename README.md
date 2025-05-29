@@ -1078,7 +1078,7 @@ A common example is projection imaging, where different projections of an object
 Say you have an image described by signal profile $$M(x, y, z)$$. 
 
 
-The projection of this object $$p_{\theta, \phi}(t_1, t_2) is the sum is the sum along all values of $$M(x,y,z)$$ along the plane defined by the polar and azimutha angles $$\theta$$ and $$\phi$$.  This can be described mathematically as: 
+The projection of this object $$p _{\theta, \phi}(t_1, t_2) is the sum is the sum along all values of $$M(x,y,z)$$ along the plane defined by the polar and azimutha angles $$\theta$$ and $$\phi$$.  This can be described mathematically as: 
 
 
 **3D Projection Function**
