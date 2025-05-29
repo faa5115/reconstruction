@@ -90,7 +90,7 @@ Topics I go over:
   * I will later go over Mark Bydder's generalization of Walsh's method for time series data.
 * Sensitivity Encoding (SENSE)
 
-## Aliasing and Parallel Imaging
+## Solving the Aliasing Problem using phased-arrays
 <!--
 Topics in parallel imaging that I will go over: 
 * Image domain unaliasing.
@@ -103,7 +103,7 @@ Topics in parallel imaging that I will go over:
   * Low-Rank (or "subspace") Based Parallel Imaging methods:  show how the linear dependence of multi-channel k-space neighbors can be generalized to treat them as a low-rank system.
   -->
   
- ## Parallel imaging to unalias
+ ### Parallel Imaging:  Use localized channel sensitivies to unfold aliased signal
  <!--
  For now I will discuss ROVir, which was a novel adaptation of Walsh's adaptive coil combine method to combine the acquired channel data in different linear combination to generate a new set of "virtual" channels that optimize the signal power within the specific region of interest (ROI) over the signal power outside of that region of interest.  
  I will later upload my new approach once it is published or filed for patent; whichever comes first. 
@@ -115,7 +115,7 @@ Topics in parallel imaging that I will go over:
 * SENSE vs GRAPPA: Side Lobe Artifacts
 * Structured Low-Rank Matrix Completion
 
-## Spatial Beamforming to filter aliased signal
+### Spatial Beamforming:  Use phased array data filter signal from unwanted regions.
 * Region-of-Interest Beamforming (ROVir)
 * I will briefly go over my new approach Coil Localized Elimination of Aliased NMR (CLEAN). It is not yet published and currently filed a provisional patent application), so I will not go over any details on the implementation.
 <!--
