@@ -846,12 +846,22 @@ Finally, $$W$$ is a sparse  $$N_c \cdot N_x \cdot N_y \cdot N_z \times N_c \cdot
 
 If the weights in $$W$$ were accurately chosen, and applied on a **fully sampled** k-space $$[\mathbf{d}]_{Full}$$, then
 
-$$[\mathbf{d}]_{GRAPPA} ~ [W] [\mathbf{d}]$$
+$$[\mathbf{d}]_{GRAPPA} = [W] [\mathbf{d}]$$
 
-That is an important thing to consider, and this is core to determining channel sensitivity maps using E-SPIRiT. This is also important because this is the premise of how we determine the weights from the calibration data.  Given the calibration data, $$[\mathbf{d}]_{cal}$$,  the terms of $$W$$ must best approximate:
+That is an important thing to consider, and this is core to determining channel sensitivity maps using E-SPIRiT. This is also important because this is the premise of how we determine the weights from the calibration data.  Given the calibration data, $$[\mathbf{d}]_{cal}$$,  of size $$N _{xc} \cdot N _{yc} \cdot N _{zc} \cdot N_c \times 1$$the terms of $$W$$ must best approximate:
 
 
-$$[\mathbf{d}]_{cal} ~ [W] [\mathbf{d}] _{cal}$$
+$$[\mathbf{d}]_{cal} = [W] [\mathbf{d}] _{cal}$$
+
+Because the $$N_b$$ weights appear in each row of $$W$$, one could restructure the the equation above to solve for the $$N_b$$ weights: 
+
+$$[\mathbf{d}_{cal}] = [D_{sources}][\mathbf{w}]$$
+
+where $$[D_{sources}]$$ is a $$N _{xc} \cdot N _{yc} \cdot N _{zc} \cdot N_c \times N_b\cdot N_c$$ matrix where each row contains the neighbor $$N_b$$ k-space indices across all $$N_c$$ channels of each target in $$[\mathbf{d}_{cal}]$$.  The vector $$[\mathbf{w}]$$ is an $$N_b \cdot N_c$$ member long list of the kernel weights.  
+
+The terms in $$[\mathbf{w}]$$ can be solved by $$pinv[ [D_{sources}] ] [\mathbf{d}_{cal}]$$ where $$pinv[]$$ is the Moore-Pensrose pseudo-inverse of the matrix within the brackets.  This can be approximated from  the SVD of $$[D_{sources}]$$.  
+
+
 
 
 
