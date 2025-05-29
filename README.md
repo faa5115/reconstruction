@@ -1063,8 +1063,21 @@ where $$w_{c,j}$$ are the learned weights, $$\mathbf{k}_{c,j}$$ are sampled k-sp
 My implementation of GRAPPA is available in `func_grappa_recon.m`.  I also have 'func_complete_grappa_recon.m' which loops over 'func_grappa_recon.m' with different kernel structures, which is useful in 3D imaging.  I will demonstrate this later. 
 
 -->
----
 
+### Coming soon! Low-rank matrix recovery in Parallel imaging (see my "func_UNCLE_SAM_NMR" function ...
+...or read my paper "Unfolding coil localized errors from an imperfect slice profile
+using a structured autocalibration matrix: An application to
+reduce outflow effects in cine bSSFP imaging"
+
+
+### Coming soon! E-SPIRiT.  See my functions:  func_ESPIRiT_fast and func_simplified_ESPIRiT.  
+
+
+---
+## Spatial Beamforming:  Coming soon!  See my implementation of Region Optimized Virtual Coils (func_ROVir_nc).  I will later show results of my new spatial beamforming method later on.  
+I have an approach that I previously presented at ISMRM called Low rank reduced FOV (LR-rFOV).  For my paper and pending patent submission I changed the name to Coil Localized Elimination of Aliased NMR (CLEAN).  In my paper and patent submission I compare against ROVir, which is so far the only spatial beamforming approach used in MRI.  ROVir adapted the stochastic matched filter formulation to optimize for signal power within a specific region of interest (ROI) to the signal power outside.  My approach CLEAN is different.  In short, I exploited the linearity of the Fourier transform and the complex valued nature of the raw data to vectorially cancel signal outside of the ROI.  My implementation for rovir (func_ROVir_nc) is online but my implementation of CLEAN will not be posted until I published my paper.   
+
+---
 ## Non-Cartesian Reconstruction
 
 Non-Cartesian signal reconstruciton refers to the reconstruction of signal where the sampling was not done on a rectilinear grid.  I will start my discussion with projection imaging because that is most common.  Then I will generalize to other non-uniform sampling schemes in imaging. 
@@ -1135,7 +1148,7 @@ $$\mu = conv(K, filter)$$
 This essentially treats any sampled coordinate in $$\mu$$ as a linear combination of neighboring indices in $$K$$.  In my implementation, I used the Kaisser-Bessell filter because Jeff Fessler's "Nonuniform Fast Fourier Transforms Using Min-Max Interpolation" showed that was the best possible solution.  The convolution operator can be described as $$T$$, giving us the following: 
 
 ***Forward Matrix NUFFT/Gridding Problem***
-$$\mu = T K$$
+$$\mu = T F[Im] = T K $$
 
 This is an expensive problem to solve if $$T$$ is full rank.  This can be approximated by bounding this filter function.  Now approximating $$T$$ as a sparse matrix $$H$$.  
 
