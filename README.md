@@ -1136,6 +1136,8 @@ It is convenient to solve the projection data using these k-space approach thank
 
 ### NUFFT and Gridding
 
+Before reading if you want to look at my implementation, check out ```func_Cart2nonCart_fa.m```.  This function has on option for you to choose either NUFFT or gridding reconstruction.  Default is NUFFT.  If you want to see a demonstration on how to use this function, see ```/nonCartesianReconstruction/mainDemonstrate_NonCartRecon.m```.
+
 Both methods solve the same the same inverse problem, but differe slight:  the NUFFT solves a least-squares solution and gridding gives in approximation. 
 In this discussion, the *acquired* raw k-space data is $$\mu$$, and all acquired samples are concatenated as a tall vector.  For example say each readout projection had $$N_{ro}$$ samples, and there were $$N_{spokes}$$ total projections, then $$\mu$$ is a $$N_{ro} N_{spokes} \times 1$$ tall vector.  The cartesian image $$Im(x, y, z)$$ is on a rectilinear/Cartesian grid of size $$N_x N_y N_z \times 1$$. 
 
@@ -1162,11 +1164,56 @@ $$\mu = T K $$
  ***Sparse NUFFT Inverse Problem***
  
 
-$$\mu = HFUF^{-1}K$$
+$$\mu =  HFU Im = HFUF^{-1}K$$
 
-or equivalently: 
+Where now $$T$$ is approximated as $$HFUF^{-1}$$.  
 
-$$\mu = HFU Im$$
+***Approximation of T**
+$$T = HFUF^{-1}$$
+
+In my implementation of the NUFFT, I broke this down into several steps.  
+
+
+***My NUFFT steps***
+First I solved the following least-squares problem: 
+
+$$\mu = H \kappa$$
+
+where $$\kappa$$ is not my final solution.  
+
+This is illustrated in this snippet  of code from my ```func_Cart2nonCart_fa```:
+
+```
+nufft_result = lsqr(H_matrix, mu(:), 1e-6, 20);%pcg(T_combinedMatrix, mu_combined, 1e-6, 100);
+        nufft_result = reshape(nufft_result, [Nx, Ny, Nz]);
+
+
+```
+  "nufft_result" is what I call $$\kappa$$ above.  
+  I then computed the inverse Fast discrete Fourier transform of $$\kappa$$ before multiplying it by the apodization filter:  $$UF^{1}\kappa$$: 
+
+ ```
+IF_nufft_result = ifftnc(nufft_result);
+ UIF_nufft_result =  IF_nufft_result  ./ U_matrix; %ones(size(test_U));% test_U;
+```
+where ```UIF_nufft_result``` is my final deapodized image.  
+
+The NUFFT employs the lsqr algorithm in order to approximate a least-squares solution.  This usually takes a few (around 15 iterations).  The number of iterations needed can be reduced by preconditioning the least-squares problem with a density compensation term, $$D_0$$.  This density compensation term penalizes high density sampled regions.  However I can live with the iterations in the NUFFT.  I only use density compensation if I decide to perform gridding instead, which I will get to next: 
+
+#### Gridding
+Gridding seeks to directly approximate an estimate of $$K$$, $$K_{est}$$: 
+
+
+***Gridding Equation***
+$$K_{est}$$ = T^H D_0 \mu$$
+
+This approximation uses the density compensation term to estimate a solution in one iteration, rather than relying on an iterative least-squares solver.   
+Remembering the approximation of T, the gridding equation becomes: 
+
+$$K_{est} = (HFUF^{-1})^H D_0 \mu$$
+
+$$K_{est} = F U^H F^{-1}H^H D_0 \mu$$
+
 
 
 
