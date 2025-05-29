@@ -1137,7 +1137,7 @@ It is convenient to solve the projection data using these k-space approach thank
 ### NUFFT and Gridding
 
 Both methods solve the same the same inverse problem, but differe slight:  the NUFFT solves a least-squares solution and gridding gives in approximation. 
-In this discussion, the *acquired* raw k-space data is $$\mu$$, and all acquired samples are concatenated as a tall vector.  For example say each readout projection had $$N_{ro}$$ samples, and there were $$N_{spokes}$$ total projections, then $$\mu$$ is a $$N_{ro} N_{spokes} \times 1$$ tall vector.  The cartesian image $$Im(x, y, z)$$ is on a rectilinear/Cartesian grid.  
+In this discussion, the *acquired* raw k-space data is $$\mu$$, and all acquired samples are concatenated as a tall vector.  For example say each readout projection had $$N_{ro}$$ samples, and there were $$N_{spokes}$$ total projections, then $$\mu$$ is a $$N_{ro} N_{spokes} \times 1$$ tall vector.  The cartesian image $$Im(x, y, z)$$ is on a rectilinear/Cartesian grid of size $$N_x N_y N_z \times 1$$. 
 
 Both NUFFT and gridding try to find a solution $$Im(x,y,z)$$ given the non-Cartesian samples $$mu$$.  They model the relationship of the non-Cartesian samples as in inverse problem.  Let's call the vector $$K$$ the "cartesian sampled" Fourier transform of the image $$Im$$: $$K = F[Im]$$.  In this discussion $$F$$ is the discrete uniform Fourier transform and $$F^{-1}$$ is the discrete inverse uniform Fourier transform.  The inverse problem that the NUFFT solves for and that gridding approximates for is that the acquired non-uniform k-space samples $$\mu$$ can modeled as the convolution of the Cartesian sampled k-space $$K$$ with some filter.  A common filter used is the Kaiser-Bessel window: 
 
@@ -1145,12 +1145,20 @@ Both NUFFT and gridding try to find a solution $$Im(x,y,z)$$ given the non-Carte
 
 $$\mu = conv(K, filter)$$
 
-This essentially treats any sampled coordinate in $$\mu$$ as a linear combination of neighboring indices in $$K$$.  In my implementation, I used the Kaisser-Bessell filter because Jeff Fessler's "Nonuniform Fast Fourier Transforms Using Min-Max Interpolation" showed that was the best possible solution.  The convolution operator can be described as $$T$$, giving us the following: 
+This essentially treats any sampled coordinate in $$\mu$$ as a linear combination of all Cartesian indices in $$K$$.  In my implementation, I used the Kaisser-Bessell filter because Jeff Fessler's "Nonuniform Fast Fourier Transforms Using Min-Max Interpolation" showed that was the best possible solution.  The convolution operator can be described as $$T$$, giving us the following: 
 
 ***Forward Matrix NUFFT/Gridding Problem***
-$$\mu = T F[Im] = T K $$
 
-This is an expensive problem to solve if $$T$$ is full rank.  This can be approximated by bounding this filter function.  Now approximating $$T$$ as a sparse matrix $$H$$.  
+
+$$\mu = T F[Im] $$
+
+or equivalently
+
+$$\mu = T K $$
+
+Personally, I find it easier to solve the second equality because I can take advantage of the Fast Fourier transform algorithm.  Nonetheless, this is still an expensive problem to solve to solve if $$T$$ has a wide range. 
+
+This can be approximated by bounding this filter function.  Now approximating $$T$$ as a sparse matrix $$H$$.  This then models each sampled index in $$\mu$$ as a linear combination of only neighboring Cartesian grid coordinates in $$K$$.  
 
 
 
