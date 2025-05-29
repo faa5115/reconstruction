@@ -855,7 +855,7 @@ $$[\mathbf{d}]_{cal} = [W] [\mathbf{d}] _{cal}$$
 
 Because the $$N_b$$ weights appear in each row of $$W$$, one could restructure the the equation above to solve for the $$N_b$$ weights: 
 
-$$[\mathbf{d}_{cal}] = [D_{sources}][\mathbf{w}]$$
+$$[\mathbf{d} _{cal}] = [D _{sources}] [\mathbf{w}]$$
 
 where $$[D_{sources}]$$ is a $$N _{xc} \cdot N _{yc} \cdot N _{zc} \cdot N_c \times N_b\cdot N_c$$ matrix where each row contains the neighbor $$N_b$$ k-space indices across all $$N_c$$ channels of each target in $$[\mathbf{d}_{cal}]$$.  The vector $$[\mathbf{w}]$$ is an $$N_b \cdot N_c$$ member long list of the kernel weights.  
 
