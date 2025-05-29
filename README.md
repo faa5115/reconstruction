@@ -848,9 +848,10 @@ If the weights in $$W$$ were accurately chosen, and applied on a **fully sampled
 
 $$[\mathbf{d}]_{GRAPPA} ~ [W] [\mathbf{d}]$$
 
-That is an important thing to consider, and I will touch base on this point later when discussing E-SPIRiT.  
+That is an important thing to consider, and this is core to determining channel sensitivity maps using E-SPIRiT. This is also important because this is the premise of how we determine the weights from the calibration data.  Given the calibration data, $$[\mathbf{d}]_{cal}$$,  the terms of $$W$$ must best approximate:
 
 
+$$[\mathbf{d}]_{cal} ~ [W] [\mathbf{d}] _{cal}$$
 
 
 
