@@ -1205,6 +1205,8 @@ Gridding seeks to directly approximate an estimate of $$K$$, $$K_{est}$$:
 
 
 ***Gridding Equation***
+
+
 $$K_{est}$$ = T^H D_0 \mu$$
 
 This approximation uses the density compensation term to estimate a solution in one iteration, rather than relying on an iterative least-squares solver.   
