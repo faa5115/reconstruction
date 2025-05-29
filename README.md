@@ -1156,9 +1156,7 @@ or equivalently
 
 $$\mu = T K $$
 
-Personally, I find it easier to solve the second equality because I can take advantage of the Fast Fourier transform algorithm.  Nonetheless, this is still an expensive problem to solve to solve if $$T$$ has a wide range. 
-
-This can be approximated by bounding this filter function.  Now approximating $$T$$ as a sparse matrix $$H$$.  This then models each sampled index in $$\mu$$ as a linear combination of only neighboring Cartesian grid coordinates in $$K$$.  
+ $$T$$ has a large size:  $$N_{ro} N_{spokes} \times N_x N_y N_z$$, which makes inverting it difficult to computer.  Therefore, this must be approximated by bounding this filter function, as a sparse matrix $$H$$.  This then models each sampled index in $$\mu$$ as a linear combination of only neighboring Cartesian grid coordinates in $$K$$.  However convolving the Cartesian k-space that you are trying to solve for with a narrow bandwidth kernel apodizes the signal.  If this is not accounted for, the resulting image will be bright at the center of the image
 
 
 
