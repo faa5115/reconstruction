@@ -103,7 +103,7 @@ Topics in parallel imaging that I will go over:
   * Low-Rank (or "subspace") Based Parallel Imaging methods:  show how the linear dependence of multi-channel k-space neighbors can be generalized to treat them as a low-rank system.
   -->
   
- ## Spatial Beamforming
+ ## Parallel imaging to unalias
  <!--
  For now I will discuss ROVir, which was a novel adaptation of Walsh's adaptive coil combine method to combine the acquired channel data in different linear combination to generate a new set of "virtual" channels that optimize the signal power within the specific region of interest (ROI) over the signal power outside of that region of interest.  
  I will later upload my new approach once it is published or filed for patent; whichever comes first. 
@@ -115,7 +115,7 @@ Topics in parallel imaging that I will go over:
 * SENSE vs GRAPPA: Side Lobe Artifacts
 * Structured Low-Rank Matrix Completion
 
-## Spatial Beamforming 
+## Spatial Beamforming to filter aliased signal
 * Region-of-Interest Beamforming (ROVir)
 * I will briefly go over my new approach Coil Localized Elimination of Aliased NMR (CLEAN). It is not yet published and currently filed a provisional patent application), so I will not go over any details on the implementation.
 <!--
