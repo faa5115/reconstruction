@@ -7,8 +7,23 @@ My goal in sharing this repository is to demonstrate the depth of my experience 
 # Signal Reconstruction Implementations and their Demos
 This repository presents a growing collection of signal modeling and image reconstruction methods I’ve implemented from scratch, originally motivated by problems in medical imaging (MRI). Many of the underlying principles, such as inverse problem formulation, array signal modeling, and low-rank matrix recovery, are also foundational in synthetic aperture radar (SAR). While the repository is still under development, it is intended as a practical reference for applying these shared concepts across domains.
 
+## Currently demonstrated methods include:
 
-Upcoming additions will include:
+Sensitivity encoding (SENSE) for spatial matched filter reconstruction of coil-combined images and can be extended to unalias collapsed signals with different channel sensitivities
+
+Stochastic spatial matched filter for reconstruction with probabilistic weighting
+
+GRAPPA, a k-space-based convolutional method that complements SENSE for unaliasing
+
+Non-uniform FFT (NUFFT) and gridding-based reconstructions for non-Cartesian sampling trajectories
+
+Projection reconstruction using radial sampling
+
+Structured low-rank matrix recovery from undersampled data
+
+
+
+## Upcoming additions will include:
 
 Spatial beamforming demonstrations, including ROVir (an MRI adaptation of SAR transmit beamforming)
 
