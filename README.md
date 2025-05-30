@@ -1250,8 +1250,21 @@ The third row shows the gridding recon.
 
 
 
-![](/figures/sampledSpokes.jpg)  
+![](/figures/griddingAndNUFFTResults.jpg)  
 
+
+The snippet of code below shows how to use my ```func_nonCart2Cart_fa``` function. It can handle 2D and 3D datasets.  
+```
+[raw_grid_cropped, raw_grid_ls_osf] = ... %"_ls refers to "least squares"
+    func_nonCart2Cart_fa(mu, coord_Matrix, H_and_U_andGrid_Struct, b_choice, D_0, osf, b_square);
+% mu is the sampeld raw data:  size Nro * Nspokes x 1. ... or all sampled points x 1.
+% coord_Matrix is the sampled kx,ky,kz coordinates of the nonuniformly sampled data.
+% H_and_U_andGrid_Struct is a struct that has the sparse H (convolution) matrix and the U (deapodization) matrix.  This is optional to include.  If it is empty, the function will quickly create it. The default % convolution function in H is a truncated Kaiser Bessel function.
+% b_choice:  1 - nufft.  2- gridding.  default is 1.
+% D_0:  optional.  density compensation diagonal matrix.  If it is not included and you chose option 2, it will create one by griding and ungridding 1.
+% osf:  oversampling factor.
+% b_square:  default is 1.  just a boolean that sees if you want your entire Cartesian gride to be centered at the (kx,ky) origin.  
+```
 
 ---
 ## Coming Soon
