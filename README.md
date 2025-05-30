@@ -1201,7 +1201,7 @@ where ```UIF_nufft_result``` is my final deapodized image.
 The NUFFT employs the lsqr algorithm in order to approximate a least-squares solution.  This usually takes a few (around 15 iterations).  The number of iterations needed can be reduced by preconditioning the least-squares problem with a density compensation term, $$D_0$$.  This density compensation term penalizes high density sampled regions.  However I can live with the iterations in the NUFFT.  I only use density compensation if I decide to perform gridding instead, which I will get to next: 
 
 #### Gridding
-Gridding seeks to directly approximate an estimate of $$K$$, $$K_{est}$$: 
+Gridding seeks to directly approximate an estimate of $$K$$, $$K_{est}$$ by using the **adjoint** of T: 
 
 
 ***Gridding Equation***
@@ -1216,6 +1216,30 @@ $$K_{est} = (HFUF^{-1})^H D_0 \mu$$
 
 $$K_{est} = F U^H F^{-1}H^H D_0 \mu$$
 
+This is shown in my ```func_Cart2nonCart_fa``` function:  
+
+```
+grid_result = H_matrix' * D_0 * mu(:);
+grid_result = reshape(grid_result, [Nx, Ny, Nz]);
+IF_grid_result = ifftnc(grid_result);
+UIF_grid_result =  IF_grid_result .* U_matrix;
+
+```
+where ```UIF_grid_result``` is the image of the gridded k-space. 
+
+Gridding just implements the forward operation above: multiply the acquried non-Cartesian data $$\mu$$ by $$F U^H F^{-1}H^H D_0$$.  Without the density compensation term, it there will be a huge bias to the regions of k-space highly sampled --> they will have much more power than what is accurate.  For projection imaging, all k-space samples go through the center, giving the center high-sampling density.  If density compensation is not performed in gridding, then the high sampled density center will have much higher power than it really does, resulting in a low resolution image.  
+
+My ```func_Cart2nonCart_fa``` function allows you to input your own density compensation term.  If empty and you decide to perform gridding, I have a default approach, where I grid and then inverse grid a sample of ones, and then take the reciprocal of the output.  
+
+I will write more about this later, but gridding can be seen as a single iteration of the NUFFT solver.  
+
+
+One last thing I want to mention before I show results, when I contstruct the interpolation matrix $$H$$, I often interpolate to a grid that is oversampled by a scaling factor in each Cartesian direction.  In otherwords, I oversample data in my interpolation.  This makes a huge difference in the final result.  It makes sense to oversample because in non-Cartesian sampling, such as in projection/radial imaging (projection images sample radial k-space coordinates), the gaps between sampled k-space coordinates near the center is tiny, encoding for a FOV that is much larger than the nominal FOV.  
+
+In this script ```mainDemonstrate_NonCartRecon``` I load a Shepp-Logan phantom.  I then take the radon transform to generate $$N_{spokes}=610$$ projections of the phantom, linearly spaced from $$0$$ to $$\pi$$ radians.  Each individual projection is Fourier transforms to generate a spoke in k-space.  The coordinates of these spokes is shown below: 
+
+
+![](/figures/sampledSpokes.jpg)  
 
 
 
