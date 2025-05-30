@@ -5,7 +5,8 @@ My goal in sharing this repository is to demonstrate the depth of my experience 
 -->
 
 # Signal Reconstruction Implementations and their Demos
-This repository presents a growing collection of signal modeling and image reconstruction methods I’ve implemented from scratch, originally motivated by problems in medical imaging (MRI). Many of the underlying principles, such as inverse problem formulation, array signal modeling, and low-rank matrix recovery—are also foundational in synthetic aperture radar (SAR). While the repository is still under development, it is intended as a practical reference for applying these shared concepts across domains.
+This repository presents a growing collection of signal modeling and image reconstruction methods I’ve implemented from scratch, originally motivated by problems in medical imaging (MRI). Many of the underlying principles, such as inverse problem formulation, array signal modeling, and low-rank matrix recovery, are also foundational in synthetic aperture radar (SAR). While the repository is still under development, it is intended as a practical reference for applying these shared concepts across domains.
+
 
 Upcoming additions will include:
 
@@ -13,7 +14,7 @@ Spatial beamforming demonstrations, including ROVir (an MRI adaptation of SAR tr
 
 A novel CLEAN-style deconvolution technique (results to be shared pending publication)
 
-E-SPIRiT-based parallel reconstruction
+E-SPIRiT-based parallel reconstruction (used to generate localized sensitivity maps for each receive channel of a phased array)
 
 Spiral readout reconstruction via NUFFT
 
@@ -48,7 +49,7 @@ Matched filtering and gridding methods resemble SAR pulse compression and image 
 
 Inverse problem approaches reflect similar issues in SAR: ill-posedness, limited data coverage, and trade-offs between resolution and artifacts.
 
-By working from first principles and reconstructing these methods in Python and MATLAB, I aim to demonstrate transferable intuition and a bottom-up engineering mindset well suited for SAR signal processing challenges.
+
 
 ---
 
@@ -61,6 +62,8 @@ By working from first principles and reconstructing these methods in Python and 
 **Data**\
 **License**\
 **Contact**\
+
+---
 # Introduction
 
 <!--
@@ -87,8 +90,10 @@ Relevance to real-world reconstruction workflows
 
 I welcome feedback and plan to continue expanding the repository with more SAR-relevant signal models and reconstruction tools.
 
+---
 
 # Features
+
 **DSP-Rich Algorithms:** Implementations of SENSE, GRAPPA, beamforming (ROVir), low-rank matrix recovery, and NUFFT—all of which apply core DSP techniques.
 **Array Data Processing:** Multi-channel coil combination strategies (e.g., adaptive combining and sensitivity encoding).
 **Modular Codebase:** Easily extensible Python/Matlab code with demos and results.
