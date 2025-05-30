@@ -1,11 +1,33 @@
-Welcome to the Image Reconstruction Methods repository. This project is currently a work in progress. It will eventually hold my entire body of work in MRI image reconstrion, developed during my Ph.D. at UCLA and my postdoctoral fellowship at the Cleveland Clinic Foundation. While this work focuses on magnetic resonance imaging, the techniques and principles applied here—digital signal processing, sensor array combination, aliasing mitigation, and inverse problem formulation—are foundational to Synthetic Aperture Radar (SAR) as well.
+<!--
+Welcome to the Image Reconstruction Methods repository. This project is currently a work in progress. It will eventually hold my entire body of work in MRI image reconstrion, developed during my Ph.D. at UCLA and my postdoctoral fellowship at the Cleveland Clinic Foundation. While this work focuses on magnetic resonance imaging, the techniques and principles applied here: digital signal processing, sensor array combination, aliasing mitigation, and inverse problem formulation—are foundational to Synthetic Aperture Radar (SAR) as well.
 
-My goal in sharing this repository is to demonstrate the depth of my experience in solving complex imaging problems that are closely analogous to those in SAR. Though my work has been in the medical imaging domain, the core challenges—sparse sampling, spatial aliasing, beamforming, non-Cartesian data acquisition, and image reconstruction from frequency-domain measurements—are fundamentally similar.
+My goal in sharing this repository is to demonstrate the depth of my experience in solving complex imaging problems that are closely analogous to those in SAR. Though my work has been in the medical imaging domain, the core challenges, such as sparse sampling, spatial aliasing, beamforming, non-Cartesian data acquisition, and image reconstruction from frequency-domain measurements are fundamentally similar.
+-->
+
+# Signal Reconstruction Implementations and their Demos
+This repository presents a growing collection of signal modeling and image reconstruction methods I’ve implemented from scratch, originally motivated by problems in medical imaging (MRI). Many of the underlying principles—such as inverse problem formulation, array signal modeling, and low-rank matrix recovery—are also foundational in synthetic aperture radar (SAR). While the repository is still under development, it is intended as a practical reference for applying these shared concepts across domains.
+
+Upcoming additions will include:
+
+Spatial beamforming demonstrations, including ROVir (an MRI adaptation of SAR transmit beamforming)
+
+A novel CLEAN-style deconvolution technique (results to be shared pending publication)
+
+E-SPIRiT-based parallel reconstruction
+
+Spiral readout reconstruction via NUFFT
+
+Calibrationless structured low-rank matrix recovery (SAKE)
+
+Calibrated structured low-rank recovery and other hybrid methods
+
+My aim is to highlight the shared language and mathematical structures that unite MRI and SAR signal modeling, with an emphasis on physical interpretability and implementation transparency.
 
 
-
+---
 ## Relevance to Radar Signal Processing
 
+<!--
 Key skills demonstrated in this repository that translate directly to SAR include:
 
 Multi-sensor data fusion: Combining spatially varying signals from array elements (MRI coils) using methods such as SENSE and adaptive beamforming (David Walsh).
@@ -14,7 +36,21 @@ Image reconstruction from frequency-space data: Processing raw k-space (analogou
 Low-rank and structured signal recovery: Leveraging low-dimensional structure in undersampled measurements for robust image recovery, as in compressed sensing radar.
 This repository brings together multiple reconstruction strategies, each accompanied by code and visual examples, to highlight my hands-on DSP proficiency and adaptability across imaging domains.
 
+-->
 
+Although this repository was developed in the context of MRI, many of the reconstruction techniques here align closely with the signal modeling challenges faced in SAR:
+
+Phased-array processing and unaliasing techniques correspond to SAR beamforming and resolution enhancement.
+
+Low-rank matrix models are applicable to SAR denoising, missing data interpolation, and compressive sensing.
+
+Matched filtering and gridding methods resemble SAR pulse compression and image formation pipelines.
+
+Inverse problem approaches reflect similar issues in SAR: ill-posedness, limited data coverage, and trade-offs between resolution and artifacts.
+
+By working from first principles and reconstructing these methods in Python and MATLAB, I aim to demonstrate transferable intuition and a bottom-up engineering mindset well suited for SAR signal processing challenges.
+
+---
 
 # Table of Contents
 **Introduction**\
@@ -26,12 +62,30 @@ This repository brings together multiple reconstruction strategies, each accompa
 **License**\
 **Contact**\
 # Introduction
+
+<!--
 MRI is a highly flexible imaging modality, but its performance is limited by slow acquisition times and sensitivity to artifacts caused by undersampling and motion. These challenges mirror many of the signal reconstruction issues found in radar imaging.
 
 My work addresses these problems by developing robust reconstruction algorithms based on signal processing theory and array systems engineering. The techniques presented here reflect both a deep theoretical understanding and hands-on implementation experience in advanced reconstruction pipelines.
 
 This repository is not only a showcase of MRI reconstruction techniques—it is a demonstration of transferable digital signal processing skills applicable to radar and remote sensing applications.
 
+-->
+
+
+This repository is a work in progress aimed at unifying concepts from signal processing, inverse problems, and physics-based modeling as they apply to image reconstruction tasks. While many demonstrations originate from MRI, the mathematical frameworks and practical implementations are deeply relevant to radar imaging—particularly SAR.
+
+Each example emphasizes:
+
+Conceptual clarity and documentation
+
+Transparent, from-scratch implementations
+
+Connections to physical modeling and array processing
+
+Relevance to real-world reconstruction workflows
+
+I welcome feedback and plan to continue expanding the repository with more SAR-relevant signal models and reconstruction tools.
 
 
 # Features
