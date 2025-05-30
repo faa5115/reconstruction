@@ -23,6 +23,8 @@ Structured low-rank matrix recovery from undersampled data
 
 
 
+
+
 ## Upcoming additions will include:
 
 Spatial beamforming demonstrations, including ROVir (an MRI adaptation of SAR transmit beamforming)
@@ -36,6 +38,8 @@ Spiral readout reconstruction via NUFFT
 Calibrationless structured low-rank matrix recovery (SAKE)
 
 Calibrated structured low-rank recovery and other hybrid methods
+
+Random matrix theory based denoising
 
 My aim is to highlight the shared language and mathematical structures that unite MRI and SAR signal modeling, with an emphasis on physical interpretability and implementation transparency.
 
