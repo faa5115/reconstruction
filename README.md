@@ -1243,9 +1243,14 @@ In this script ```mainDemonstrate_NonCartRecon``` I load a Shepp-Logan phantom. 
 
 
 
+I then carried out NUFFT and Gridding reconstructions of these sampled spokes, oversampling by a factor of 2 in the $$k_x$$ and $$k_y$$ directions. 
+The results can be seen in the figure below.  The figure is divided into three rows.  The top shows the original phantom next to MATLAB's inverse radon transform of the projections.  The top row is just for display to visually compare. 
+The second row shows my NUFFT results.  Both results are the same, it is just that one shows the whole oversampled reconstruction and the other shows the center region of the oversampled reconstruction cropped.  
+The third row shows the gridding recon.  
 
 
 
+![](/figures/sampledSpokes.jpg)  
 
 
 ---
