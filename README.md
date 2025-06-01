@@ -1078,7 +1078,7 @@ This is why i have a separate function called ```func_complete_grappa_recon```. 
 % x 0 x 0 x 0 x 0 x 0 x 0
 % 0 0 0 0 0 0 0 0 0 0 0 0
 ```
-Three different ky,kz kernel structures are necessary when convolving through this k-space: 
+If your kernel is 3x3 for the ky and kz directions, you will need three different ky,kz kernel structures are necessary when convolving through this k-space: 
 ```
 % the first kernel: 
 % x 0 x
