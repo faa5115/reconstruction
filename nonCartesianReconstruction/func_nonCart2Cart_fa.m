@@ -72,11 +72,11 @@ function [raw_grid, raw_grid_osf] = func_nonCart2Cart_fa(mu, coord_Matrix, H_and
 
         %-------------- crop ----------------------------------------------
         startIndex_x = round((Nx - round(Nx/osf))/2);
-        cropX = startIndex_x + 1 : startIndex_x + round(Nx/osf);
+        cropX = startIndex_x +1 : startIndex_x + round(Nx/osf) - 1;
         startIndex_y = round((Ny - round(Ny/osf))/2);
-        cropY = startIndex_y + 1 : startIndex_y + round(Ny/osf);
+        cropY = startIndex_y +1 : startIndex_y + round(Ny/osf) - 1;
         startIndex_z = round((Nz - round(Nz/osf))/2);
-        cropZ = startIndex_z + 1 : startIndex_z + round(Nz/osf);
+        cropZ = startIndex_z+1  : startIndex_z + round(Nz/osf);
         finalIm = UIF_nufft_result(cropX, cropY, cropZ);
         %------------------------------------------------------------------
 
@@ -91,15 +91,16 @@ function [raw_grid, raw_grid_osf] = func_nonCart2Cart_fa(mu, coord_Matrix, H_and
 
         %-------------- crop ----------------------------------------------
         startIndex_x = round((Nx - round(Nx/osf))/2);
-        cropX = startIndex_x + 1 : startIndex_x + round(Nx/osf);
+        cropX = startIndex_x  : startIndex_x + round(Nx/osf)-1;
         startIndex_y = round((Ny - round(Ny/osf))/2);
-        cropY = startIndex_y + 1 : startIndex_y + round(Ny/osf);
+        cropY = startIndex_y  : startIndex_y + round(Ny/osf)-1;
         startIndex_z = round((Nz - round(Nz/osf))/2);
-        cropZ = startIndex_z + 1 : startIndex_z + round(Nz/osf);
+        cropZ = startIndex_z+1  : startIndex_z + round(Nz/osf);
         finalIm = UIF_grid_result(cropX, cropY, cropZ);
         %------------------------------------------------------------------
 
         raw_grid = fftnc(finalIm);
         raw_grid_osf = fftnc(UIF_grid_result);
     end
+    disp('finsihed nonCart2Cart')
 end

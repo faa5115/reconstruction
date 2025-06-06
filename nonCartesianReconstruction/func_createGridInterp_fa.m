@@ -127,8 +127,9 @@ if ~isempty(interp_kernel) %exist(interp_kernel)
     [kb_wx, kb_wy, kb_wz] = size(interp_kernel);
     FrecipU_center = interp_kernel;
 else % if not specified, just use the kaiser-bessel.
-    % kb_w = 5;  kb_beta = 8;
-    kb_w = 7;  kb_beta = 20;
+    kb_w = 5;  kb_beta = 8;
+    % kb_w = 7;  kb_beta = 20;
+    % kb_w = 9;  kb_beta = 13.9;%kb_beta = 40;
     kb_wx = kb_w; kb_wy = kb_w; kb_wz = kb_w;
     if Nz < kb_w %if Nz == 1
         kb_wz = Nz;
@@ -148,6 +149,7 @@ else % if not specified, just use the kaiser-bessel.
 
     kernel_indices = -max_width : max_width; % the coordinates of the kernel we evaluate
     kb_output = kb_sym(kernel_indices);
+    %figure, plot(kb_output)
     FrecipU_center = ones(kb_wx, kb_wy, kb_wz);
 
 
